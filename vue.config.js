@@ -11,24 +11,15 @@ module.exports = {
       short_name: 'G&G',
       icons: [
         {
-          src: './img/icons/android-chrome-192x192.png',
-          sizes: '192x192',
-          type: 'image/png'
-        },
-        {
           src: './img/icons/android-chrome-512x512.png',
           sizes: '512x512',
           type: 'image/png'
         },
         {
-          src: './img/icons/android-chrome-192x192.png',
-          sizes: '192x192',
-          type: 'image/png'
-        },
-        {
-          src: './img/icons/android-chrome-512x512.png',
-          sizes: '512x512',
-          type: 'image/png'
+          src: './img/icons/maskable_icon.png',
+          sizes: '196x196',
+          typw: 'image/png',
+          purpose: 'maskable' // <-- New property value `"maskable"`
         }
       ]
     },

@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 workbox.routing.registerRoute('/', new workbox.strategies
   .NetworkFirst({
-    cacheName: dynamic_cache
+    cacheName: wedding_gg_cache
   }))
 
 workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })

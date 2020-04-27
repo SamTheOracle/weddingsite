@@ -3,7 +3,7 @@
     <v-container fluid class="pa-0"  id="main-container">
       <v-row align="start" justify="center" no-gutters>
         <v-col>
-          <v-img src="@/assets/gg.png" contain style="max-height:100vh"/>
+          <v-img src="@/assets/gg.png" contain style="max-height:100vh max-width:90vw"/>
         </v-col>
         <!--  <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
         <v-img src="@/assets/description.png" v-if="$vuetify.breakpoint.smAndUp"/>

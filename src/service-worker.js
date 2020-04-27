@@ -1,30 +1,14 @@
 /* eslint-disable no-undef */
+/* eslint-disable no-undef */
+workbox.routing.registerRoute('/', new workbox.strategies
+  .NetworkFirst({
+    cacheName: dynamic_cache
+  }))
 
-workbox.routing.registerNavigationRoute('/')
-
-workbox.core.setCacheNameDetails({ prefix: 'whoisatdinner-frontend' })
+workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 
 self.addEventListener('install', () => {
   self.skipWaiting()
-})
-/* self.addEventListener('activate', event => {
-    event.waitUntil(clients.claim())
-})
- */
-
-self.addEventListener('push', function (event) {
-  if (event.data) {
-    var notification = event.data.json()
-    const title = notification.title
-    const options = {
-      body: notification.description,
-      icon: './img/icons/android-chrome-96x96.png',
-      badge: './img/tray.a7f4e3f3.svg'
-    }
-    self.registration.showNotification(title, options)
-  } else {
-    console.log('Push event but no data')
-  }
 })
 
 /**

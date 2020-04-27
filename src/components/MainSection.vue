@@ -1,9 +1,9 @@
 <template>
-  <div style="height:100vh;background-color:#F7F9E4">
-    <v-container fluid class="pa-0">
+  <div >
+    <v-container fluid class="pa-0"  id="main-container">
       <v-row align="start" justify="center" no-gutters>
-        <v-col :cols="$vuetify.breakpoint.smAndUp?10:12" contain>
-          <v-img src="@/assets/gg.png"  :style="$vuetify.breakpoint.smAndUp?'height:98vh':''" :contain="$vuetify.breakpoint.smAndUp"/>
+        <v-col>
+          <v-img src="@/assets/gg.png" contain style="max-height:100vh"/>
         </v-col>
         <!--  <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
         <v-img src="@/assets/description.png" v-if="$vuetify.breakpoint.smAndUp"/>
@@ -21,4 +21,11 @@ export default {
 </script>
 
 <style>
+#main-container{
+background-color:#F7F9E4;
+max-height: 100vh;
+}
+/* @media only screen and (max-width: 600px){
+
+} */
 </style>

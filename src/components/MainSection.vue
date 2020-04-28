@@ -8,13 +8,25 @@
         <!--           <p class="nice pa-0 text-center mt-0">e Giacomo</p>
 
         -->
-         <v-img src="@/assets/ggconnome.png" contain style="max-height:100vh" v-if="$vuetify.breakpoint.smAndUp"/>
+        <v-img
+          src="@/assets/ggconnome.png"
+          contain
+          style="max-height:100vh"
+          v-if="$vuetify.breakpoint.smAndUp"
+        />
 
         <div v-else>
           <!-- <v-img src="@/assets/names.png" height="80" width="300" /> -->
-          <p class="nicemain text-center pa-0 ma-0">Giovanna</p>
-          <p class="nicemain text-center pa-0 ma-0">e Giacomo</p>
-          <v-img src="@/assets/ioegiovi.png"  contain style="max-height:100vh;"/>
+          <div v-if="showText">
+            <p class="nicemain text-center pa-0 ma-0">Giovanna</p>
+            <p class="nicemain text-center pa-0 ma-0">e Giacomo</p>
+          </div>
+          <v-img
+            src="@/assets/ioegiovi.png"
+            v-on:load="showText=true"
+            contain
+            style="max-height:100vh;"
+          ></v-img>
         </div>
       </v-col>
 
@@ -28,7 +40,12 @@
 
 <script>
 export default {
-  name: 'MainSection'
+  name: 'MainSection',
+  data: () => {
+    return {
+      showText: false
+    }
+  }
 }
 </script>
 

@@ -25,12 +25,13 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list nav flat>
+      <v-list nav flat >
         <v-list-item-group color="primary">
           <v-list-item
-            v-for="(element,i) in computedLinks"
+            v-for="(element,i) in computedLinks()"
             :key="i"
             @click="doAction(element.button)"
+            v-resize="computedLinks"
             two-line
           >
             <v-list-item-avatar tile>
@@ -132,14 +133,18 @@ export default {
       if (window.innerWidth <= 800) {
         this.drawer = false
       }
-    }
-  },
-  computed: {
+    },
     computedLinks: function () {
       const width = window.innerWidth
-      return this.links.filter(link => link.button !== 'Informazioni' & width < 360)
+      if (width < 360) {
+        console.log(this.links.filter(link => link.button !== 'Informazioni'))
+        return this.links.filter(link => link.button !== 'Informazioni')
+      } else {
+        return this.links
+      }
     }
   }
+
 }
 </script>
 <style>

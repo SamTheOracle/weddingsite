@@ -51,7 +51,7 @@
     <Information />
     <div style="max-height:100vh">
       <v-overlay :value="overlay" absolute @click="overlay = false">
-        <Timeline v-on:close="overlay = false" />
+        <Timeline v-on:close="overlay = false" @click="overlay = false"/>
       </v-overlay>
     </div>
 

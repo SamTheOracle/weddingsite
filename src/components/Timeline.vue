@@ -8,10 +8,7 @@
           large
           @click="$emit('close')"
           color="blue-grey lighten-4"
-          absolute
-          top
-          :left="$vuetify.breakpoint.smAndUp"
-          class="mx-auto"
+          class="mt-10"
         >
           <v-icon>mdi-close</v-icon>
         </v-btn>

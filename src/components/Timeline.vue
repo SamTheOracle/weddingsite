@@ -29,7 +29,7 @@
               </v-container>
             </v-sheet>
             <template v-slot:opposite>
-              <p style="color:white">{{item.sentence}}</p>
+              <p class="opposite">{{item.sentence}}</p>
             </template>
           </v-timeline-item>
         </v-timeline>
@@ -65,21 +65,31 @@ export default {
         },
         {
           avatar: 'Taglio della torta',
-          sentence: 'Ore 11:00',
+          sentence: 'Ore 17:00',
           description: {
-            title: "Arrivo a Sant' Afra",
+            title: 'Taglio della torta',
             text:
-              'Gli invitati possono trovare i parcheggi in via pinco pallo e meridio, vicino al mc donald',
+              'Il momento dei dolci è finalmente arrivato! Scorpacciata di fragole, crostate e chi più ne ha più ne metta',
             positionLink: ''
           }
         },
         {
           avatar: 'church.svg',
-          sentence: 'Ore 11:00',
+          sentence: 'Ore 19:00',
           description: {
-            title: "Arrivo a Sant' Afra",
+            title: 'Party like no tomorrow...',
             text:
-              'Gli invitati possono trovare i parcheggi in via pinco pallo e meridio, vicino al mc donald',
+              'You can follow me, fino a che non mollo! Farema festa finchè non molleremo, con una spaghettata finale (se voi morti di fame non sarete sazi)',
+            positionLink: ''
+          }
+        },
+        {
+          avatar: 'church.svg',
+          sentence: 'Ore 01:00, Domenica 11 Ottobre 2020',
+          description: {
+            title: 'Tutti a nanna',
+            text:
+                'Per chi è rimasto a festeggiare e viene da lontano può contattare lo sposo o la sposa per informazioni su come cercare il posto per il dormire',
             positionLink: ''
           }
         }
@@ -90,4 +100,11 @@ export default {
 </script>
 
 <style>
+.opposite{
+  font-family: 'Amatic SC', cursive;
+  font-weight: 1000;
+  color: white;
+  font-size: 30px;
+  font-style: italic;
+}
 </style>

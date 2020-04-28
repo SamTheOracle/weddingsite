@@ -2,20 +2,21 @@
   <v-container fluid class="fill-height mt-5">
     <v-row align="start" justify="center">
       <v-col cols="12">
+        <div class="text-center">
         <v-btn
           text
           fab
-          large
+          :large="$vuetify.breakpoint.smAndUp"
           @click="$emit('close')"
-          color="blue-grey lighten-4"
-          class="mt-10"
+          color="blue-grey lighten-5"
         >
           <v-icon>mdi-close</v-icon>
         </v-btn>
+        </div>
         <v-timeline
           :align-top="$vuetify.breakpoint.smAndDown"
           :dense="$vuetify.breakpoint.smAndDown"
-          class="ma-5"
+          class="ma-5 mt-0"
         >
           <v-timeline-item v-for="(item,i) in items" :key="i" light small color="red">
             <v-sheet class="elevation-2" max-width="500" max-height="400">

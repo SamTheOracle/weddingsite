@@ -1,7 +1,7 @@
 <template>
   <div >
     <v-container fluid class="pa-0"  id="main-container">
-      <v-row align="start" justify="center" no-gutters>
+      <v-row align="center" justify="center" no-gutters>
         <v-col>
           <v-img :src="$vuetify.breakpoint.xsOnly?require('@/assets/mobile.png'):require('@/assets/ggconnome.png')" contain style="max-height:100vh"/>
         </v-col>
@@ -24,7 +24,7 @@ export default {
 <style>
 #main-container{
 background-color:#F7F9E4;
-max-height: 100vh;
+min-height: 100vh;
 }
 /* @media only screen and (max-width: 600px){
 

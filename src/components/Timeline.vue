@@ -102,7 +102,7 @@ export default {
 <style>
 .opposite{
   font-family: 'Amatic SC', cursive;
-  font-weight: 1000;
+  font-weight: bolder;
   color: white;
   font-size: 30px;
   font-style: italic;

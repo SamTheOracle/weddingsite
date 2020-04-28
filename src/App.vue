@@ -43,9 +43,9 @@
     <SecondSection />
     <ThirdSection />
 <div style="max-height:100vh">
-    <v-overlay :value="overlay" absolute z-index="2">
+    <v-overlay :value="overlay" absolute>
 
-          <Timeline class="ma-5" v-on:close="overlay = false"/>
+          <Timeline v-on:close="overlay = false"/>
 
     </v-overlay>
 </div>
@@ -103,7 +103,7 @@ export default {
   methods: {
     doAction (action) {
       if (action === 'Informazioni') {
-        this.overlay = !this.overlay
+        this.overlay = true
       }
       if (window.innerWidth <= 600) {
         this.drawer = false

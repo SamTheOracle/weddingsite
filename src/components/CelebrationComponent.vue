@@ -1,33 +1,37 @@
 <template>
-  <v-card outlined>
-    <v-list-item two-line>
-      <v-list-item-content>
-        <div class="overline mb-1">{{type}}</div>
-        <p class="cardtitle mb-1">{{title}}</p>
-      </v-list-item-content>
+  <v-card outlined min-height="400">
+    <v-container fluid>
+      <v-list-item two-line>
+        <v-list-item-content>
+          <div class="overline mb-1">{{type}}</div>
+          <p class="cardtitle mb-1">{{title}}</p>
+        </v-list-item-content>
 
-      <v-list-item-avatar
-        tile
-        :width="$vuetify.breakpoint.smAndUp?100:70"
-        :height="$vuetify.breakpoint.smAndUp?100:70"
-      >
-        <v-img :src="require('@/assets/'+icon)" contain />
-      </v-list-item-avatar>
-    </v-list-item>
-    <v-list-item two-line>
-      <v-list-item-content>
-        <p class="descr mb-1">{{timeSentence}}</p>
-      </v-list-item-content>
-    </v-list-item>
-    <v-list-item two-line>
-      <v-list-item-content>
-        <p class="descr mb-1">{{place}}</p>
-      </v-list-item-content>
-    </v-list-item>
-    <!--  <v-row align="center" justify="end">
-        <v-col cols="10">
-        </v-col>
-    </v-row>-->
+        <v-list-item-avatar
+          tile
+          :width="$vuetify.breakpoint.smAndUp?100:70"
+          :height="$vuetify.breakpoint.smAndUp?100:70"
+        >
+          <v-img :src="require('@/assets/'+icon)" contain />
+        </v-list-item-avatar>
+      </v-list-item>
+      <v-list-item two-line>
+        <v-list-item-content>
+          <p class="descr mb-1">{{timeSentence}}</p>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item two-line>
+        <v-list-item-content>
+          <p class="descr mb-1">{{place}}</p>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider />
+      <v-list-item two-line>
+        <v-list-item-content>
+          <p class="descr mb-1">Info</p>
+        </v-list-item-content>
+      </v-list-item>
+    </v-container>
   </v-card>
 </template>
 

@@ -15,7 +15,7 @@
         >{{button.text}}</v-btn>
       </div>
     </v-app-bar>
-    <v-navigation-drawer app clipped v-model="drawer" v-if="$vuetify.breakpoint.smAndDown">
+    <v-navigation-drawer app clipped v-model="drawer" v-if="$vuetify.breakpoint.smAndDown" style="height:100vh">
       <v-list-item two-line style="background-color:#EBF0BA">
         <v-list-item-avatar tile width="80" height="80">
           <v-img src="@/assets/ioegiovi.svg" contain />
@@ -28,7 +28,7 @@
       <v-list nav flat>
         <v-list-item-group color="primary">
           <v-list-item
-            v-for="(element,i) in links"
+            v-for="(element,i) in computedLinks"
             :key="i"
             @click="doAction(element.button)"
             two-line
@@ -132,6 +132,12 @@ export default {
       if (window.innerWidth <= 800) {
         this.drawer = false
       }
+    }
+  },
+  computed: {
+    computedLinks: function () {
+      const width = window.innerWidth
+      return this.links.filter(link => link.button !== 'Informazioni' & width < 360)
     }
   }
 }

@@ -11,8 +11,10 @@
          <v-img src="@/assets/ggconnome.png" contain style="max-height:100vh" v-if="$vuetify.breakpoint.smAndUp"/>
 
         <div v-else>
-          <v-img src="@/assets/names.png" height="60" width="300" />
-          <v-img src="@/assets/ioegiovi.png" contain style="max-height:100vh" />
+          <!-- <v-img src="@/assets/names.png" height="80" width="300" /> -->
+          <p class="nicemain text-center pa-0 ma-0">Giovanna</p>
+          <p class="nicemain text-center pa-0 ma-0">e Giacomo</p>
+          <v-img src="@/assets/ioegiovi.png"  contain style="max-height:100vh;"/>
         </div>
       </v-col>
 
@@ -35,10 +37,11 @@ export default {
   background-color: #f7f9e4;
   min-height: 100vh;
 }
-.nice {
+.nicemain {
   font-family: "Satisfy", cursive;
   color: #431008;
-  font-size: 34px !important;
+  font-size: 45px !important;
+  transform: rotate(-10deg);
 }
 /* @media only screen and (max-width: 600px){
 

@@ -1,9 +1,9 @@
 <template>
   <div >
     <v-container fluid class="pa-0"  id="main-container">
-      <v-row align="center" justify="center" no-gutters>
+      <v-row align="center" justify="center" no-gutters style="height:100vh">
         <v-col>
-          <v-img :src="$vuetify.breakpoint.xsOnly?require('@/assets/mobile.png'):require('@/assets/ggconnome.png')" contain style="max-height:100vh"/>
+          <v-img :src="$vuetify.breakpoint.xsOnly?require('@/assets/ggconnome.png'):require('@/assets/ggconnome.png')" contain style="max-height:100vh"/>
         </v-col>
 
         <!--  <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">

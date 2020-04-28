@@ -1,13 +1,13 @@
 <template>
-  <v-container fluid class="pa-0" style="background-color:#F7F9E4">
-    <v-row no-gutters align="start" justify="center">
-      <v-col cols="6" v-if="$vuetify.breakpoint.smAndUp">
-        <v-img src="@/assets/description.png"/>
+  <v-container fluid class="bgcolor">
+ <!--    <v-row no-gutters align="start" justify="center">
+      <v-col cols="6">
+        <v-img src="@/assets/left.png" />
       </v-col>
-      <v-col v-else>
-        <v-img src="@/assets/description.png"/>
+      <v-col cols="6">
+        <v-img src="@/assets/right.png" />
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 
@@ -19,4 +19,7 @@ export default {
 </script>
 
 <style>
+.bgcolor {
+  background-color: #f7f9e4;
+}
 </style>

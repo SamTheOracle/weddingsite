@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar color="#EBF0BA" app inverted-scroll>
-      <v-app-bar-nav-icon @click.stop="drawer=!drawer" v-if="$vuetify.breakpoint.smAndDown"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="drawer=true" v-if="$vuetify.breakpoint.smAndDown"></v-app-bar-nav-icon>
       <v-spacer v-if="$vuetify.breakpoint.smAndDown" />
       <v-toolbar-title class="nice">Giovanna e Giacomo</v-toolbar-title>
       <v-spacer />
@@ -75,7 +75,7 @@ export default {
   },
 
   data: () => ({
-    drawer: null,
+    drawer: false,
     overlay: false,
     links: [
       {
@@ -106,7 +106,7 @@ export default {
         this.overlay = !this.overlay
       }
       if (window.innerWidth <= 600) {
-        this.drawer = !this.drawer
+        this.drawer = false
       }
     }
   }

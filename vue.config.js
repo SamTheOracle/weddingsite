@@ -4,11 +4,11 @@ module.exports = {
   ],
   pwa: {
     themeColor: '#F7F9E4',
-    name: 'Giovanna&Giacomo',
+    name: 'GiovannaeGiacomo',
     manifestOptions: {
       start_url: '/',
       background_color: '#F7F9E4',
-      short_name: 'G&G',
+      short_name: 'GeG',
       icons: [
         {
           src: './img/icons/android-chrome-512x512.png',

@@ -2,14 +2,15 @@
   <v-container fluid class="mt-5">
     <p class="nicetitle text-center">Gli sposi annunciano con gioia il loro matrimonio</p>
     <v-row align="start" justify="center">
-        <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
-            <CelebrationComponent/>
-        </v-col>
+      <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
+        <CelebrationComponent :type="'Celebrazione'" :icon="'criss-cross.svg'" :title="'Cripta Sant\' Afra'" :place="'Corso Magenta,68 Brescia (BS)'" :timeSentence="'Sabato 10 Ottobre 2020'"/>
+      </v-col>
       <!--   <v-col>
     <SaveTheDate class="mt-5"/>
-        </v-col> -->
-        <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
-        </v-col>
+      </v-col>-->
+      <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
+        <CelebrationComponent :type="'Ricevimento'" :icon="'marriage.svg'" :title="'Agriturismo Roccolo'" :place="'Via F.lli Venturoli Bedizzole (BS)'" :timeSentence="'dalle ore 13:00'"/>
+      </v-col>
     </v-row>
   </v-container>
 </template>

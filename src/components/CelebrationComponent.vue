@@ -2,33 +2,45 @@
   <v-card outlined>
     <v-list-item two-line>
       <v-list-item-content>
-        <p class="cardtitle mb-1">Cripta di Sant'Afra</p>
+        <div class="overline mb-1">{{type}}</div>
+        <p class="cardtitle mb-1">{{title}}</p>
       </v-list-item-content>
 
-      <v-list-item-avatar tile :width="$vuetify.breakpoint.smAndUp?100:70" :height="$vuetify.breakpoint.smAndUp?100:70">
-        <v-img src="@/assets/criss-cross.svg" contain />
+      <v-list-item-avatar
+        tile
+        :width="$vuetify.breakpoint.smAndUp?100:70"
+        :height="$vuetify.breakpoint.smAndUp?100:70"
+      >
+        <v-img :src="require('@/assets/'+icon)" contain />
       </v-list-item-avatar>
     </v-list-item>
     <v-list-item two-line>
       <v-list-item-content>
-        <p class="descr mb-1">Sabato 10 Ottobre 2020, alle ore 11:00</p>
+        <p class="descr mb-1">{{timeSentence}}</p>
       </v-list-item-content>
     </v-list-item>
     <v-list-item two-line>
       <v-list-item-content>
-        <p class="descr mb-1">Corso Magenta 68, Brescia (BS)</p>
+        <p class="descr mb-1">{{place}}</p>
       </v-list-item-content>
     </v-list-item>
-   <!--  <v-row align="center" justify="end">
+    <!--  <v-row align="center" justify="end">
         <v-col cols="10">
         </v-col>
-    </v-row> -->
+    </v-row>-->
   </v-card>
 </template>
 
 <script>
 export default {
-  name: 'CelebrationComponent'
+  name: 'CelebrationComponent',
+  props: {
+    type: String,
+    title: String,
+    icon: String,
+    timeSentence: String,
+    place: String
+  }
 }
 </script>
 

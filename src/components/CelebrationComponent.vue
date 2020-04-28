@@ -1,5 +1,5 @@
 <template>
-  <v-card outlined min-height="400">
+  <v-card outlined min-height="400" >
     <v-container fluid>
       <v-list-item two-line>
         <v-list-item-content>
@@ -28,7 +28,7 @@
       <v-divider />
       <v-list-item two-line>
         <v-list-item-content>
-          <p class="descr mb-1">Info</p>
+          <p class="descr mb-1">Informazioni</p>
         </v-list-item-content>
       </v-list-item>
     </v-container>

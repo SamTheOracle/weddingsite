@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  name: 'MainSection',
+  name: 'Front',
   data: () => {
     return {
       showText: false

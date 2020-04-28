@@ -9,10 +9,10 @@
         <v-btn
           text
           color="#431008"
-          v-for="(link,i) in links"
+          v-for="(button,i) in buttons"
           :key="i"
-          @click="doAction(link.text)"
-        >{{link.text}}</v-btn>
+          @click="doAction(button.text)"
+        >{{button.text}}</v-btn>
       </div>
     </v-app-bar>
     <v-navigation-drawer app clipped v-model="drawer" v-if="$vuetify.breakpoint.smAndDown">
@@ -27,28 +27,33 @@
 
       <v-list nav flat>
         <v-list-item-group color="primary">
-          <v-list-item v-for="(element,i) in links" :key="i" @click="doAction(element.text)">
+          <v-list-item
+            v-for="(element,i) in links"
+            :key="i"
+            @click="doAction(element.button)"
+            two-line
+          >
             <v-list-item-avatar tile>
               <v-img :src="require('@/assets/'+element.image)" />
             </v-list-item-avatar>
-            <v-list-item-title
-              :class="$vuetify.breakpoint.smAndUp?'subtitle-1':''"
-              v-text="element.text"
-            ></v-list-item-title>
+            <v-list-item-content>
+              <v-list-item-title
+                :class="$vuetify.breakpoint.smAndUp?'subtitle-1':''"
+                v-text="element.button"
+              ></v-list-item-title>
+              <v-list-item-subtitle v-text="element.text"></v-list-item-subtitle>
+            </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <MainSection />
-    <SecondSection />
-    <ThirdSection />
-<div style="max-height:100vh">
-    <v-overlay :value="overlay" absolute>
-
-          <Timeline v-on:close="overlay = false"/>
-
-    </v-overlay>
-</div>
+    <Front />
+    <Information />
+    <div style="max-height:100vh">
+      <v-overlay :value="overlay" absolute @click="overlay = false">
+        <Timeline v-on:close="overlay = false" />
+      </v-overlay>
+    </div>
 
     <v-footer color="#EBF0BA">
       <p class="nice text-center mx-auto">
@@ -60,42 +65,61 @@
 </template>
 
 <script>
-import MainSection from './components/MainSection'
-import SecondSection from './components/SecondSection'
-import ThirdSection from './components/ThirdSection'
+import Front from './components/Front'
+import Information from './components/Information'
 import Timeline from './components/Timeline'
 export default {
   name: 'App',
 
   components: {
-    MainSection,
-    SecondSection,
-    ThirdSection,
+    Front,
+    Information,
     Timeline
   },
 
   data: () => ({
     drawer: false,
     overlay: false,
-    links: [
+    buttons: [
       {
-        text: 'Informazioni',
-        image: 'timeline.svg'
+        text: 'Informazioni'
       },
       {
-        text: 'Conferma',
+        text: 'Conferma'
+      },
+      {
+        text: 'Aiutaci'
+      }
+    ],
+    links: [
+      {
+        button: 'Informazioni',
+        text: 'Informazioni utili',
+        image: 'information.svg'
+      },
+      {
+        text: 'Verrai?',
+        button: 'Conferma',
         image: 'confirm.svg'
       },
       {
-        text: 'Aiutaci',
+        text: 'Il nostro futuro',
+        button: 'Aiutaci',
         image: 'help.svg'
       },
       {
-        text: 'Noi',
-        image: 'couple.svg'
+        button: 'Timeline',
+        text: 'La nostra storia',
+        image: 'timeline.svg'
       },
       {
-        text: 'Contatti',
+        button: 'Commenti',
+        text: 'Commenti degli invitati',
+        image: 'comments.svg'
+      },
+      {
+        button: 'Contatti',
+        text: 'Contatta gli sposi',
         image: 'contact.svg'
       }
     ]
@@ -105,7 +129,7 @@ export default {
       if (action === 'Informazioni') {
         this.overlay = true
       }
-      if (window.innerWidth <= 600) {
+      if (window.innerWidth <= 800) {
         this.drawer = false
       }
     }

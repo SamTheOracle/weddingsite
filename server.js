@@ -17,11 +17,18 @@ const dbService = new DatabaseService(DBURL, DBNAME)
 
 // Serve static assets from the build files (images, etc)
 app.use(serveStatic(path.join(__dirname, '/dist')))
-app.use(bodyParser.json({ type: 'application/*+json' }))
+app.use(bodyParser.json())
 
 app.get(/.*/, function (req, res) {
   res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
+/*
+firstName:string
+lastName:string,
+comment:string,
+rate:number,
+subscription:PushSubscription
+*/
 
 app.post('/comments', (req, res) => {
   const comment = req.body
@@ -36,9 +43,10 @@ app.post('/comments', (req, res) => {
 
 app.post('/subscriptions', (req, res) => {
   const sub = req.body
-  console.log(sub)
-  dbService.insertData('subs', sub)
-    .then(subCreated => res.status(201).json(subCreated))
+  dbService.insertData('subscriptions', sub)
+    .then(subCreated => {
+      res.status(201).json(subCreated)
+    })
     .catch(err => res.status(400).json(err))
 })
 

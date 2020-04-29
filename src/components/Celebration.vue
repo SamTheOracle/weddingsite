@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: 'CelebrationComponent',
+  name: 'Celebration',
   props: {
     type: String,
     title: String,

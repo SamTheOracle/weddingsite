@@ -10,7 +10,7 @@ module.exports = class DatabaseService {
   async insertData (collectionName, data) {
     try {
       const collection = (await this.mongoConnection).db(this.dbName).collection(collectionName)
-
+      console.log('collection from insert', collection)
       const document = data
       return new Promise((resolve, reject) => {
         collection.insertOne(document).then(onfulfilled => resolve(document), onrejected => reject(onrejected))
@@ -24,9 +24,10 @@ module.exports = class DatabaseService {
   async findData (collectionName, filter, many = false) {
     try {
       const collection = (await this.mongoConnection).db(this.dbName).collection(collectionName)
+      console.log('collection from find', collection)
       if (many) {
         return new Promise((resolve, reject) => {
-          collection.findMany(filter).toArray().then(onfulfilled => {
+          collection.find(filter).toArray().then(onfulfilled => {
             if (onfulfilled && onfulfilled.length > 0) {
               resolve(onfulfilled)
             } else {
@@ -46,6 +47,7 @@ module.exports = class DatabaseService {
         })
       }
     } catch (err) {
+      console.log('this is an erro', err)
       return Promise.reject(err)
     }
   }

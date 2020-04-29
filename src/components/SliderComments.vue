@@ -9,7 +9,7 @@
     </div>
     <v-slide-group class="pa-4" style="max-width:100%">
       <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
-        <Comment :comment="comment"/>
+        <Comment :comment="comment" />
       </v-slide-item>
     </v-slide-group>
     <v-dialog
@@ -30,9 +30,6 @@ import Comment from './Comment'
 import CommentForm from './CommentForm'
 export default {
   name: 'SliderComments',
-  props: {
-    comments: Array
-  },
   components: {
     Comment,
     CommentForm
@@ -45,21 +42,31 @@ export default {
     }
   },
   mounted () {
-    Object.assign(this.values, this.comments)
-    console.log(this.values)
+    console.log('fetching...')
+    // eslint-disable-next-line no-return-assign
+    fetch('http://localhost:5000/comments/all')
+      .then(response => response.json())
+      .then(data => (this.values = data))
+      .catch(err => console.log(err))
   },
   methods: {
     async postComment (newComment) {
-      console.log(newComment)
+      const objectComment = JSON.parse(newComment)
+      objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
       try {
         const response = await fetch('http://localhost:5000/comments', {
           method: 'post',
           headers: {
             'Content-type': 'application/json'
           },
-          body: JSON.stringify(newComment)
+          body: JSON.stringify(objectComment)
         })
-        this.values.unshift(JSON.parse(response.body))
+        console.log('object comment', response)
+        response.json().then(data => {
+          if (response.body.firstName) {
+            this.values.unshift(JSON.parse(response.body))
+          }
+        })
       } catch (err) {
         console.log(err)
       } finally {

@@ -148,18 +148,8 @@ export default {
         text: 'Contatta gli sposi',
         image: 'contact.svg'
       }
-    ],
-    comments: []
+    ]
   }),
-  mounted () {
-    fetch('http://localhost:5000/comments', {
-      method: 'get'
-    })
-      .then(response => {
-        this.comments = JSON.parse(response.body)
-      })
-      .catch(err => console.log(err))
-  },
   methods: {
     doAction (action) {
       if (action === 'Informazioni') {

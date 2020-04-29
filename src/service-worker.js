@@ -2,9 +2,9 @@
 /* eslint-disable no-undef */
 workbox.routing.registerRoute('/', new workbox.strategies
   .NetworkFirst({
-    cacheName: 'wedding_gg_cache'
+    cacheName: 'gg-cache'
   }))
-workbox.routing.registerRoute(new RegExp(/.*\/comments/), new workbox.strategies
+workbox.routing.registerRoute(new RegExp(/.*\/comments\/all/), new workbox.strategies
   .NetworkFirst({
     cacheName: 'wedding_gg_cache'
   }))
@@ -24,6 +24,10 @@ self.addEventListener('push', event => {
   } else {
     console.log('Push event but no data')
   }
+})
+
+self.addEventListener('install', (event) => {
+  self.skipWaiting()
 })
 
 /**

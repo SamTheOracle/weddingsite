@@ -73,12 +73,10 @@ export default {
   data: () => {
     return {
       newComment: {
-        timestamp: '',
         lastName: '',
         firstName: '',
         comment: '',
-        subscription: {},
-        rate: 0
+        subscription: {}
       },
       hint: 'Puoi anche inventartelo ;-)',
       nameRules: [

@@ -1,16 +1,15 @@
 /* eslint-disable no-console */
 
 import { register } from 'register-service-worker'
-const host = 'https://www.giovannaegiacomo.app'
+// const host = 'https://www.giovannaegiacomo.app'
+const host = 'http://localhost:5000'
 if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
-    ready () {
+    ready (reg) {
       console.log(
         'App is being served from cache by a service worker.\n' +
         'For more details, visit https://goo.gl/AFskqB'
       )
-    },
-    registered (reg) {
       reg.pushManager.getSubscription()
         .then(sub => {
           var isSubscribed = !(sub === null)
@@ -25,6 +24,7 @@ if (process.env.NODE_ENV === 'production') {
               applicationServerKey: urlBase64ToUint8Array(pKey)
             }
             reg.pushManager.subscribe(newSub).then(newSub => {
+              console.log(newSub)
               fetch(`${host}/subscriptions`, {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 mode: 'no-cors', // no-cors, *cors, same-origin
@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
                 credentials: 'same-origin', // include, *same-origin, omit
                 headers: {
                   'Content-Type': 'application/json'
-                  // 'Content-Type': 'application/x-www-form-urlencoded',
+                // 'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 redirect: 'follow', // manual, *follow, error
                 referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -43,6 +43,9 @@ if (process.env.NODE_ENV === 'production') {
             }).catch(err => console.log(err))
           }
         })
+    },
+    registered () {
+
     },
     cached () {
       console.log('Content has been cached for offline use.')

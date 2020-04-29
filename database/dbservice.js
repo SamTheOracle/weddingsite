@@ -16,6 +16,7 @@ module.exports = class DatabaseService {
         collection.insertOne(document).then(onfulfilled => resolve(document), onrejected => reject(onrejected))
       })
     } catch (err) {
+      console.log(err)
       return Promise.reject(err)
     }
   }

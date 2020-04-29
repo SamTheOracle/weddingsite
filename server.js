@@ -4,7 +4,7 @@ var serveStatic = require('serve-static')
 var app = express()
 var DatabaseService = require('./database/dbservice')
 var webpush = require('web-push')
-
+var bodyParser = require('body-parser')
 webpush.setVapidDetails('mailto:zanotti.giacomo93@gmail.com', 'BCVoxq4sXh_Wk-oScRQbiEK-nhStTRbrrGQ4y0dJx6b0vDDGzZgFnthPAWFBORqGKQrz1UmpizkdGP5ITPtZbFM', 'eZoTr-5RIlo58t3gmccfA76SYCTjTcHL3yoEC31rZI0')
 
 const DBURL = 'mongodb+srv://gzanotti:metallaro93@cluster0-heyw8.mongodb.net/wedding_db?retryWrites=true&w=majority'
@@ -17,6 +17,7 @@ const dbService = new DatabaseService(DBURL, DBNAME)
 
 // Serve static assets from the build files (images, etc)
 app.use(serveStatic(path.join(__dirname, '/dist')))
+app.use(bodyParser.json({ type: 'application/*+json' }))
 
 app.get(/.*/, function (req, res) {
   res.sendFile(path.join(__dirname, '/dist/index.html'))
@@ -35,6 +36,7 @@ app.post('/comments', (req, res) => {
 
 app.post('/subscriptions', (req, res) => {
   const sub = req.body
+  console.log(sub)
   dbService.insertData('subs', sub)
     .then(subCreated => res.status(201).json(subCreated))
     .catch(err => res.status(400).json(err))

@@ -50,7 +50,7 @@ app.post('/comments', (req, res) => {
         }
       } */
       dbService.findData('subscriptions', {}, true)
-        .then(subs => subs.forEach(sub => {
+        .then(subs => subs.filter(sub => sub.enpoint !== comment.subscription).forEach(sub => {
           webpush.sendNotification(sub, JSON.stringify(comment)).catch(err => console.log(err))
         })).catch(err => console.log('subs error', err))
     })

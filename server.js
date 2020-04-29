@@ -41,6 +41,13 @@ app.post('/comments', (req, res) => {
     .catch(err => res.status(400).json(err))
 })
 
+app.get('/comments', (req, res) => {
+  dbService.findData('comments', {})
+    .then(comments => {
+      res.status(201).json(comments)
+    }).catch(err => res.status(400).json(err))
+})
+
 app.post('/subscriptions', (req, res) => {
   const sub = req.body
   dbService.insertData('subscriptions', sub)
@@ -64,6 +71,6 @@ function sendPushNotification (data) {
   }
   const subs = dbService.findData('subs', filter, true)
   subs.forEach(sub => {
-    webpush.sendNotification(sub, JSON.stringify(data))
+    webpush.sendNotification(sub, JSON.stringify(data)).catch(err => console.log(err))
   })
 }

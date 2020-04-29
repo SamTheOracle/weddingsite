@@ -61,7 +61,8 @@
         <Timeline v-on:close="overlay = false" />
       </v-overlay>
     </div>
-    <Partecipation v-on:partecipationclicked="dialog = true"/>
+    <Partecipation v-on:partecipationclicked="dialog = true" />
+    <SliderComments/>
     <v-dialog
       v-model="dialog"
       :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -70,7 +71,7 @@
       max-width="800"
       scrollable
     >
-      <SaveTheDate v-on:close="dialog = false"/>
+      <SaveTheDate v-on:close="dialog = false" />
     </v-dialog>
 
     <v-footer color="#EBF0BA">
@@ -88,6 +89,7 @@ import Information from './components/Information'
 import Timeline from './components/Timeline'
 import SaveTheDate from './components/SaveTheDate'
 import Partecipation from './components/Partecipation'
+import SliderComments from './components/SliderComments'
 export default {
   name: 'App',
 
@@ -96,7 +98,8 @@ export default {
     Information,
     Timeline,
     SaveTheDate,
-    Partecipation
+    Partecipation,
+    SliderComments
   },
 
   data: () => ({
@@ -145,8 +148,18 @@ export default {
         text: 'Contatta gli sposi',
         image: 'contact.svg'
       }
-    ]
+    ],
+    comments: []
   }),
+  mounted () {
+    fetch('http://localhost:5000/comments', {
+      method: 'get'
+    })
+      .then(response => {
+        this.comments = JSON.parse(response.body)
+      })
+      .catch(err => console.log(err))
+  },
   methods: {
     doAction (action) {
       if (action === 'Informazioni') {

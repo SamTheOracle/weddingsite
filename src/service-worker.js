@@ -4,6 +4,10 @@ workbox.routing.registerRoute('/', new workbox.strategies
   .NetworkFirst({
     cacheName: 'wedding_gg_cache'
   }))
+workbox.routing.registerRoute(new RegExp(/.*\/comments/), new workbox.strategies
+  .NetworkFirst({
+    cacheName: 'wedding_gg_cache'
+  }))
 
 workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 

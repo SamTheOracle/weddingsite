@@ -15,7 +15,13 @@
         >{{button.text}}</v-btn>
       </div>
     </v-app-bar>
-    <v-navigation-drawer app clipped v-model="drawer" v-if="$vuetify.breakpoint.smAndDown" style="height:100vh">
+    <v-navigation-drawer
+      app
+      clipped
+      v-model="drawer"
+      v-if="$vuetify.breakpoint.smAndDown"
+      style="height:100vh"
+    >
       <v-list-item two-line style="background-color:#EBF0BA">
         <v-list-item-avatar tile width="80" height="80">
           <v-img src="@/assets/ioegiovi.svg" contain />
@@ -25,7 +31,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list nav flat >
+      <v-list nav flat>
         <v-list-item-group color="primary">
           <v-list-item
             v-for="(element,i) in computedLinks()"
@@ -52,9 +58,20 @@
     <Information />
     <div style="max-height:100vh">
       <v-overlay :value="overlay" absolute @click="overlay = false">
-        <Timeline v-on:close="overlay = false"/>
+        <Timeline v-on:close="overlay = false" />
       </v-overlay>
     </div>
+
+    <v-dialog
+      v-model="dialog"
+      :fullscreen="$vuetify.breakpoint.smAndDown"
+      :hide-overlay="$vuetify.breakpoint.smAndDown"
+      transition="dialog-bottom-transition"
+      max-width="800"
+      scrollable
+    >
+      <SaveTheDate v-on:close="dialog = false"/>
+    </v-dialog>
 
     <v-footer color="#EBF0BA">
       <p class="nice text-center mx-auto">
@@ -69,18 +86,21 @@
 import Front from './components/Front'
 import Information from './components/Information'
 import Timeline from './components/Timeline'
+import SaveTheDate from './components/SaveTheDate'
 export default {
   name: 'App',
 
   components: {
     Front,
     Information,
-    Timeline
+    Timeline,
+    SaveTheDate
   },
 
   data: () => ({
     drawer: false,
     overlay: false,
+    dialog: false,
     buttons: [
       {
         text: 'Informazioni'
@@ -130,6 +150,9 @@ export default {
       if (action === 'Informazioni') {
         this.overlay = true
       }
+      if (action === 'Conferma') {
+        this.dialog = true
+      }
       if (window.innerWidth <= 800) {
         this.drawer = false
       }
@@ -144,7 +167,6 @@ export default {
       }
     }
   }
-
 }
 </script>
 <style>
@@ -152,6 +174,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
+
 .nice {
   font-family: "Satisfy", cursive;
   color: #431008;

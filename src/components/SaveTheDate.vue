@@ -1,18 +1,61 @@
 <template>
-  <v-sheet style="min-height:inherit">
-<!--     <p class="text-center niceparagraph">Per confermare clicca il bottone</p>
- -->    <v-row align="center" justify="center">
-      <v-btn color="success" class="mx-auto" :small="$vuetify.breakpoint.xsOnly">
+  <v-card height="700" style="width:100%;overflow:hidden">
+    <v-toolbar color="#EBF0BA" >
+      <v-btn text fab :large="$vuetify.breakpoint.mdAndUp" light @click="$emit('close')"><v-icon>mdi-close</v-icon></v-btn>
+      <v-spacer v-if="$vuetify.breakpoint.smAndUp"/>
+      <v-toolbar-title class="text-center cardtitle">Qualche dettaglio</v-toolbar-title>
+      <v-spacer v-if="$vuetify.breakpoint.smAndUp"/>
+    </v-toolbar>
+    <!--     <p class="text-center niceparagraph">Per confermare clicca il bottone</p>
+    -->
+    <v-row align="start" justify="center">
+      <!-- <v-btn color="success" class="mx-auto" :small="$vuetify.breakpoint.xsOnly" @click="onPartecipationClicked()">
         Parteciperò!
         <v-icon right color="red" :small="$vuetify.breakpoint.xsOnly">mdi-heart</v-icon>
-      </v-btn>
+      </v-btn>-->
+      <v-col>
+        <v-container fluid class="text-center fill-height">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSd71mswKRJUgsO_bdybbwCJyfEXHMjQK685keIucqYW0TRBig/viewform?embedded=true"
+            width="100%"
+            height="600px"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            class="mx-auto"
+          >Loading…</iframe>
+        </v-container>
+      </v-col>
     </v-row>
-  </v-sheet>
+  </v-card>
 </template>
 
 <script>
 export default {
-  name: 'SaveTheDate'
+  name: 'SaveTheDate',
+  data: () => {
+    return {
+      width: null,
+      height: 700
+    }
+  },
+  mounted () {
+    this.resize()
+  },
+  methods: {
+    resize () {
+      const width = window.innerWidth
+      if (width < 450) {
+        this.width = 320
+      } else if ((width >= 450) & (width < 600)) {
+        this.width = 400
+      } else if ((width >= 600) & (width < 768)) {
+        this.width = 550
+      } else {
+        this.width = 700
+      }
+    }
+  }
 }
 </script>
 <style>

@@ -5,9 +5,6 @@
       <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
         <Celebration :type="'Celebrazione'" :icon="'church.svg'" :title="'Cripta Sant\' Afra'" :place="'Corso Magenta,68 Brescia (BS)'" :timeSentence="'Sabato 10 Ottobre 2020, alle ore 11:00'"/>
       </v-col>
-      <!--   <v-col>
-    <SaveTheDate class="mt-5"/>
-      </v-col>-->
       <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
         <Celebration :type="'Ricevimento'" :icon="'wedding-cake.svg'" :title="'Agriturismo Roccolo'" :place="'Via F.lli Venturoli Bedizzole (BS)'" :timeSentence="'dalle ore 13:00'"/>
       </v-col>

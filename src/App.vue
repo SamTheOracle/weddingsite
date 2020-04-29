@@ -61,7 +61,7 @@
         <Timeline v-on:close="overlay = false" />
       </v-overlay>
     </div>
-
+    <Partecipation v-on:partecipationclicked="dialog = true"/>
     <v-dialog
       v-model="dialog"
       :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -87,6 +87,7 @@ import Front from './components/Front'
 import Information from './components/Information'
 import Timeline from './components/Timeline'
 import SaveTheDate from './components/SaveTheDate'
+import Partecipation from './components/Partecipation'
 export default {
   name: 'App',
 
@@ -94,7 +95,8 @@ export default {
     Front,
     Information,
     Timeline,
-    SaveTheDate
+    SaveTheDate,
+    Partecipation
   },
 
   data: () => ({

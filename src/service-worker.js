@@ -7,8 +7,19 @@ workbox.routing.registerRoute('/', new workbox.strategies
 
 workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 
-self.addEventListener('install', () => {
-  self.skipWaiting()
+self.addEventListener('push', event => {
+  if (event.data) {
+    var notification = event.data.json().payload
+    const title = notification.title
+    const options = {
+      body: notification.description,
+      icon: './img/icons/android-chrome-96x96.png',
+      badge: './img/icons/android-chrome-96x96.png'
+    }
+    self.registration.showNotification(title, options)
+  } else {
+    console.log('Push event but no data')
+  }
 })
 
 /**

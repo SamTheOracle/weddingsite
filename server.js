@@ -47,7 +47,12 @@ app.listen(port, () => {
 })
 
 function sendPushNotification (data) {
-  const subs = dbService.findData('subs', {}, true)
+  const filter = {
+    $not: {
+      endpoint: data.sub.endpoint
+    }
+  }
+  const subs = dbService.findData('subs', filter, true)
   subs.forEach(sub => {
     webpush.sendNotification(sub, JSON.stringify(data))
   })

@@ -9,10 +9,10 @@ workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 
 self.addEventListener('push', event => {
   if (event.data) {
-    var notification = event.data.json().payload
+    var notification = event.data.json()
     const title = notification.title
     const options = {
-      body: notification.description,
+      body: 'Ciao qualcuno ha scritto un nuovo commento',
       icon: './img/icons/android-chrome-96x96.png',
       badge: './img/icons/android-chrome-96x96.png'
     }

@@ -64,7 +64,7 @@ function mergeNotifications (registration, event) {
           currentNotification = notifications[i]
         }
       }
-
+      console.log(currentNotification)
       return currentNotification
     })
     .then((currentNotification) => {

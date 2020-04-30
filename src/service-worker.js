@@ -13,8 +13,8 @@ workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 
 self.addEventListener('push', event => {
   const promise = mergeNotifications(self.registration, event)
-  console.log(promise)
   event.waitUntil(promise)
+  console.log(promise)
 })
 
 self.addEventListener('notificationclick', event => {

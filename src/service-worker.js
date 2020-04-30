@@ -90,6 +90,9 @@ function mergeNotifications (registration, event) {
         var notification = event.data.json()
         notificationTitle = `Nuovo commento da ${notification.firstName} ${notification.lastName}`
         options.body = `${notification.comment}`
+        options.data = {
+          commentCount: 0
+        }
       }
       isClientFocused().then(clientFocused => {
         if (!clientFocused) {

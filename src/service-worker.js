@@ -101,9 +101,14 @@ function mergeNotifications (registration, event) {
             options
           )
         } else {
-          clients.forEach((windowClient) => {
-            windowClient.postMessage({
-              comment: notification
+          clients.matchAll({
+            type: 'window',
+            includeUncontrolled: true
+          }).then(windowClients => {
+            windowClients.forEach((windowClient) => {
+              windowClient.postMessage({
+                comment: notification
+              })
             })
           })
         }

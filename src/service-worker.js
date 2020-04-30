@@ -115,6 +115,7 @@ function mergeNotifications (registration, event) {
             })
           })
         }
+        return Promise.resolve()
       })
     })
   return promiseChain

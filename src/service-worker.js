@@ -12,6 +12,7 @@ workbox.routing.registerRoute(new RegExp(/.*\/comments\/all/), new workbox.strat
 workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 
 self.addEventListener('push', event => {
+  console.log('event data', event.data)
   mergeNotifications(self.registration, event)
 })
 self.addEventListener('notificationclick', event => {

@@ -99,6 +99,7 @@ function mergeNotifications (registration, event) {
       }
       return { title: notificationTitle, options: options }
     }).then(notification => {
+      console.log(notification)
       isClientFocused().then(clientFocused => {
         if (!clientFocused) {
           return registration.showNotification(

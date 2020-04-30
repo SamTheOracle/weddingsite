@@ -71,6 +71,7 @@ function mergeNotifications (registration, event) {
       return currentNotification
     })
     .then((currentNotification) => {
+      var notification = event.data.json()
       let notificationTitle
       const options = {
         icon: './img/icons/android-chrome-96x96.png',
@@ -89,8 +90,7 @@ function mergeNotifications (registration, event) {
 
         // Remember to close the old notification.
         currentNotification.close()
-      } else if (event.data) {
-        var notification = event.data.json()
+      } else {
         notificationTitle = `Nuovo commento da ${notification.firstName} ${notification.lastName}`
         options.body = `${notification.comment}`
         options.data = {
@@ -103,7 +103,18 @@ function mergeNotifications (registration, event) {
             return registration.showNotification(
               notificationTitle,
               options
-            ).then(r => resolve(r))
+            ).then(r => {
+              clients.matchAll({
+                type: 'window',
+                includeUncontrolled: true
+              }).then(windowClients => {
+                windowClients.forEach((windowClient) => {
+                  windowClient.postMessage({
+                    comment: notification
+                  })
+                })
+              }).catch(err => reject(err))
+            })
               .catch(err => reject(err))
           } else {
             clients.matchAll({

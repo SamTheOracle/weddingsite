@@ -14,6 +14,12 @@ workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 self.addEventListener('push', event => {
   mergeNotifications(self.registration, event)
 })
+
+window.addEventListener('focus', event => {
+  self.registration.getNotifications()
+    .then(notification => notifications.forEach(n => n.close()))
+})
+
 self.addEventListener('notificationclick', event => {
   const urlToOpen = new URL('/', self.location.origin).href
   console.log(urlToOpen)
@@ -91,7 +97,7 @@ function mergeNotifications (registration, event) {
         notificationTitle = `Nuovo commento da ${notification.firstName} ${notification.lastName}`
         options.body = `${notification.comment}`
         options.data = {
-          commentCount: 0
+          commentCount: 1
         }
       }
       isClientFocused().then(clientFocused => {
@@ -116,6 +122,7 @@ function mergeNotifications (registration, event) {
     })
   return promiseChain
 }
+
 function isClientFocused () {
   return clients.matchAll({
     type: 'window',

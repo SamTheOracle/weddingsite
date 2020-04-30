@@ -15,11 +15,6 @@ self.addEventListener('push', event => {
   mergeNotifications(self.registration, event)
 })
 
-window.addEventListener('focus', event => {
-  self.registration.getNotifications()
-    .then(notification => notifications.forEach(n => n.close()))
-})
-
 self.addEventListener('notificationclick', event => {
   const urlToOpen = new URL('/', self.location.origin).href
   console.log(urlToOpen)

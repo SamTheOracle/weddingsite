@@ -12,7 +12,7 @@ workbox.routing.registerRoute(new RegExp(/.*\/comments\/all/), new workbox.strat
 workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 
 self.addEventListener('push', event => {
-  const promise = mergeNotifications(self.registration, event)
+  const promise = mergeNotifications(self.registration, event).then(something => console.log(something))
   event.waitUntil(promise)
   console.log(promise)
 })
@@ -98,25 +98,26 @@ function mergeNotifications (registration, event) {
         }
       }
       return { title: notificationTitle, options: options }
-    }).then(notification => isClientFocused())
-    .then(clientFocused => {
-      if (!clientFocused) {
-        return registration.showNotification(
-          notification.title,
-          notification.options
-        )
-      } else {
-        return clients.matchAll({
-          type: 'window',
-          includeUncontrolled: true
-        }).then(windowClients => {
-          windowClients.forEach((windowClient) => {
-            windowClient.postMessage({
-              comment: notification
+    }).then(notification => {
+      isClientFocused().then(clientFocused => {
+        if (!clientFocused) {
+          return registration.showNotification(
+            notification.title,
+            notification.options
+          )
+        } else {
+          return clients.matchAll({
+            type: 'window',
+            includeUncontrolled: true
+          }).then(windowClients => {
+            windowClients.forEach((windowClient) => {
+              windowClient.postMessage({
+                comment: notification
+              })
             })
           })
-        })
-      }
+        }
+      })
     })
   return promiseChain
 }

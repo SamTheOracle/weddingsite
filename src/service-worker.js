@@ -97,25 +97,29 @@ function mergeNotifications (registration, event) {
           commentCount: 1
         }
       }
-      isClientFocused().then(clientFocused => {
-        if (!clientFocused) {
-          registration.showNotification(
-            notificationTitle,
-            options
-          )
-        } else {
-          clients.matchAll({
-            type: 'window',
-            includeUncontrolled: true
-          }).then(windowClients => {
-            windowClients.forEach((windowClient) => {
-              windowClient.postMessage({
-                comment: notification
+      return new Promise((resolve, reject) => {
+        isClientFocused().then(clientFocused => {
+          if (!clientFocused) {
+            registration.showNotification(
+              notificationTitle,
+              options
+            ).then(r => resolve(r))
+              .catch(err => reject(err))
+          } else {
+            clients.matchAll({
+              type: 'window',
+              includeUncontrolled: true
+            }).then(windowClients => {
+              windowClients.forEach((windowClient) => {
+                windowClient.postMessage({
+                  comment: notification
+                })
               })
-            })
-          })
-        }
-        return Promise.resolve()
+              resolve()
+            }).catch(err => reject(err))
+          }
+          return Promise.resolve()
+        })
       })
     })
   return promiseChain

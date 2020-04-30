@@ -14,7 +14,7 @@ workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 self.addEventListener('push', event => {
   const promise = mergeNotifications(self.registration, event)
   console.log(promise)
-  event.waitUntil(promise).then(r => console.log(promise))
+  event.waitUntil(promise)
 })
 
 self.addEventListener('notificationclick', event => {
@@ -77,7 +77,7 @@ function mergeNotifications (registration, event) {
         badge: './img/icons/ioegiovi.svg'
       }
 
-      if (currentNotification) {
+      if (currentNotification && currentNotification.data) {
         // We have an open notification, let's do something with it.
         const commentCount = currentNotification.data.commentCount + 1
 

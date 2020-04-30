@@ -62,7 +62,8 @@
       </v-overlay>
     </div>
     <Partecipation v-on:partecipationclicked="dialog = true" />
-    <SliderComments/>
+    <SliderComments />
+    <Us />
     <v-dialog
       v-model="dialog"
       :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -90,6 +91,7 @@ import Timeline from './components/Timeline'
 import SaveTheDate from './components/SaveTheDate'
 import Partecipation from './components/Partecipation'
 import SliderComments from './components/SliderComments'
+import Us from './components/Us'
 export default {
   name: 'App',
 
@@ -99,7 +101,8 @@ export default {
     Timeline,
     SaveTheDate,
     Partecipation,
-    SliderComments
+    SliderComments,
+    Us
   },
 
   data: () => ({
@@ -179,8 +182,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Patrick+Hand+SC&family=Pompiere&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Patrick+Hand+SC&family=Pompiere&display=swap");
 .nice {
   font-family: "Satisfy", cursive;
   color: #431008;

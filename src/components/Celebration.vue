@@ -1,5 +1,5 @@
 <template>
-  <v-card outlined :min-height="$vuetify.breakpoint.xsOnly?300:400" >
+  <v-card :min-height="$vuetify.breakpoint.xsOnly?300:400" shaped>
     <v-container fluid>
       <v-list-item two-line>
         <v-list-item-content>

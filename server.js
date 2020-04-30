@@ -44,15 +44,8 @@ app.post('/comments', (req, res) => {
       return commentCreated
     })
     .then(comment => {
-      const filter = {
-        endpoint: {
-          $not: {
-            $regex: comment.subscription.endpoint
-          }
-        }
-      }
-      dbService.findData('subscriptions', filter, true)
-        .then(subs => subs.forEach(sub => {
+      dbService.findData('subscriptions', {}, true)
+        .then(subs => subs.filter(sub => sub.endpoint !== comment.subscription.endpoint).forEach(sub => {
           webpush.sendNotification(sub, JSON.stringify(comment)).catch(_err => dbService.deleteData('subscription', { endpoint: sub.endpoint })
             .catch(err => err)
           )

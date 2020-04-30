@@ -1,5 +1,5 @@
 <template>
-  <v-card outlined min-height="400" >
+  <v-card :min-height="$vuetify.breakpoint.xsOnly?300:400" shaped>
     <v-container fluid>
       <v-list-item two-line>
         <v-list-item-content>
@@ -15,20 +15,16 @@
           <v-img :src="require('@/assets/'+icon)" contain />
         </v-list-item-avatar>
       </v-list-item>
-      <v-list-item two-line>
+      <v-list-item two-line v-if="timeSentence">
         <v-list-item-content>
           <p class="descr mb-1">{{timeSentence}}</p>
+          <p class="descr mb-1" v-if="timeSecondSentence">{{timeSecondSentence}}</p>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item two-line>
+      <v-list-item two-line v-if="place">
         <v-list-item-content>
           <p class="descr mb-1">{{place}}</p>
-        </v-list-item-content>
-      </v-list-item>
-      <v-divider />
-      <v-list-item two-line>
-        <v-list-item-content>
-          <p class="descr mb-1">Informazioni</p>
+          <p class="descr mb-1" v-if="placeSecondSentence">{{placeSecondSentence}}</p>
         </v-list-item-content>
       </v-list-item>
     </v-container>
@@ -43,27 +39,36 @@ export default {
     title: String,
     icon: String,
     timeSentence: String,
-    place: String
+    timeSecondSentence: String,
+    place: String,
+    placeSecondSentence: String
   }
 }
 </script>
 
 <style>
 .cardtitle {
-  font-family: "Open Sans", cursive;
-  font-size: 35px;
-  font-weight: 600;
+  font-family: "Patrick Hand SC", cursive;
+  font-size: 45px;
+  font-weight: 400;
   font-style: italic;
+  white-space: pre-line;
 }
 .descr {
-  font-family: "Open Sans", cursive;
+  /*   font-family: "Open Sans", cursive;
+ */
+  font-family: "Pompiere", cursive;
   font-style: italic;
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 300;
+  font-size: 28px;
+}
+.caption{
+  font-weight: 300;
+
 }
 @media only screen and (max-width: 600px) {
   .cardtitle {
-    font-size: 30px;
+    font-size: 35px;
   }
 }
 </style>

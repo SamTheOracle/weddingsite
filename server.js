@@ -5,6 +5,8 @@ var app = express()
 var DatabaseService = require('./database/dbservice')
 var webpush = require('web-push')
 var bodyParser = require('body-parser')
+var moment = require('moment-timezone')
+moment.locale('it')
 webpush.setVapidDetails('mailto:zanotti.giacomo93@gmail.com', 'BCVoxq4sXh_Wk-oScRQbiEK-nhStTRbrrGQ4y0dJx6b0vDDGzZgFnthPAWFBORqGKQrz1UmpizkdGP5ITPtZbFM', 'eZoTr-5RIlo58t3gmccfA76SYCTjTcHL3yoEC31rZI0')
 
 const DBURL = 'mongodb+srv://gzanotti:metallaro93@cluster0-heyw8.mongodb.net/wedding_db?retryWrites=true&w=majority'
@@ -17,28 +19,55 @@ const dbService = new DatabaseService(DBURL, DBNAME)
 
 // Serve static assets from the build files (images, etc)
 app.use(serveStatic(path.join(__dirname, '/dist')))
-app.use(bodyParser.json({ type: 'application/*+json' }))
+app.use(bodyParser.json())
 
-app.get(/.*/, function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
+/*
+firstName:string
+lastName:string,
+comment:string,
+rate:number,
+subscription:PushSubscription,
+date
+*/
 
 app.post('/comments', (req, res) => {
   const comment = req.body
+  comment.date = moment.tz('Europe/Rome').format()
+
   dbService.insertData('comments', comment)
+    .catch(err => res.status(400).json(err))
     .then(commentCreated => {
       res.status(201).json(commentCreated)
       return commentCreated
     })
-    .then(comment => sendPushNotification(comment))
-    .catch(err => res.status(400).json(err))
+    .then(comment => {
+      dbService.findData('subscriptions', {}, true)
+        .then(subs => subs.filter(sub => sub.endpoint !== comment.subscription.endpoint).forEach(sub => {
+          webpush.sendNotification(sub, JSON.stringify(comment)).catch(_err => dbService.deleteData('subscription', { endpoint: sub.endpoint })
+            .catch(err => console.log('error send notification', err))
+          )
+        })).catch(err => console.log('subs error', err))
+    })
 })
 
+app.get('/comments/all', (req, res) => {
+  dbService.findData('comments', {})
+    .then(comments => {
+      res.status(200).json(comments)
+    }).catch(err => res.status(400).json(err))
+})
+app.get('/test', (req, res) => {
+  res.status(200).json('ciao')
+})
 app.post('/subscriptions', (req, res) => {
   const sub = req.body
-  console.log(sub)
-  dbService.insertData('subs', sub)
-    .then(subCreated => res.status(201).json(subCreated))
+  dbService.insertData('subscriptions', sub)
+    .then(subCreated => {
+      res.status(201).json(subCreated)
+    })
     .catch(err => res.status(400).json(err))
 })
 
@@ -47,15 +76,3 @@ var port = process.env.PORT || 5000
 app.listen(port, () => {
   console.log(`Server listening to port ${port}`)
 })
-
-function sendPushNotification (data) {
-  const filter = {
-    $not: {
-      endpoint: data.sub.endpoint
-    }
-  }
-  const subs = dbService.findData('subs', filter, true)
-  subs.forEach(sub => {
-    webpush.sendNotification(sub, JSON.stringify(data))
-  })
-}

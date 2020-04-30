@@ -61,7 +61,9 @@
         <Timeline v-on:close="overlay = false" />
       </v-overlay>
     </div>
-    <Partecipation v-on:partecipationclicked="dialog = true"/>
+    <Partecipation v-on:partecipationclicked="dialog = true" />
+    <SliderComments />
+    <Us />
     <v-dialog
       v-model="dialog"
       :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -70,7 +72,7 @@
       max-width="800"
       scrollable
     >
-      <SaveTheDate v-on:close="dialog = false"/>
+      <SaveTheDate v-on:close="dialog = false" />
     </v-dialog>
 
     <v-footer color="#EBF0BA">
@@ -88,6 +90,8 @@ import Information from './components/Information'
 import Timeline from './components/Timeline'
 import SaveTheDate from './components/SaveTheDate'
 import Partecipation from './components/Partecipation'
+import SliderComments from './components/SliderComments'
+import Us from './components/Us'
 export default {
   name: 'App',
 
@@ -96,7 +100,9 @@ export default {
     Information,
     Timeline,
     SaveTheDate,
-    Partecipation
+    Partecipation,
+    SliderComments,
+    Us
   },
 
   data: () => ({
@@ -116,34 +122,34 @@ export default {
     ],
     links: [
       {
+        text: 'Verrai?',
+        button: 'Conferma',
+        image: 'confirmationblack.svg'
+      },
+      {
+        text: 'Siamo nelle vostre mani',
+        button: 'La nostra casa',
+        image: 'house.svg'
+      },
+      {
+        button: 'Noi',
+        text: 'La nostra storia',
+        image: 'couple.svg'
+      },
+      {
+        button: 'Commenti',
+        text: 'Commenti degli invitati',
+        image: 'comment.svg'
+      },
+      {
         button: 'Informazioni',
         text: 'Informazioni utili',
         image: 'information.svg'
       },
       {
-        text: 'Verrai?',
-        button: 'Conferma',
-        image: 'confirm.svg'
-      },
-      {
-        text: 'Il nostro futuro',
-        button: 'Aiutaci',
-        image: 'help.svg'
-      },
-      {
-        button: 'Timeline',
-        text: 'La nostra storia',
-        image: 'timeline.svg'
-      },
-      {
-        button: 'Commenti',
-        text: 'Commenti degli invitati',
-        image: 'comments.svg'
-      },
-      {
         button: 'Contatti',
         text: 'Contatta gli sposi',
-        image: 'contact.svg'
+        image: 'contacts.svg'
       }
     ]
   }),
@@ -176,7 +182,8 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Patrick+Hand+SC&family=Pompiere&display=swap");
 .nice {
   font-family: "Satisfy", cursive;
   color: #431008;

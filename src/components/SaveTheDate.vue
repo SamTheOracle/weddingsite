@@ -1,10 +1,12 @@
 <template>
   <v-card height="700" style="width:100%;overflow:hidden">
-    <v-toolbar color="#EBF0BA" >
-      <v-btn text fab :large="$vuetify.breakpoint.mdAndUp" light @click="$emit('close')"><v-icon>mdi-close</v-icon></v-btn>
-      <v-spacer v-if="$vuetify.breakpoint.smAndUp"/>
+    <v-toolbar color="#EBF0BA">
+      <v-btn text fab :large="$vuetify.breakpoint.mdAndUp" light @click="$emit('close')">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+      <v-spacer v-if="$vuetify.breakpoint.smAndUp" />
       <v-toolbar-title class="text-center cardtitle">Qualche dettaglio</v-toolbar-title>
-      <v-spacer v-if="$vuetify.breakpoint.smAndUp"/>
+      <v-spacer v-if="$vuetify.breakpoint.smAndUp" />
     </v-toolbar>
     <!--     <p class="text-center niceparagraph">Per confermare clicca il bottone</p>
     -->
@@ -14,6 +16,9 @@
         <v-icon right color="red" :small="$vuetify.breakpoint.xsOnly">mdi-heart</v-icon>
       </v-btn>-->
       <v-col>
+        <div class="text-center">
+          <v-progress-circular color="red" indeterminate v-if="spinner" />
+        </div>
         <v-container fluid class="text-center fill-height">
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLSd71mswKRJUgsO_bdybbwCJyfEXHMjQK685keIucqYW0TRBig/viewform?embedded=true"
@@ -23,7 +28,10 @@
             marginheight="0"
             marginwidth="0"
             class="mx-auto"
-          >Loading…</iframe>
+            :onload="spinner = false"
+          >
+            <v-progress-circular color="red" indeterminate class="mx-auto" />
+          </iframe>
         </v-container>
       </v-col>
     </v-row>
@@ -36,7 +44,8 @@ export default {
   data: () => {
     return {
       width: null,
-      height: 700
+      height: 700,
+      spinner: true
     }
   },
   mounted () {

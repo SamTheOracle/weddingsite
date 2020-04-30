@@ -97,7 +97,7 @@ function mergeNotifications (registration, event) {
           commentCount: 1
         }
       }
-      return isClientFocused().then(clientFocused => {
+      isClientFocused().then(clientFocused => {
         if (!clientFocused) {
           registration.showNotification(
             notificationTitle,

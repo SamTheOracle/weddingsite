@@ -30,13 +30,14 @@ self.addEventListener('notificationclick', event => {
         break
       }
     }
-
     if (matchingClient) {
       return matchingClient.focus()
     } else {
       return clients.openWindow(urlToOpen)
     }
-  })
+  }).then(() => self.registration.getNotifications().then(notifications =>
+    notifications.forEach(n => n.close())
+  )).catch(err => err)
 
   event.waitUntil(promiseChain)
 })
@@ -59,8 +60,7 @@ function mergeNotifications (registration, event) {
       let currentNotification
 
       for (let i = 0; i < notifications.length; i++) {
-        if (notifications[i].data &&
-          notifications[i].data.userName === userName) {
+        if (notifications[i].body) {
           currentNotification = notifications[i]
         }
       }
@@ -71,7 +71,7 @@ function mergeNotifications (registration, event) {
       let notificationTitle
       const options = {
         icon: './img/icons/android-chrome-96x96.png',
-        badge: './img/icons/android-chrome-96x96.png'
+        badge: './img/icons/ioegiovi.svg'
       }
 
       if (currentNotification) {
@@ -89,7 +89,7 @@ function mergeNotifications (registration, event) {
         currentNotification.close()
       } else if (event.data) {
         var notification = event.data.json()
-        notificationTitle = 'Nuovo commento'
+        notificationTitle = `Nuovo commento da ${notification.firstName} ${notification.lastName}`
         options.body = `${notification.comment}`
       }
       isClientFocused().then(clientFocused => {
@@ -99,7 +99,7 @@ function mergeNotifications (registration, event) {
             options
           )
         } else {
-          windowClients.forEach((windowClient) => {
+          clients.forEach((windowClient) => {
             windowClient.postMessage({
               comment: notification
             })

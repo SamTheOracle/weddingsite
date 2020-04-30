@@ -76,7 +76,7 @@ function mergeNotifications (registration, event) {
 
       if (currentNotification) {
         // We have an open notification, let's do something with it.
-        const commentCount = currentNotification.data.newMessageCount + 1
+        const commentCount = currentNotification.data.newMessageCount ? currentNotification.data.newMessageCount : 0 + 1
 
         options.body = `Ci sono ${commentCount} commenti da vedere`
         options.data = {

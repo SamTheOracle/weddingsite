@@ -100,7 +100,7 @@ function mergeNotifications (registration, event) {
       return new Promise((resolve, reject) => {
         isClientFocused().then(clientFocused => {
           if (!clientFocused) {
-            registration.showNotification(
+            return registration.showNotification(
               notificationTitle,
               options
             ).then(r => resolve(r))

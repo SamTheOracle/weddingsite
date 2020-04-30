@@ -7,16 +7,25 @@ module.exports = class DatabaseService {
     this.mongoConnection = new mongodb.MongoClient(dbUrl, { useUnifiedTopology: true }).connect()
   }
 
+  async deleteData (collectionName, filter) {
+    try {
+      const collection = (await this.mongoConnection).db(this.dbName).collection(collectionName)
+      return new Promise((resolve, reject) => {
+        collection.deleteOne(filter).then(result => resolve(result)).catch(err => reject(err))
+      })
+    } catch (err) {
+      Promise.reject(err)
+    }
+  }
+
   async insertData (collectionName, data) {
     try {
       const collection = (await this.mongoConnection).db(this.dbName).collection(collectionName)
-      console.log('collection from insert', collection)
       const document = data
       return new Promise((resolve, reject) => {
         collection.insertOne(document).then(onfulfilled => resolve(document), onrejected => reject(onrejected))
       })
     } catch (err) {
-      console.log(err)
       return Promise.reject(err)
     }
   }
@@ -24,7 +33,6 @@ module.exports = class DatabaseService {
   async findData (collectionName, filter, many = false) {
     try {
       const collection = (await this.mongoConnection).db(this.dbName).collection(collectionName)
-      console.log('collection from find', collection)
       if (many) {
         return new Promise((resolve, reject) => {
           collection.find(filter).toArray().then(onfulfilled => {
@@ -47,7 +55,6 @@ module.exports = class DatabaseService {
         })
       }
     } catch (err) {
-      console.log('this is an erro', err)
       return Promise.reject(err)
     }
   }

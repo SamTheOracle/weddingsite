@@ -44,17 +44,23 @@ export default {
   mounted () {
     console.log('fetching...')
     // eslint-disable-next-line no-return-assign
-    fetch('http://localhost:5000/comments/all')
+    fetch('https://www.giovannaegiacomo.app/comments/all')
       .then(response => response.json())
       .then(data => (this.values = data))
       .catch(err => console.log(err))
+    const vm = this
+    navigator.serviceWorker.addEventListener('message', function (event) {
+      console.log('Received a message from service worker: ', event.data)
+      const newComment = event.data.comment
+      vm.values.unshift(newComment)
+    })
   },
   methods: {
     async postComment (newComment) {
       const objectComment = JSON.parse(newComment)
       objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
       try {
-        const response = await fetch('http://localhost:5000/comments', {
+        const response = await fetch('https://www.giovannaegiacomo.app/comments', {
           method: 'post',
           headers: {
             'Content-type': 'application/json'
@@ -63,8 +69,9 @@ export default {
         })
         console.log('object comment', response)
         response.json().then(data => {
-          if (response.body.firstName) {
-            this.values.unshift(JSON.parse(response.body))
+          console.log('data', data)
+          if (data.comment) {
+            this.values.unshift(data)
           }
         })
       } catch (err) {

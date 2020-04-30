@@ -44,14 +44,18 @@ app.post('/comments', (req, res) => {
       return commentCreated
     })
     .then(comment => {
-      /* const filter = {
-        $not: {
-          endpoint: comment.subscription.endpoint
+      const filter = {
+        endpoint: {
+          $not: {
+            $regex: comment.subscription.endpoint
+          }
         }
-      } */
-      dbService.findData('subscriptions', {}, true)
+      }
+      dbService.findData('subscriptions', filter, true)
         .then(subs => subs.filter(sub => sub.enpoint !== comment.subscription).forEach(sub => {
-          webpush.sendNotification(sub, JSON.stringify(comment)).catch(err => console.log(err))
+          webpush.sendNotification(sub, JSON.stringify(comment)).catch(_err => dbService.deleteData('subscription', { endpoint: sub.endpoint })
+            .catch(err => err)
+          )
         })).catch(err => console.log('subs error', err))
     })
 })

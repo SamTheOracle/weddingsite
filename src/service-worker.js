@@ -97,7 +97,7 @@ function mergeNotifications (registration, event) {
       }
       isClientFocused().then(clientFocused => {
         if (!clientFocused) {
-          registration.showNotification(
+          return registration.showNotification(
             notificationTitle,
             options
           )
@@ -112,6 +112,7 @@ function mergeNotifications (registration, event) {
               })
             })
           })
+          return Promise.resolve()
         }
       })
     })

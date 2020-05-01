@@ -1,10 +1,10 @@
 <template>
   <v-container fluid style="background-color:#f7f9e4">
     <p class="nicetitle text-center">Informazioni</p>
-    <v-expansion-panels>
+    <v-expansion-panels >
       <v-expansion-panel>
         <v-expansion-panel-header class="descr">Come raggiungere la chiesa</v-expansion-panel-header>
-        <v-expansion-panel-content eager >
+        <v-expansion-panel-content eager>
           <p class="subtitle">Entrata in cripta</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           <v-divider />
@@ -28,12 +28,12 @@
               <v-icon small>mdi-map-marker</v-icon>
             </v-btn>
           </div>
-        </v-expansion-panel-content>
+        </v-expansion-panel-content >
       </v-expansion-panel>
 
       <v-expansion-panel>
         <v-expansion-panel-header class="descr">Come raggiungere l' agriturismo</v-expansion-panel-header>
-        <v-expansion-panel-content>
+        <v-expansion-panel-content eager>
           <p class="subtitle">Uscita Bedizzole</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           <v-divider />
@@ -62,7 +62,7 @@
 
       <v-expansion-panel>
         <v-expansion-panel-header class="descr">Consigli per il dormire</v-expansion-panel-header>
-        <v-expansion-panel-content>
+        <v-expansion-panel-content eager>
           <p class="subtitle">Bed & Breakfast</p>
           <v-list shaped>
             <v-list-item-group color="primary">

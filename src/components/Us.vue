@@ -8,6 +8,7 @@
     <v-slide-group class="pa-4" style="max-width:100%" :show-arrows="$vuetify.breakpoint.mdAndUp">
       <v-slide-item v-for="(image,i) in images" :key="i" class="ma-1">
         <v-card
+          shaped
           outlined
           :width="$vuetify.breakpoint.xsOnly?220:450"
           :height="$vuetify.breakpoint.xsOnly?400:450"

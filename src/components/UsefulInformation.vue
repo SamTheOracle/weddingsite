@@ -4,7 +4,7 @@
     <v-expansion-panels>
       <v-expansion-panel>
         <v-expansion-panel-header class="descr">Come raggiungere la chiesa</v-expansion-panel-header>
-        <v-expansion-panel-content>
+        <v-expansion-panel-content eager>
           <p class="subtitle">Entrata in cripta</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           <v-divider />

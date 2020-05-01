@@ -68,6 +68,8 @@
 
     <UsefulInformation id="information" />
 
+    <Contacts id ="contacts"/>
+
     <v-dialog
       v-model="dialog"
       :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -109,7 +111,8 @@ export default {
     SliderComments: () => import('./components/SliderComments'),
     Us: () => import('./components/Us'),
     HelpUs: () => import('./components/HelpUs'),
-    UsefulInformation: () => import('./components/UsefulInformation')
+    UsefulInformation: () => import('./components/UsefulInformation'),
+    Contacts: () => import('./components/Contacts')
   },
 
   data: () => ({

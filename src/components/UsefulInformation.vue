@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid style="background-color:#f7f9e4">
     <p class="nicetitle text-center">Informazioni</p>
     <v-expansion-panels>
       <v-expansion-panel>

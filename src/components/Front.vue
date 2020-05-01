@@ -4,7 +4,7 @@
       <v-col>
 
         <v-img
-          src="@/assets/ggconnome.png"
+          src="@/assets/ioegiovi.png"
           contain
           style="max-height:100vh"
           v-if="$vuetify.breakpoint.smAndUp"

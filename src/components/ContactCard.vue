@@ -1,9 +1,11 @@
 <template>
   <v-card color="#f7f9e4">
     <v-list-item>
-      <v-list-item-avatar height="40px" width="40px">
-        <v-img :src="require('@/assets/'+contact.image)" contain />
-      </v-list-item-avatar>
+      <v-list-item-avatar height="40px" width="40px" color="grey">
+<!--         <v-img :src="require('@/assets/'+contact.image)" contain />
+ -->
+
+  </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="contacttitle">{{contact.name}}</v-list-item-title>
         <v-list-item-subtitle class="overline">{{contact.type}}</v-list-item-subtitle>

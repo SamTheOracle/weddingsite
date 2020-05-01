@@ -6,13 +6,16 @@
     >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum euismod turpis, vel molestie lacus rutrum in. Sed sagittis purus ut ex consequat, lacinia mattis libero eleifend. Nullam non leo congue tortor gravida lobortis. Curabitur et orci eleifend, elementum arcu in, aliquet sem. Aliquam elementum varius nisl, pellentesque ultrices odio lacinia sed. Curabitur elementum malesuada volutpat. Morbi viverra fringilla nisi, sed sagittis enim ultricies eu.</p>
 
     <v-slide-group class="pa-4" style="max-width:100%" :show-arrows="$vuetify.breakpoint.mdAndUp">
-      <v-slide-item v-for="(image,i) in images" :key="i">
+      <v-slide-item v-for="(image,i) in images" :key="i" class="ma-1">
         <v-card
           outlined
           :width="$vuetify.breakpoint.xsOnly?220:450"
-          :height="$vuetify.breakpoint.xsOnly?220:450"
+          :height="$vuetify.breakpoint.xsOnly?400:450"
         >
-          <v-img height="100%" :src="require('@/assets/'+image.path)" @click="onImageClick(key)"></v-img>
+          <v-img height="220px" :src="require('@/assets/'+image.path)" @click="onImageClick(key)"></v-img>
+          <v-card-text>
+            <h2 class="title primary--text">Magento Forests</h2>Travel to the best outdoor experience on planet Earth. A vacation you will never forget!
+          </v-card-text>
         </v-card>
       </v-slide-item>
     </v-slide-group>

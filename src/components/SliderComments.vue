@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="mt-5">
-    <p class="nicetitle text-center">I commenti degli invitati</p>
-    <p class="descr text-center">Aggiungi un commento per gli sposi!</p>
+    <p class="nicetitle text-center">Uno spazio per voi</p>
+    <p class="descr text-center">Un pensiero per gli sposi</p>
     <div class="text-center">
       <v-btn fab color="#EBF0BA" :large="$vuetify.breakpoint.mdAndUp" @click="dialog = true">
         <v-icon>mdi-plus</v-icon>

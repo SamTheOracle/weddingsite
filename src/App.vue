@@ -55,15 +55,21 @@
       </v-list>
     </v-navigation-drawer>
     <Front />
+
     <Information />
-    <div style="max-height:100vh">
-      <v-overlay :value="overlay" absolute @click="overlay = false">
-        <Timeline v-on:close="overlay = false" />
-      </v-overlay>
-    </div>
-    <Partecipation v-on:partecipationclicked="dialog = true" />
-    <SliderComments />
-    <Us />
+
+    <Partecipation v-on:partecipationclicked="dialog = true" id="partecipation" />
+
+    <Us id="us" />
+
+    <HelpUs id="help" />
+
+    <SliderComments id="comments" />
+
+    <UsefulInformation id="information" />
+
+    <Contacts id ="contacts"/>
+
     <v-dialog
       v-model="dialog"
       :fullscreen="$vuetify.breakpoint.smAndDown"
@@ -85,24 +91,28 @@
 </template>
 
 <script>
-import Front from './components/Front'
-import Information from './components/Information'
-import Timeline from './components/Timeline'
-import SaveTheDate from './components/SaveTheDate'
-import Partecipation from './components/Partecipation'
-import SliderComments from './components/SliderComments'
-import Us from './components/Us'
+
+/* const Information = () => import('./components/Information')
+const Timeline = () => import('./components/Timeline')
+const SaveTheDate = () => import('./components/SaveTheDate')
+const Partecipation = () => import('./components/Partecipation')
+const SliderComments = () => import('./components/SliderComments')
+const Us = () => import('./components/Us')
+const Front = () => import('./components/Front') */
+
 export default {
   name: 'App',
 
   components: {
-    Front,
-    Information,
-    Timeline,
-    SaveTheDate,
-    Partecipation,
-    SliderComments,
-    Us
+    Front: () => import('./components/Front'),
+    Information: () => import('./components/Information'),
+    SaveTheDate: () => import('./components/SaveTheDate'),
+    Partecipation: () => import('./components/Partecipation'),
+    SliderComments: () => import('./components/SliderComments'),
+    Us: () => import('./components/Us'),
+    HelpUs: () => import('./components/HelpUs'),
+    UsefulInformation: () => import('./components/UsefulInformation'),
+    Contacts: () => import('./components/Contacts')
   },
 
   data: () => ({
@@ -127,23 +137,23 @@ export default {
         image: 'confirmationblack.svg'
       },
       {
-        text: 'Siamo nelle vostre mani',
-        button: 'La nostra casa',
-        image: 'house.svg'
-      },
-      {
         button: 'Noi',
         text: 'La nostra storia',
         image: 'couple.svg'
       },
       {
-        button: 'Commenti',
-        text: 'Commenti degli invitati',
+        text: 'Siamo nelle vostre mani',
+        button: 'La nostra casa',
+        image: 'house.svg'
+      },
+      {
+        button: 'Uno spazio per voi',
+        text: 'Un pensiero per gli sposi',
         image: 'comment.svg'
       },
       {
         button: 'Informazioni',
-        text: 'Informazioni utili',
+        text: 'Come raggiungere il luogo',
         image: 'information.svg'
       },
       {
@@ -156,10 +166,24 @@ export default {
   methods: {
     doAction (action) {
       if (action === 'Informazioni') {
-        this.overlay = true
+        this.$vuetify.goTo('#information', { duration: 1000, offset: 100 })
       }
       if (action === 'Conferma') {
-        this.dialog = true
+        this.$vuetify.goTo('#partecipation', { duration: 1000, offset: 100 })
+      }
+      if (action === 'La nostra casa') {
+        this.$vuetify.goTo('#help', { duration: 1000, offset: -100 })
+
+      /*  this.dialog = true */
+      }
+      if (action === 'Noi') {
+        this.$vuetify.goTo('#us', { duration: 1000, offset: 100 })
+      }
+      if (action === 'Contatti') {
+        this.$vuetify.goTo('#contacts', { duration: 1000, offset: 100 })
+      }
+      if (action === 'Uno spazio per voi') {
+        this.$vuetify.goTo('#comments', { duration: 1000, offset: 100 })
       }
       if (window.innerWidth <= 800) {
         this.drawer = false

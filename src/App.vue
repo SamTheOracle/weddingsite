@@ -55,54 +55,61 @@
       </v-list>
     </v-navigation-drawer>
     <Front />
-    <Information />
-    <div style="max-height:100vh">
-      <v-overlay :value="overlay" absolute @click="overlay = false">
-        <Timeline v-on:close="overlay = false" />
-      </v-overlay>
-    </div>
-    <Partecipation v-on:partecipationclicked="dialog = true" />
-    <SliderComments />
-    <Us />
-    <v-dialog
-      v-model="dialog"
-      :fullscreen="$vuetify.breakpoint.smAndDown"
-      :hide-overlay="$vuetify.breakpoint.smAndDown"
-      transition="dialog-bottom-transition"
-      max-width="800"
-      scrollable
-    >
-      <SaveTheDate v-on:close="dialog = false" />
-    </v-dialog>
 
-    <v-footer color="#EBF0BA">
-      <p class="nice text-center mx-auto">
-        Fatto con
-        <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.
-      </p>
-    </v-footer>
+      <Information id="information"/>
+      <div style="max-height:100vh">
+        <v-overlay :value="overlay" absolute @click="overlay = false">
+          <Timeline v-on:close="overlay = false" />
+        </v-overlay>
+      </div>
+
+      <Partecipation v-on:partecipationclicked="dialog = true" id="partecipation"/>
+
+      <SliderComments id="comments"/>
+
+      <Us id="us"/>
+
+      <v-dialog
+        v-model="dialog"
+        :fullscreen="$vuetify.breakpoint.smAndDown"
+        :hide-overlay="$vuetify.breakpoint.smAndDown"
+        transition="dialog-bottom-transition"
+        max-width="800"
+        scrollable
+      >
+        <SaveTheDate v-on:close="dialog = false" />
+      </v-dialog>
+
+      <v-footer color="#EBF0BA">
+        <p class="nice text-center mx-auto">
+          Fatto con
+          <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.
+        </p>
+      </v-footer>
   </v-app>
 </template>
 
 <script>
-const Information = () => import('./components/Information')
+
+/* const Information = () => import('./components/Information')
 const Timeline = () => import('./components/Timeline')
 const SaveTheDate = () => import('./components/SaveTheDate')
 const Partecipation = () => import('./components/Partecipation')
 const SliderComments = () => import('./components/SliderComments')
 const Us = () => import('./components/Us')
-const Front = () => import('./components/Front')
+const Front = () => import('./components/Front') */
+
 export default {
   name: 'App',
 
   components: {
-    Front,
-    Information,
-    Timeline,
-    SaveTheDate,
-    Partecipation,
-    SliderComments,
-    Us
+    Front: () => import('./components/Front'),
+    Information: () => import('./components/Information'),
+    Timeline: () => import('./components/Timeline'),
+    SaveTheDate: () => import('./components/SaveTheDate'),
+    Partecipation: () => import('./components/Partecipation'),
+    SliderComments: () => import('./components/SliderComments'),
+    Us: () => import('./components/Us')
   },
 
   data: () => ({
@@ -159,7 +166,18 @@ export default {
         this.overlay = true
       }
       if (action === 'Conferma') {
-        this.dialog = true
+        this.$vuetify.goTo('#partecipation', { duration: 1000, offset: 100 })
+
+      /*  this.dialog = true */
+      }
+      if (action === 'Noi') {
+        this.$vuetify.goTo('#us', { duration: 1000, offset: 100 })
+      }
+      if (action === 'Contatti') {
+        this.$vuetify.goTo('#contacts', { duration: 1000, offset: 100 })
+      }
+      if (action === 'Commenti') {
+        this.$vuetify.goTo('#comments', { duration: 1000, offset: 100 })
       }
       if (window.innerWidth <= 800) {
         this.drawer = false

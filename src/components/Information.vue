@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import SaveTheDate from './SaveTheDate'
-import Celebration from './Celebration'
+const SaveTheDate = () => import('./SaveTheDate')
+const Celebration = () => import('./Celebration')
 export default {
   name: 'Information',
   components: {

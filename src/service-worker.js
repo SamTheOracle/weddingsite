@@ -114,8 +114,7 @@ function mergeNotifications (registration, event) {
                   })
                 })
               }).catch(err => reject(err))
-            })
-              .catch(err => reject(err))
+            }).catch(err => reject(err))
           } else {
             clients.matchAll({
               type: 'window',

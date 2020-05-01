@@ -85,13 +85,13 @@
 </template>
 
 <script>
-import Front from './components/Front'
-import Information from './components/Information'
-import Timeline from './components/Timeline'
-import SaveTheDate from './components/SaveTheDate'
-import Partecipation from './components/Partecipation'
-import SliderComments from './components/SliderComments'
-import Us from './components/Us'
+const Information = () => import('./components/Information')
+const Timeline = () => import('./components/Timeline')
+const SaveTheDate = () => import('./components/SaveTheDate')
+const Partecipation = () => import('./components/Partecipation')
+const SliderComments = () => import('./components/SliderComments')
+const Us = () => import('./components/Us')
+const Front = () => import('./components/Front')
 export default {
   name: 'App',
 

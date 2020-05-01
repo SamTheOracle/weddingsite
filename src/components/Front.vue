@@ -4,9 +4,10 @@
       <v-col>
 
         <v-img
-          src="@/assets/ioegiovi.png"
+          src="@/assets/ggconnome.jpg"
           contain
           style="max-height:100vh"
+          v-on:load="onImageLoaded()"
           v-if="$vuetify.breakpoint.smAndUp"
         />
 
@@ -16,7 +17,7 @@
             <p class="nicemain text-center pa-0 ma-0">e Giacomo</p>
           </div>
           <v-img
-            src="@/assets/ioegiovi.png"
+            src="@/assets/gg.png"
             v-on:load="onImageLoaded()"
             contain
             style="max-height:100vh;"

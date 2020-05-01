@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card color="#f7f9e4">
     <v-list-item>
       <v-list-item-avatar height="40px" width="40px">
         <v-img :src="require('@/assets/'+contact.image)" contain />

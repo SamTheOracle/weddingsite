@@ -170,6 +170,9 @@ export default {
       }
       if (action === 'Conferma') {
         this.$vuetify.goTo('#partecipation', { duration: 1000, offset: 100 })
+      }
+      if (action === 'La nostra casa') {
+        this.$vuetify.goTo('#help', { duration: 1000, offset: -100 })
 
       /*  this.dialog = true */
       }

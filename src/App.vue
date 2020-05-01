@@ -56,36 +56,35 @@
     </v-navigation-drawer>
     <Front />
 
-      <Information id="information"/>
-      <div style="max-height:100vh">
-        <v-overlay :value="overlay" absolute @click="overlay = false">
-          <Timeline v-on:close="overlay = false" />
-        </v-overlay>
-      </div>
+    <Information />
 
-      <Partecipation v-on:partecipationclicked="dialog = true" id="partecipation"/>
+    <Partecipation v-on:partecipationclicked="dialog = true" id="partecipation" />
 
-      <SliderComments id="comments"/>
+    <Us id="us" />
 
-      <Us id="us"/>
+    <HelpUs id="help" />
 
-      <v-dialog
-        v-model="dialog"
-        :fullscreen="$vuetify.breakpoint.smAndDown"
-        :hide-overlay="$vuetify.breakpoint.smAndDown"
-        transition="dialog-bottom-transition"
-        max-width="800"
-        scrollable
-      >
-        <SaveTheDate v-on:close="dialog = false" />
-      </v-dialog>
+    <SliderComments id="comments" />
 
-      <v-footer color="#EBF0BA">
-        <p class="nice text-center mx-auto">
-          Fatto con
-          <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.
-        </p>
-      </v-footer>
+    <UsefulInformation id="information" />
+
+    <v-dialog
+      v-model="dialog"
+      :fullscreen="$vuetify.breakpoint.smAndDown"
+      :hide-overlay="$vuetify.breakpoint.smAndDown"
+      transition="dialog-bottom-transition"
+      max-width="800"
+      scrollable
+    >
+      <SaveTheDate v-on:close="dialog = false" />
+    </v-dialog>
+
+    <v-footer color="#EBF0BA">
+      <p class="nice text-center mx-auto">
+        Fatto con
+        <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.
+      </p>
+    </v-footer>
   </v-app>
 </template>
 
@@ -105,11 +104,12 @@ export default {
   components: {
     Front: () => import('./components/Front'),
     Information: () => import('./components/Information'),
-    Timeline: () => import('./components/Timeline'),
     SaveTheDate: () => import('./components/SaveTheDate'),
     Partecipation: () => import('./components/Partecipation'),
     SliderComments: () => import('./components/SliderComments'),
-    Us: () => import('./components/Us')
+    Us: () => import('./components/Us'),
+    HelpUs: () => import('./components/HelpUs'),
+    UsefulInformation: () => import('./components/UsefulInformation')
   },
 
   data: () => ({
@@ -134,23 +134,23 @@ export default {
         image: 'confirmationblack.svg'
       },
       {
-        text: 'Siamo nelle vostre mani',
-        button: 'La nostra casa',
-        image: 'house.svg'
-      },
-      {
         button: 'Noi',
         text: 'La nostra storia',
         image: 'couple.svg'
       },
       {
-        button: 'Commenti',
-        text: 'Commenti degli invitati',
+        text: 'Siamo nelle vostre mani',
+        button: 'La nostra casa',
+        image: 'house.svg'
+      },
+      {
+        button: 'Uno spazio per voi',
+        text: 'Un pensiero per gli sposi',
         image: 'comment.svg'
       },
       {
         button: 'Informazioni',
-        text: 'Informazioni utili',
+        text: 'Come raggiungere il luogo',
         image: 'information.svg'
       },
       {
@@ -163,7 +163,7 @@ export default {
   methods: {
     doAction (action) {
       if (action === 'Informazioni') {
-        this.overlay = true
+        this.$vuetify.goTo('#information', { duration: 1000, offset: 100 })
       }
       if (action === 'Conferma') {
         this.$vuetify.goTo('#partecipation', { duration: 1000, offset: 100 })
@@ -176,7 +176,7 @@ export default {
       if (action === 'Contatti') {
         this.$vuetify.goTo('#contacts', { duration: 1000, offset: 100 })
       }
-      if (action === 'Commenti') {
+      if (action === 'Uno spazio per voi') {
         this.$vuetify.goTo('#comments', { duration: 1000, offset: 100 })
       }
       if (window.innerWidth <= 800) {

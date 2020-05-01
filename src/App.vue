@@ -15,73 +15,75 @@
         >{{button.text}}</v-btn>
       </div>
     </v-app-bar>
-    <v-navigation-drawer
-      app
-      clipped
-      v-model="drawer"
-      v-if="$vuetify.breakpoint.smAndDown"
-      style="height:100vh"
-    >
-      <v-list-item two-line style="background-color:#EBF0BA">
-        <v-list-item-avatar tile width="80" height="80">
-          <v-img src="@/assets/ioegiovi.svg" contain />
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <p class="drawertitle mb-1">Giovanna e Giacomo</p>
-        </v-list-item-content>
-      </v-list-item>
+    <Front v-on:imageloaded="mainLoaded=true" />
 
-      <v-list nav flat>
-        <v-list-item-group color="primary">
-          <v-list-item
-            v-for="(element,i) in computedLinks()"
-            :key="i"
-            @click="doAction(element.button)"
-            v-resize="computedLinks"
-            two-line
-          >
-            <v-list-item-avatar tile>
-              <v-img :src="require('@/assets/'+element.image)" />
-            </v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title
-                :class="$vuetify.breakpoint.smAndUp?'subtitle-1':''"
-                v-text="element.button"
-              ></v-list-item-title>
-              <v-list-item-subtitle v-text="element.text"></v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
-    <Front />
+    <div v-if="mainLoaded">
+      <v-navigation-drawer
+        app
+        clipped
+        v-model="drawer"
+        v-if="$vuetify.breakpoint.smAndDown"
+        style="height:100vh"
+      >
+        <v-list-item two-line style="background-color:#EBF0BA">
+          <v-list-item-avatar tile width="80" height="80">
+            <v-img src="@/assets/ioegiovi.svg" contain />
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <p class="drawertitle mb-1">Giovanna e Giacomo</p>
+          </v-list-item-content>
+        </v-list-item>
 
-    <Information />
+        <v-list nav flat>
+          <v-list-item-group color="primary">
+            <v-list-item
+              v-for="(element,i) in computedLinks()"
+              :key="i"
+              @click="doAction(element.button)"
+              v-resize="computedLinks"
+              two-line
+            >
+              <v-list-item-avatar tile>
+                <v-img :src="require('@/assets/'+element.image)" />
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title
+                  :class="$vuetify.breakpoint.smAndUp?'subtitle-1':''"
+                  v-text="element.button"
+                ></v-list-item-title>
+                <v-list-item-subtitle v-text="element.text"></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
 
-    <Partecipation v-on:partecipationclicked="dialog = true" id="partecipation" />
+      <Information />
 
-    <Us id="us" />
+      <Partecipation v-on:partecipationclicked="dialog = true" id="partecipation" />
 
-    <HelpUs id="help" />
+      <Us id="us" />
 
-    <SliderComments id="comments" />
+      <HelpUs id="help" />
 
-    <UsefulInformation id="information" />
+      <SliderComments id="comments" />
 
-    <Contacts id ="contacts"/>
+      <UsefulInformation id="information" />
 
-    <v-dialog
-      v-model="dialog"
-      :fullscreen="$vuetify.breakpoint.smAndDown"
-      :hide-overlay="$vuetify.breakpoint.smAndDown"
-      transition="dialog-bottom-transition"
-      max-width="800"
-      scrollable
-    >
-      <SaveTheDate v-on:close="dialog = false" />
-    </v-dialog>
+      <Contacts id="contacts" />
 
-    <v-footer color="#EBF0BA">
+      <v-dialog
+        v-model="dialog"
+        :fullscreen="$vuetify.breakpoint.smAndDown"
+        :hide-overlay="$vuetify.breakpoint.smAndDown"
+        transition="dialog-bottom-transition"
+        max-width="800"
+        scrollable
+      >
+        <SaveTheDate v-on:close="dialog = false" />
+      </v-dialog>
+    </div>
+    <v-footer color="#EBF0BA" v-if="mainLoaded">
       <p class="nice text-center mx-auto">
         Fatto con
         <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.
@@ -91,7 +93,6 @@
 </template>
 
 <script>
-
 /* const Information = () => import('./components/Information')
 const Timeline = () => import('./components/Timeline')
 const SaveTheDate = () => import('./components/SaveTheDate')
@@ -119,6 +120,7 @@ export default {
     drawer: false,
     overlay: false,
     dialog: false,
+    mainLoaded: false,
     buttons: [
       {
         text: 'Informazioni'
@@ -174,7 +176,7 @@ export default {
       if (action === 'La nostra casa') {
         this.$vuetify.goTo('#help', { duration: 1000, offset: -100 })
 
-      /*  this.dialog = true */
+        /*  this.dialog = true */
       }
       if (action === 'Noi') {
         this.$vuetify.goTo('#us', { duration: 1000, offset: 100 })

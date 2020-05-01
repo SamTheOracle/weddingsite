@@ -17,7 +17,7 @@
           </div>
           <v-img
             src="@/assets/ioegiovi.png"
-            v-on:load="showText=true"
+            v-on:load="onImageLoaded()"
             contain
             style="max-height:100vh;"
           ></v-img>
@@ -35,7 +35,14 @@ export default {
     return {
       showText: false
     }
+  },
+  methods: {
+    onImageLoaded () {
+      this.showText = true
+      this.$emit('imageloaded')
+    }
   }
+
 }
 </script>
 

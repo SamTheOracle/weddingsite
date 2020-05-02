@@ -194,7 +194,6 @@ export default {
     computedLinks: function () {
       const width = window.innerWidth
       if (width < 360) {
-        console.log(this.links.filter(link => link.button !== 'Informazioni'))
         return this.links.filter(link => link.button !== 'Informazioni')
       } else {
         return this.links

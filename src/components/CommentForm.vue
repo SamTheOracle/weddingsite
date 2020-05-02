@@ -59,7 +59,7 @@
         </v-row>
       </v-form>
       <v-row justify="start">
-          <v-btn color="#EBF0BA" @click="$refs.form.reset()" class="ml-4">Ricomincia</v-btn>
+          <v-btn rounded color="#EBF0BA" @click="$refs.form.reset()" class="ml-4">Ricomincia</v-btn>
       </v-row>
     </v-container>
   </v-card>

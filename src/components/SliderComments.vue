@@ -3,11 +3,15 @@
     <p class="nicetitle text-center">Uno spazio per voi</p>
     <p class="descr text-center">Un pensiero per gli sposi</p>
     <div class="text-center">
-      <v-btn fab color="#EBF0BA" :large="$vuetify.breakpoint.mdAndUp" @click="dialog = true">
-        <v-icon>mdi-plus</v-icon>
+      <v-btn color="#EBF0BA" :large="$vuetify.breakpoint.mdAndUp" @click="dialog = true" rounded>
+        Aggiungi
+        <v-icon small class="ml-2">mdi-send</v-icon>
       </v-btn>
     </div>
     <v-slide-group class="pa-4" style="max-width:100%">
+      <v-slide-item class="ma-2" v-for="n in 12" :key="n">
+        <Comment :comment="fakeComment" />
+      </v-slide-item>
       <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
         <Comment :comment="comment" />
       </v-slide-item>
@@ -38,8 +42,28 @@ export default {
     return {
       model: null,
       dialog: false,
-      values: []
+      values: [],
+      fakeComment: {
+        lastName: 'Gates',
+        firstName: 'Bill',
+        comment: 'Un grande uomo si sposa con una gran donna. Una bella lezione di amore e di umiltà, complimenti. ',
+        date: '2 Maggio 2020'
+      },
+      icons: [
+        { path: 'music.svg' },
+        { path: 'mountain.svg' },
+        { path: 'kite.svg' },
+        { path: 'hot-air-balloon.svg' },
+        { path: 'dove.svg' },
+        { path: 'churchcomment.svg' },
+        { path: 'bells.svg' },
+        { path: 'angel.svg' }
+      ],
+      variabaleIcons: []
     }
+  },
+  created () {
+    this.fakeComment.icon = this.getIcon()
   },
   mounted () {
     console.log('fetching...')
@@ -71,6 +95,7 @@ export default {
         response.json().then(data => {
           console.log('data', data)
           if (data.comment) {
+            data.icon = this.getIcon()
             this.values.unshift(data)
           }
         })
@@ -79,6 +104,20 @@ export default {
       } finally {
         this.dialog = false
       }
+    },
+    getIcon () {
+      const iconCount = this.icons.length >= 2
+      const index = iconCount
+        ? Math.floor(Math.random() * (this.icons.length - 1))
+        : 0
+      var icon = this.icons[index]
+      this.variabaleIcons.push(icon)
+      this.icons.splice(index, 1)
+      if (!iconCount) {
+        this.icons = this.variabaleIcons
+        this.variabaleIcons = []
+      }
+      return icon.path
     }
   }
 }

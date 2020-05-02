@@ -99,6 +99,7 @@ export default {
   },
   methods: {
     async postComment (newComment) {
+      const vm = this
       const objectComment = JSON.parse(newComment)
       objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
       try {
@@ -116,7 +117,7 @@ export default {
         response.json().then(data => {
           if (data.comment) {
             data.icon = this.getIcon()
-            this.values.unshift(data)
+            vm.values.unshift(data)
           }
         })
       } catch (err) {

@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     fullName: function () {
-      return `${this.comment.firstName} ${this.comment.lastName}`
+      return `${this.comment.firstName}  ${this.comment.lastName}`
     }
   },
   methods: {
@@ -39,6 +39,8 @@ export default {
   font-family: 'Patrick Hand SC', cursive;
   font-size: 28px;
   font-weight: 300;
+  white-space: pre-line;
+  text-overflow: unset!important;
 }
 #comment{
   font-family: 'Pompiere', cursive;

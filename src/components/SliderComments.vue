@@ -9,8 +9,8 @@
       </v-btn>
     </div>
     <v-slide-group class="pa-4" style="max-width:100%">
-      <v-slide-item class="ma-2" v-for="n in 12" :key="n">
-        <Comment :comment="fakeComment" />
+      <v-slide-item class="ma-2" v-for="(fake,i) in fakeComments " :key="i">
+        <Comment :comment="fake" />
       </v-slide-item>
       <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
         <Comment :comment="comment" />
@@ -43,12 +43,29 @@ export default {
       model: null,
       dialog: false,
       values: [],
-      fakeComment: {
-        lastName: 'Gates',
-        firstName: 'Bill',
-        comment: 'Un grande uomo si sposa con una gran donna. Una bella lezione di amore e di umiltà, complimenti. ',
-        date: '2 Maggio 2020'
-      },
+      fakeComments: [
+        {
+          lastName: 'Gates',
+          firstName: 'Bill',
+          comment:
+            'Un grande uomo si sposa con una gran donna. Una bella lezione di amore e di umiltà, complimenti. ',
+          date: '15 Maggio 2020'
+        },
+        {
+          lastName: 'Mattarella',
+          firstName: 'Sergio',
+          comment:
+            'Care italiane, Cari italiani. Il matrimonio di Giacomo e Giovanna dà speranza per il futuro, un esempio di unità in questi tempi bui',
+          date: '2 Settembre 2020'
+        },
+        {
+          lastName: 'Musk',
+          firstName: 'Elon',
+          comment:
+            "È stato lo sposo a suggerirmi la fantastica idea di terraformare Marte, bombardando il pianeta con l'arsenale atomico mondiale",
+          date: '18 Luglio 2020'
+        }
+      ],
       icons: [
         { path: 'music.svg' },
         { path: 'mountain.svg' },
@@ -63,7 +80,7 @@ export default {
     }
   },
   created () {
-    this.fakeComment.icon = this.getIcon()
+    this.fakeComments.forEach(fc => (fc.icon = this.getIcon()))
   },
   mounted () {
     console.log('fetching...')
@@ -76,6 +93,7 @@ export default {
     navigator.serviceWorker.addEventListener('message', function (event) {
       console.log('Received a message from service worker: ', event.data)
       const newComment = event.data.comment
+      newComment.icon = this.getIcon()
       vm.values.unshift(newComment)
     })
   },
@@ -84,16 +102,18 @@ export default {
       const objectComment = JSON.parse(newComment)
       objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
       try {
-        const response = await fetch('https://www.giovannaegiacomo.app/comments', {
-          method: 'post',
-          headers: {
-            'Content-type': 'application/json'
-          },
-          body: JSON.stringify(objectComment)
-        })
+        const response = await fetch(
+          'https://www.giovannaegiacomo.app/comments',
+          {
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify(objectComment)
+          }
+        )
         console.log('object comment', response)
         response.json().then(data => {
-          console.log('data', data)
           if (data.comment) {
             data.icon = this.getIcon()
             this.values.unshift(data)

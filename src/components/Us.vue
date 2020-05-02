@@ -20,7 +20,9 @@
             :width="$vuetify.breakpoint.xsOnly?220:450"
             :height="$vuetify.breakpoint.xsOnly?400:450"
           >
-            <v-img height="220px" :src="require(`@/assets/${image.path}?vuetify-preload`)" @click="onImageClick(key)"></v-img>
+
+<!--             <v-img height="220px" :src="require(`@/assets/${image.path}`)" @click="onImageClick(key)"></v-img>
+ -->            <v-img height="220px" src="https://via.placeholder.com/600" @click="onImageClick(key)"></v-img>
             <v-card-text>
               <h2 class="title primary--text">Magento Forests</h2>Travel to the best outdoor experience on planet Earth. A vacation you will never forget!
             </v-card-text>

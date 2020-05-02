@@ -7,6 +7,7 @@
           class="descr text-center"
         >Dicci se verrai al nostro matrimonio! Casoncelli e ciccia a volontà!</p>
         <v-btn
+          rounded
           color="#EBF0BA"
           :large="$vuetify.breakpoint.mdAndUp"
           @click="$emit('partecipationclicked')"

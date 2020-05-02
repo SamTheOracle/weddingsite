@@ -23,7 +23,7 @@
                 <v-list-item-content>
                   <v-list-item-title
                     style="white-space:pre-line!important"
-                  >P{{i + 1}} - {{parking.name}} ({{parking.type}})</v-list-item-title>
+                  >{{parking.coordinates.label}} - {{parking.name}} ({{parking.type}})</v-list-item-title>
                   <v-list-item-subtitle style="white-space:pre-line!important">{{parking.address}}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -52,7 +52,7 @@
           <p class="subtitle">Parcheggi</p>
           <v-list shaped>
             <v-list-item-group color="primary">
-              <v-list-item class="pa-0">
+              <v-list-item class="pa-0" @click="onRestaurantClick()">
                 <v-list-item-avatar>
                   <v-icon>mdi-map-marker</v-icon>
                 </v-list-item-avatar>
@@ -64,7 +64,7 @@
             </v-list-item-group>
           </v-list>
           <div class="text-center">
-            <v-btn rounded :small="$vuetify.breakpoint.xsOnly" color="#EBF0BA">
+            <v-btn rounded :small="$vuetify.breakpoint.xsOnly" color="#EBF0BA" @click="onRestaurantClick()" >
               mappa
               <v-icon small>mdi-map-marker</v-icon>
             </v-btn>
@@ -123,6 +123,10 @@ export default {
         lat: 45.5358,
         lng: 10.2296
       },
+      restaurant: {
+        lat: 45.517735,
+        lng: 10.413570
+      },
       parkings: [
         {
           type: 'Pagamento',
@@ -130,7 +134,8 @@ export default {
           address: 'Via Spalto S. Marco, 8, \n 25121  Brescia BS',
           coordinates: {
             lat: 45.5349,
-            lng: 10.2301
+            lng: 10.2301,
+            label: 'P1'
           }
         },
         {
@@ -139,7 +144,8 @@ export default {
           address: 'Piazzale Arnaldo, \n 25121 Brescia BS ',
           coordinates: {
             lat: 45.5363,
-            lng: 10.2307
+            lng: 10.2307,
+            label: 'P2'
           }
         } /* ,
         {
@@ -178,6 +184,7 @@ export default {
       window.location.href = link
     },
     onParkingClick (parking) {
+      this.coordinates = []
       this.coordinates.push(parking.coordinates)
       this.center = this.church
       this.title = parking.name
@@ -185,10 +192,14 @@ export default {
     },
     onParkingMapClick () {
       this.coordinates = this.parkings.map(parking => parking.coordinates)
-      console.log(this.coordinates)
       this.center = this.church
       this.title = 'Parcheggi per la chiesa'
-      console.log(this.title)
+      this.dialog = true
+    },
+    onRestaurantClick () {
+      this.coordinates = []
+      this.center = this.restaurant
+      this.title = 'Agriturismo Roccolo'
       this.dialog = true
     }
   }

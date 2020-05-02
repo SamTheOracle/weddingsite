@@ -4,7 +4,7 @@
       <v-btn fab text color="black" @click="$emit('mapdialogclosed')" dense>
         <v-icon :color="$vuetify.breakpoint.xsOnly?'black':'white'">mdi-close</v-icon>
       </v-btn>
-      <v-toolbar-title  class="text-center">{{title}}</v-toolbar-title>
+      <v-toolbar-title class="text-center">{{title}}</v-toolbar-title>
     </v-toolbar>
     <div
       class="pa-1"
@@ -50,16 +50,25 @@ export default {
         zoom: 16,
         center: center
       })
-      /* var mark = new google.maps.Marker({
+      var mark = new google.maps.Marker({
         position: center,
         map: this.map,
         icon: { url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' }
-      }) */
+      })
       this.coordinates.forEach(
         coordinate =>
-          new google.maps.Marker({ position: coordinate, map: this.map })
+          new google.maps.Marker({
+            position: coordinate,
+            map: this.map,
+            label: coordinate.label
+          })
       )
       // eslint-disable-next-line no-new
+    }
+  },
+  watch: {
+    title: function () {
+      this.initializeMap()
     }
   }
 }

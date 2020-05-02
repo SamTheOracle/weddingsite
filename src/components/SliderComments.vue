@@ -93,7 +93,7 @@ export default {
     navigator.serviceWorker.addEventListener('message', function (event) {
       console.log('Received a message from service worker: ', event.data)
       const newComment = event.data.comment
-      newComment.icon = this.getIcon()
+      newComment.icon = vm.getIcon()
       vm.values.unshift(newComment)
     })
   },

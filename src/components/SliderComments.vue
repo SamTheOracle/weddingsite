@@ -94,6 +94,7 @@ export default {
       console.log('Received a message from service worker: ', event.data)
       const newComment = event.data.comment
       newComment.icon = vm.getIcon()
+      console.log(newComment)
       vm.values.unshift(newComment)
     })
   },

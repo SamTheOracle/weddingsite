@@ -8,7 +8,7 @@
         <v-icon small class="ml-2">mdi-send</v-icon>
       </v-btn>
     </div>
-    <v-slide-group class="pa-4" style="max-width:100%" show-arrows>
+    <v-slide-group class="pa-4" style="max-width:100%" :show-arrows="$vuetify.breakpoint.mdAndUp">
       <v-slide-item class="ma-1" v-for="(fake,i) in fakeComments " :key="i">
         <Comment :comment="fake" />
       </v-slide-item>

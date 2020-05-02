@@ -35,7 +35,7 @@ date
 
 app.post('/comments', (req, res) => {
   const comment = req.body
-  comment.date = moment.tz('Europe/Rome').format()
+  comment.date = moment.tz('Europe/Rome').format('LL')
 
   dbService.insertData('comments', comment)
     .catch(err => res.status(400).json(err))

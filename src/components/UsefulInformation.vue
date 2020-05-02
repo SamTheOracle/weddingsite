@@ -1,7 +1,7 @@
 <template>
   <v-container fluid style="background-color:#f7f9e4">
     <p class="nicetitle text-center">Informazioni</p>
-    <v-expansion-panels>
+    <v-expansion-panels style="max-width:900px" class="mx-auto">
       <v-expansion-panel>
         <v-expansion-panel-header class="descr">Come raggiungere la chiesa</v-expansion-panel-header>
         <v-expansion-panel-content eager>

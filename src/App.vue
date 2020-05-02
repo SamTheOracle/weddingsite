@@ -83,7 +83,8 @@
         <SaveTheDate v-on:close="dialog = false" />
       </v-dialog>
     </div>
-    <v-footer color="#EBF0BA" v-if="mainLoaded">
+    <v-divider/>
+    <v-footer v-if="mainLoaded">
       <p class="footertext text-center mx-auto">
         Fatto con
         <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.

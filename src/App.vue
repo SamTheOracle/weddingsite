@@ -207,7 +207,6 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Patrick+Hand+SC&family=Pompiere&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Exo&display=swap");
 .nice {
   font-family: "Satisfy", cursive;
   color: #431008;
@@ -222,17 +221,14 @@ export default {
   font-family: "Exo", sans-serif;
   font-size: 34px !important;
 }
-@media only screen and (max-width: 340px) {
-  .nice {
-    font-size: 30px !important;
-  }
+@media only screen and (max-width:425px){
   .footertext {
     font-size: 20px !important;
   }
 }
-/* #withbg {
-  background: url("~@/assets/test.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
+@media only screen and (max-width: 340px) {
+  .nice {
+    font-size: 30px !important;
+  }
+}
 </style>

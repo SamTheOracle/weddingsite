@@ -1,5 +1,5 @@
 <template>
-  <v-card shaped color="#f7f9e4" light :width="$vuetify.breakpoint.xsOnly?250:350" :height="380">
+  <v-card shaped  color="#f7f9e4" light :width="$vuetify.breakpoint.xsOnly?'100%':350" :height="380" >
     <v-list-item>
       <v-list-item-avatar tile width="50" height="50">
         <v-img contain :src="require('@/assets/'+ comment.icon)" />

@@ -8,14 +8,20 @@
         <v-icon small class="ml-2">mdi-send</v-icon>
       </v-btn>
     </div>
-    <v-slide-group class="pa-4" style="max-width:100%" :show-arrows="$vuetify.breakpoint.mdAndUp">
+    <v-window class="pa-4" style="max-width:100%" :show-arrows="$vuetify.breakpoint.mdAndUp">
+      <v-window-item class="ma-1" v-for="(fake,i) in fakeComments " :key="i">
+        <Comment :comment="fake" />
+        <v-window-item v-for="(comment,i) in values" :key="i" class="ma-2"></v-window-item>
+      </v-window-item>
+    </v-window>
+    <!--  <v-slide-group class="pa-4" style="max-width:100%" :show-arrows="$vuetify.breakpoint.mdAndUp">
       <v-slide-item class="ma-1" v-for="(fake,i) in fakeComments " :key="i">
         <Comment :comment="fake" />
       </v-slide-item>
       <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
         <Comment :comment="comment" />
       </v-slide-item>
-    </v-slide-group>
+    </v-slide-group>-->
     <v-dialog
       v-model="dialog"
       :fullscreen="$vuetify.breakpoint.xsOnly"

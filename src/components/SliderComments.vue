@@ -16,7 +16,7 @@
       transition="fade-transition"
       min-height="200"
     >
-      <v-slide-group class="pa-4" style="max-width:100%" show-arrows v-if="$vuetify.smAndUp">
+      <v-slide-group class="pa-4" style="max-width:100%" show-arrows v-if="$vuetify.breakpoint.smAndUp">
         <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
           <Comment :comment="comment" />
         </v-slide-item>

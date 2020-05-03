@@ -17,7 +17,7 @@
     </v-app-bar>
     <Front v-on:imageloaded="mainLoaded=true" />
 
-    <div v-if="mainLoaded" >
+    <div v-if="mainLoaded">
       <v-navigation-drawer
         app
         clipped
@@ -84,16 +84,17 @@
       </v-dialog>
     </div>
     <v-divider />
-    <v-footer v-if="mainLoaded">
+    <v-footer v-if="mainLoaded" color="white">
       <v-row>
-        <v-col cols="6">
-          <v-col v-for="(button,i) in buttons" :key="i">
-            <v-btn
-              text
-              x-small
-              @click="doAction(button.text)"
-            >{{button.text}}</v-btn>
-          </v-col>
+        <v-col cols="8">
+          <v-row align="end" justify="end" no-gutters>
+            <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i">
+              <v-btn text x-small @click="doAction(link.button)" style="font-size:8px">{{link.button}}</v-btn>
+            </v-col>
+            <v-col>
+              <v-img height="20" width="20"/>
+            </v-col>
+          </v-row>
         </v-col>
         <v-col cols="6"></v-col>
       </v-row>
@@ -157,12 +158,12 @@ export default {
         image: 'couple.svg'
       },
       {
-        text: 'Siamo nelle vostre mani',
-        button: 'La nostra casa',
+        text: 'La nostra casa',
+        button: 'Aiutaci',
         image: 'house.svg'
       },
       {
-        button: 'Uno spazio per voi',
+        button: 'Commenti',
         text: 'Un pensiero per gli sposi',
         image: 'comment.svg'
       },
@@ -186,7 +187,8 @@ export default {
       if (action === 'Conferma') {
         this.$vuetify.goTo('#partecipation', { duration: 1000, offset: 100 })
       }
-      if (action === 'La nostra casa') {
+      // if (action === 'La nostra casa') {
+      if (action === 'Aiutaci') {
         this.$vuetify.goTo('#help', { duration: 1000, offset: -100 })
 
         /*  this.dialog = true */
@@ -197,7 +199,11 @@ export default {
       if (action === 'Contatti') {
         this.$vuetify.goTo('#contacts', { duration: 1000, offset: 100 })
       }
-      if (action === 'Uno spazio per voi') {
+      /*       if (action === 'Uno spazio per voi') {
+
+ */
+
+      if (action === 'Aiutaci') {
         this.$vuetify.goTo('#comments', { duration: 1000, offset: 100 })
       }
       if (window.innerWidth <= 800) {

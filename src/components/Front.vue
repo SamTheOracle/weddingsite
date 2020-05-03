@@ -12,7 +12,7 @@
         />
 
         <div v-else>
-          <div v-if="showText">
+          <div v-if="showText" style="overflow:hidden">
             <p class="nicemain text-center pa-0 ma-0">Giovanna</p>
             <p class="nicemain text-center pa-0 ma-0">e Giacomo</p>
           </div>

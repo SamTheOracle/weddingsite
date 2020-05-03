@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="#EBF0BA" app inverted-scroll v-if="mainLoaded">
+    <v-app-bar color="#EBF0BA" app inverted-scroll max-width="100vw" v-if="mainLoaded">
       <v-app-bar-nav-icon @click.stop="drawer=true" v-if="$vuetify.breakpoint.smAndDown"></v-app-bar-nav-icon>
       <v-spacer v-if="$vuetify.breakpoint.smAndDown" />
       <v-toolbar-title class="nice">Giovanna e Giacomo</v-toolbar-title>

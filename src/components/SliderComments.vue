@@ -68,9 +68,9 @@ export default {
     return {
       swiperOption: {
         slidesPerView: 1,
-        freeMode: true,
         spaceBetween: 2,
-        centeredSlides: true
+        centeredSlides: true,
+        cssMode: true
       },
       isActive: false,
       model: null,

@@ -86,17 +86,19 @@
     <v-divider />
     <v-footer v-if="mainLoaded" color="white">
       <v-row>
-        <v-col cols="8">
+        <v-col cols="7">
           <v-row align="end" justify="end" no-gutters>
             <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i">
               <v-btn text x-small @click="doAction(link.button)" style="font-size:8px">{{link.button}}</v-btn>
             </v-col>
             <v-col>
-              <v-img height="20" width="20"/>
+              <v-btn text x-small @click="doAction(link.button)" style="font-size:8px">{{language}}</v-btn>
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="6"></v-col>
+        <v-col cols="5">
+
+        </v-col>
       </v-row>
       <!-- <p class="footertext text-center mx-auto">
         Fatto con
@@ -131,6 +133,7 @@ export default {
   },
 
   data: () => ({
+    language: 'English',
     drawer: false,
     overlay: false,
     dialog: false,

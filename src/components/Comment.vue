@@ -1,5 +1,5 @@
 <template>
-  <v-card shaped color="#f7f9e4" light :width="$vuetify.breakpoint.xsOnly?330:350" :height="380" class="mx-auto">
+  <v-card shaped color="#f7f9e4" light :width="$vuetify.breakpoint.xsOnly?330:350" :height="380" :class="$vuetify.breakpoint.xsOnly?'mx-auto':'ma-2'">
 
     <v-list-item>
       <v-list-item-avatar tile width="50" height="50">

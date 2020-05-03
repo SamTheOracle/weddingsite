@@ -8,28 +8,31 @@
         <v-icon small class="ml-2">mdi-send</v-icon>
       </v-btn>
     </div>
-    <!-- <v-window class="pa-4" style="max-width:100%" :show-arrows="$vuetify.breakpoint.mdAndUp">
-      <v-window-item class="ma-1" v-for="(fake,i) in fakeComments " :key="i">
-        <Comment :comment="fake" />
-        <v-window-item v-for="(comment,i) in values" :key="i" class="ma-2"></v-window-item>
-      </v-window-item>
-    </v-window> -->
-     <!-- <v-slide-group class="pa-4" style="max-width:100%" :show-arrows="$vuetify.breakpoint.mdAndUp">
-      <v-slide-item class="ma-1" v-for="(fake,i) in fakeComments " :key="i">
-        <Comment :comment="fake" />
-      </v-slide-item>
-      <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
-        <Comment :comment="comment" />
-      </v-slide-item>
-    </v-slide-group> -->
-    <carousel class="pa-4" style="max-width:100%" :paginationEnabled="false">
-      <slide class="ma-1" v-for="(fake,i) in fakeComments " :key="i">
-        <Comment :comment="fake"/>
-      </slide>
-      <slide v-for="(comment,i) in values" :key="i" class="ma-2">
-        <Comment :comment="comment" />
-      </slide>
-    </carousel>
+    <v-lazy
+      :options="{
+          threshold: .8
+        }"
+      v-model="isActive"
+      transition="fade-transition"
+      min-height="200"
+    >
+      <v-slide-group class="pa-4" style="max-width:100%" show-arrows v-if="$vuetify.smAndUp">
+        <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
+          <Comment :comment="comment" />
+        </v-slide-item>
+        <v-slide-item class="ma-2" v-for="(fake,i) in fakeComments " :key="i">
+          <Comment :comment="fake" />
+        </v-slide-item>
+      </v-slide-group>
+      <swiper class="swiper mt-5" v-else :options="swiperOption" style="height:400px">
+        <swiper-slide v-for="(comment,i) in values" :key="i">
+          <Comment :comment="comment" />
+        </swiper-slide>
+        <swiper-slide v-for="(fake,i) in fakeComments " :key="i">
+          <Comment :comment="fake" />
+        </swiper-slide>
+      </swiper>
+    </v-lazy>
     <v-dialog
       v-model="dialog"
       :fullscreen="$vuetify.breakpoint.xsOnly"
@@ -46,18 +49,31 @@
 <script>
 import Comment from './Comment'
 import CommentForm from './CommentForm'
-import { Carousel, Slide } from 'vue-carousel'
+
+import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 
 export default {
   name: 'SliderComments',
   components: {
     Comment,
     CommentForm,
-    Carousel,
-    Slide
+    Swiper,
+    SwiperSlide
+  },
+  directives: {
+    swiper: directive
   },
   data: () => {
     return {
+      swiperOption: {
+        slidesPerView: 1,
+        freeMode: true,
+        spaceBetween: 2,
+        centeredSlides: true
+      },
+      isActive: false,
       model: null,
       dialog: false,
       values: [],
@@ -167,6 +183,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

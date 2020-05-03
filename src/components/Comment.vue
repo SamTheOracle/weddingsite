@@ -1,5 +1,6 @@
 <template>
-  <v-card shaped  color="#f7f9e4" light :width="$vuetify.breakpoint.xsOnly?300:350" :height="380" >
+  <v-card shaped color="#f7f9e4" light :width="$vuetify.breakpoint.xsOnly?330:350" :height="380" class="mx-auto">
+
     <v-list-item>
       <v-list-item-avatar tile width="50" height="50">
         <v-img contain :src="require('@/assets/'+ comment.icon)" />
@@ -10,7 +11,7 @@
       </v-list-item-content>
     </v-list-item>
 
-    <v-card-text id="comment" class="mx-auto">{{comment.comment}}</v-card-text>
+    <v-card-text id="comment" class="ma-2">{{comment.comment}}</v-card-text>
   </v-card>
 </template>
 
@@ -47,6 +48,9 @@ export default {
   font-size: 24px;
   font-weight: bold;
   line-height: 1.6;
+  overflow: hidden;
+  max-width: 300px;
+  white-space: normal;
 }
 #commentsubtitle{
   font-family: 'Patrick Hand SC', cursive;

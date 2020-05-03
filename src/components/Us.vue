@@ -38,9 +38,10 @@
             :height="$vuetify.breakpoint.xsOnly?480:450"
             class="mx-auto"
           >
+          <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
             <v-img
               height="220px"
-              :src="require('@/assets/us/'+i+'.jpg')"
+              src="https://via.placeholder.com/600"
               @click="onImageClick(key)"
             ></v-img>
             <v-list-item>

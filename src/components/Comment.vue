@@ -43,13 +43,13 @@ export default {
   text-overflow: unset!important;
 }
 .comment{
-  font-family: 'Pompiere', cursive;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 1.6;
-  overflow: hidden;
-  max-width: 250px;
-  white-space: normal;
+  font-family: 'Pompiere', cursive!important;
+  font-size: 24px!important;
+  font-weight: bold!important;
+  line-height: 1.6!important;
+  overflow: hidden!important;
+  max-width: 250px!important;
+  white-space: normal!important;
 }
 .commentsubtitle{
   font-family: 'Patrick Hand SC', cursive;

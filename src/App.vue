@@ -85,10 +85,16 @@
     </div>
     <v-divider/>
     <v-footer v-if="mainLoaded">
-      <p class="footertext text-center mx-auto">
+      <v-row>
+        <v-col cols="6">
+        </v-col>
+        <v-col cols="6">
+        </v-col>
+      </v-row>
+      <!-- <p class="footertext text-center mx-auto">
         Fatto con
         <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.
-      </p>
+      </p> -->
     </v-footer>
   </v-app>
 </template>

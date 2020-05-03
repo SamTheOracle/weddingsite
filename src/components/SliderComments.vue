@@ -53,7 +53,6 @@ import CommentForm from './CommentForm'
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
-
 export default {
   name: 'SliderComments',
   components: {

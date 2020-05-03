@@ -35,7 +35,7 @@ date
 
 app.post('/comments', (req, res) => {
   const comment = req.body
-  comment.date = moment.tz('Europe/Rome').format()
+  comment.date = moment.tz('Europe/Rome').format('LL')
 
   dbService.insertData('comments', comment)
     .catch(err => res.status(400).json(err))
@@ -56,7 +56,7 @@ app.post('/comments', (req, res) => {
 app.get('/comments/all', (req, res) => {
   dbService.findData('comments', {})
     .then(comments => {
-      res.status(200).json(comments)
+      res.status(200).json(comments.reverse())
     }).catch(err => res.status(400).json(err))
 })
 app.get('/test', (req, res) => {

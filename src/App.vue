@@ -83,8 +83,9 @@
         <SaveTheDate v-on:close="dialog = false" />
       </v-dialog>
     </div>
-    <v-footer color="#EBF0BA" v-if="mainLoaded">
-      <p class="nice text-center mx-auto">
+    <v-divider/>
+    <v-footer v-if="mainLoaded">
+      <p class="footertext text-center mx-auto">
         Fatto con
         <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.
       </p>
@@ -204,10 +205,7 @@ export default {
 </script>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Parisienne&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Patrick+Hand+SC&family=Pompiere&display=swap");
 .nice {
   font-family: "Satisfy", cursive;
@@ -219,14 +217,18 @@ export default {
   color: #431008;
   font-size: 30px !important;
 }
+.footertext {
+  font-family: "Exo", sans-serif;
+  font-size: 34px !important;
+}
+@media only screen and (max-width:425px){
+  .footertext {
+    font-size: 20px !important;
+  }
+}
 @media only screen and (max-width: 340px) {
   .nice {
     font-size: 30px !important;
   }
 }
-/* #withbg {
-  background: url("~@/assets/test.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
 </style>

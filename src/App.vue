@@ -228,6 +228,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Patrick+Hand+SC&family=Pompiere&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 .nice {
   font-family: "Satisfy", cursive;
   color: #431008;

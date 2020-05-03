@@ -1,16 +1,16 @@
 <template>
-  <v-card shaped color="#f7f9e4" light :width="$vuetify.breakpoint.xsOnly?280:350" :max-height="380" class="mx-auto ma-sm-2 ma-md-2 ma-lg-4">
+  <v-card shaped color="#f7f9e4" light :width="$vuetify.breakpoint.xsOnly?280:350" :height="380" class="mx-auto ma-sm-2 ma-md-2 ma-lg-4">
 
     <v-list-item>
       <v-list-item-avatar tile width="50" height="50">
         <v-img contain :src="require('@/assets/'+ comment.icon)" />
       </v-list-item-avatar>
       <v-list-item-content>
-      <v-list-item-title id="name">{{fullName}}</v-list-item-title>
-      <v-list-item-subtitle id="commentsubtitle">{{comment.date}}</v-list-item-subtitle>
+      <v-list-item-title class="name">{{fullName}}</v-list-item-title>
+      <v-list-item-subtitle class="commentsubtitle">{{comment.date}}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
-    <v-card-text id="comment" class="mx-auto">{{comment.comment}}</v-card-text>
+    <v-card-text  class="comment mx-auto">{{comment.comment}}</v-card-text>
   </v-card>
 </template>
 
@@ -35,14 +35,14 @@ export default {
 </script>
 
 <style>
-#name{
+.name{
   font-family: 'Patrick Hand SC', cursive;
   font-size: 28px;
   font-weight: 300;
   white-space: pre-line;
   text-overflow: unset!important;
 }
-#comment{
+.comment{
   font-family: 'Pompiere', cursive;
   font-size: 24px;
   font-weight: bold;
@@ -51,7 +51,7 @@ export default {
   max-width: 250px;
   white-space: normal;
 }
-#commentsubtitle{
+.commentsubtitle{
   font-family: 'Patrick Hand SC', cursive;
   font-size: 18px;
   font-weight: 300;

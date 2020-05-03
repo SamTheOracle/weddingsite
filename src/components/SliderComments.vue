@@ -17,21 +17,21 @@
       min-height="200"
     >
       <v-slide-group class="pa-4" style="max-width:100%" show-arrows v-if="$vuetify.smAndUp">
-          <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
+        <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
           <Comment :comment="comment" />
         </v-slide-item>
         <v-slide-item class="ma-2" v-for="(fake,i) in fakeComments " :key="i">
           <Comment :comment="fake" />
         </v-slide-item>
       </v-slide-group>
-      <carousel class="pa-4" style="max-width:100%" v-else>
-         <slide v-for="(comment,i) in values" :key="i" class="ma-2">
+      <swiper class="swiper mt-5" v-else :options="swiperOption" style="height:400px">
+        <swiper-slide v-for="(comment,i) in values" :key="i">
           <Comment :comment="comment" />
-        </slide>
-        <slide class="ma-2" v-for="(fake,i) in fakeComments " :key="i">
+        </swiper-slide>
+        <swiper-slide v-for="(fake,i) in fakeComments " :key="i">
           <Comment :comment="fake" />
-        </slide>
-      </carousel>
+        </swiper-slide>
+      </swiper>
     </v-lazy>
     <v-dialog
       v-model="dialog"
@@ -49,14 +49,29 @@
 <script>
 import Comment from './Comment'
 import CommentForm from './CommentForm'
+import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 export default {
   name: 'SliderComments',
   components: {
     Comment,
-    CommentForm
+    CommentForm,
+    Swiper,
+    SwiperSlide
+  },
+  directives: {
+    swiper: directive
   },
   data: () => {
     return {
+      swiperOption: {
+        slidesPerView: 1,
+        freeMode: true,
+        spaceBetween: 2,
+        centeredSlides: true
+      },
+      isActive: false,
       model: null,
       dialog: false,
       values: [],
@@ -159,6 +174,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar color="#EBF0BA" app inverted-scroll>
+    <v-app-bar color="#EBF0BA" app inverted-scroll v-if="mainLoaded">
       <v-app-bar-nav-icon @click.stop="drawer=true" v-if="$vuetify.breakpoint.smAndDown"></v-app-bar-nav-icon>
       <v-spacer v-if="$vuetify.breakpoint.smAndDown" />
       <v-toolbar-title class="nice">Giovanna e Giacomo</v-toolbar-title>
@@ -17,7 +17,7 @@
     </v-app-bar>
     <Front v-on:imageloaded="mainLoaded=true" />
 
-    <div v-if="mainLoaded">
+    <div v-if="mainLoaded" >
       <v-navigation-drawer
         app
         clipped
@@ -83,18 +83,24 @@
         <SaveTheDate v-on:close="dialog = false" />
       </v-dialog>
     </div>
-    <v-divider/>
+    <v-divider />
     <v-footer v-if="mainLoaded">
       <v-row>
         <v-col cols="6">
+          <v-col v-for="(button,i) in buttons" :key="i">
+            <v-btn
+              text
+              x-small
+              @click="doAction(button.text)"
+            >{{button.text}}</v-btn>
+          </v-col>
         </v-col>
-        <v-col cols="6">
-        </v-col>
+        <v-col cols="6"></v-col>
       </v-row>
       <!-- <p class="footertext text-center mx-auto">
         Fatto con
         <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.
-      </p> -->
+      </p>-->
     </v-footer>
   </v-app>
 </template>
@@ -227,7 +233,7 @@ export default {
   font-family: "Exo", sans-serif;
   font-size: 34px !important;
 }
-@media only screen and (max-width:425px){
+@media only screen and (max-width: 425px) {
   .footertext {
     font-size: 20px !important;
   }

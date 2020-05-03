@@ -8,13 +8,8 @@
       <v-toolbar-title class="text-center cardtitle">Qualche dettaglio</v-toolbar-title>
       <v-spacer v-if="$vuetify.breakpoint.smAndUp" />
     </v-toolbar>
-    <!--     <p class="text-center niceparagraph">Per confermare clicca il bottone</p>
-    -->
     <v-row align="start" justify="center">
-      <!-- <v-btn color="success" class="mx-auto" :small="$vuetify.breakpoint.xsOnly" @click="onPartecipationClicked()">
-        Parteciperò!
-        <v-icon right color="red" :small="$vuetify.breakpoint.xsOnly">mdi-heart</v-icon>
-      </v-btn>-->
+
       <v-col>
         <div class="text-center">
           <v-progress-circular color="red" indeterminate v-if="spinner" />
@@ -68,15 +63,4 @@ export default {
 }
 </script>
 <style>
-.niceparagraph {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 20px;
-}
-@media only screen and (max-width: 600px) {
-  .niceparagraph {
-    font-size: 18px;
-  }
-}
 </style>

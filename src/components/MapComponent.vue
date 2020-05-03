@@ -2,7 +2,7 @@
   <v-card :height="$vuetify.breakpoint.xsOnly?'100%':600" style="overflow-y:hidden">
     <v-toolbar color="#EBF0BA">
       <v-btn fab text color="black" @click="$emit('mapdialogclosed')" dense>
-        <v-icon :color="$vuetify.breakpoint.xsOnly?'black':'white'">mdi-close</v-icon>
+        <v-icon>mdi-close</v-icon>
       </v-btn>
       <v-toolbar-title class="text-center">{{title}}</v-toolbar-title>
     </v-toolbar>

@@ -49,6 +49,7 @@
 <script>
 import Comment from './Comment'
 import CommentForm from './CommentForm'
+
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
@@ -116,21 +117,28 @@ export default {
   },
   mounted () {
     console.log('fetching...')
+    const vm = this
+
     // eslint-disable-next-line no-return-assign
     fetch('https://www.giovannaegiacomo.app/comments/all')
       .then(response => response.json())
-      .then(data => (this.values = data))
+      .then(data => {
+        vm.values = data
+        vm.values.forEach(v => {
+          v.icon = vm.getIcon()
+        })
+      })
       .catch(err => console.log(err))
-    const vm = this
     navigator.serviceWorker.addEventListener('message', function (event) {
       console.log('Received a message from service worker: ', event.data)
       const newComment = event.data.comment
-      newComment.icon = this.getIcon()
+      newComment.icon = vm.getIcon()
       vm.values.unshift(newComment)
     })
   },
   methods: {
     async postComment (newComment) {
+      const vm = this
       const objectComment = JSON.parse(newComment)
       objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
       try {
@@ -148,7 +156,7 @@ export default {
         response.json().then(data => {
           if (data.comment) {
             data.icon = this.getIcon()
-            this.values.unshift(data)
+            vm.values.unshift(data)
           }
         })
       } catch (err) {

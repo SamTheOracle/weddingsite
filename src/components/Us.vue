@@ -24,7 +24,7 @@
           <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
             <v-img
               height="220px"
-              src="https://via.placeholder.com/600"
+              :src="require('@/assets/us/'+i+'-min.jpg')"
               @click="onImageClick(key)"
             ></v-img>
             <v-list-item>

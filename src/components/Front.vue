@@ -17,7 +17,7 @@
             <p class="nicemain text-center pa-0 ma-0">e Giacomo</p>
           </div>
           <v-img
-            src="@/assets/gg.png"
+            src="@/assets/gg.jpg"
             v-on:load="onImageLoaded()"
             contain
             style="max-height:100vh;"

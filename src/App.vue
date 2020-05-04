@@ -93,7 +93,6 @@
                 text
                 :small="$vuetify.breakpoint.xsOnly"
                 @click="doAction(link.button)"
-                :style="$vuetify.breakpoint.xsOnly?'font-size:10px':''"
               >{{link.button}}</v-btn>
             </v-col>
             <v-col>
@@ -101,7 +100,6 @@
                 text
                 :small="$vuetify.breakpoint.xsOnly"
                 @click="swapLanguage = true"
-                :style="$vuetify.breakpoint.xsOnly?'font-size:10px':''"
               >{{language}}</v-btn>
             </v-col>
           </v-row>
@@ -277,14 +275,14 @@ export default {
 }
 .contacttitle {
   font-family: "Satisfy", cursive;
-  font-size: 45px;
+  font-size: 45px!important;
   font-weight: 400;
   font-style: italic;
   white-space: pre-line;
 }
 .name{
   font-family: 'Patrick Hand SC', cursive;
-  font-size: 28px;
+  font-size: 28px!important;
   font-weight: 300;
   white-space: pre-line;
   text-overflow: unset!important;
@@ -300,12 +298,12 @@ export default {
 }
 .commentsubtitle{
   font-family: 'Patrick Hand SC', cursive;
-  font-size: 18px;
+  font-size: 18px!important;
   font-weight: 300;
 }
 .cardtitle {
   font-family: "Patrick Hand SC", cursive;
-  font-size: 45px;
+  font-size: 45px!important;
   font-weight: 400;
   font-style: italic;
   white-space: pre-line;
@@ -316,7 +314,7 @@ export default {
   font-family: "Pompiere", cursive;
   font-style: italic;
   font-weight: 300;
-  font-size: 28px;
+  font-size: 28px!important;
 }
 .caption{
   font-weight: 300;
@@ -324,19 +322,19 @@ export default {
 }
 .nicetitle {
   font-family: "Satisfy", cursive;
-  font-size: 50px;
+  font-size: 50px!important;
   font-weight: 200;
 }
 
 @media only screen and (max-width: 600px) {
   .contacttitle {
-    font-size: 35px;
+    font-size: 35px!important;
   }
   .cardtitle {
-    font-size: 35px;
+    font-size: 35px!important;
   }
    .nicetitle {
-    font-size: 30px;
+    font-size: 30px!important;
   }
 }
 @media only screen and (max-width: 425px) {

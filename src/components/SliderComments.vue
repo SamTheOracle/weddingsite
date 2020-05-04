@@ -3,7 +3,7 @@
     <p class="nicetitle text-center">Uno spazio per voi</p>
     <p class="descr text-center">Un pensiero per gli sposi</p>
     <div class="text-center">
-      <v-btn color="#EBF0BA" :large="$vuetify.breakpoint.mdAndUp" @click="dialog = true" rounded>
+      <v-btn color="#EBF0BA" :large="$vuetify.breakpoint.mdAndUp" @click="onAddClick()" rounded>
         Aggiungi
         <v-icon small class="ml-2">mdi-send</v-icon>
       </v-btn>
@@ -16,7 +16,12 @@
       transition="fade-transition"
       min-height="200"
     >
-      <v-slide-group class="pa-4" style="max-width:100%" show-arrows v-if="$vuetify.breakpoint.smAndUp">
+      <v-slide-group
+        class="pa-4"
+        style="max-width:100%"
+        show-arrows
+        v-if="$vuetify.breakpoint.smAndUp"
+      >
         <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
           <Comment :comment="comment" />
         </v-slide-item>
@@ -43,6 +48,10 @@
     >
       <CommentForm v-on:dialogcommentclose="dialog = false" v-on:validcomment="postComment" />
     </v-dialog>
+    <v-snackbar color="warning" :timeout="3000" v-model="snackbar">
+      Sei correntemente off-line, attiva internet oppure aspetta una connessione migliore
+      <v-btn text @click="snackbar = false">Chiudi</v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -66,6 +75,7 @@ export default {
   },
   data: () => {
     return {
+      snackbar: false,
       swiperOption: {
         slidesPerView: 1,
         spaceBetween: 2,
@@ -178,6 +188,13 @@ export default {
         this.variabaleIcons = []
       }
       return icon.path
+    },
+    onAddClick () {
+      if (navigator.onLine) {
+        this.dialog = true
+      } else {
+        this.snackbar = true
+      }
     }
   }
 }

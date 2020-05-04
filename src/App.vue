@@ -58,9 +58,13 @@
         </v-list>
       </v-navigation-drawer>
 
-      <Information :language="language"/>
+      <Information :language="language" />
 
-      <Partecipation v-on:partecipationclicked="dialog = true" id="partecipation" :language="language"/>
+      <Partecipation
+        v-on:partecipationclicked="dialog = true"
+        id="partecipation"
+        :language="language"
+      />
 
       <Us id="us" />
 
@@ -116,7 +120,10 @@
             <v-img src="@/assets/github-logo.svg" height="70" width="70" class="mx-auto" />
             <p class="text-center mt-2 mb-0" style="white-spaces:pre-line;">
               Fatto con
-              <v-icon color="red">mdi-heart</v-icon>da
+              <span>
+                <v-icon color="red">mdi-heart</v-icon>
+              </span>
+              da
             </p>
             <v-btn
               :small="$vuetify.breakpoint.xsOnly"

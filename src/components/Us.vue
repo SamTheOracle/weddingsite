@@ -1,66 +1,135 @@
 <template>
   <v-container fluid>
-    <p class="nicetitle text-center">Presentiamoci un po'</p>
-    <p
-      class="presentation text-center mt-5"
-    >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum euismod turpis, vel molestie lacus rutrum in. Sed sagittis purus ut ex consequat, lacinia mattis libero eleifend. Nullam non leo congue tortor gravida lobortis. Curabitur et orci eleifend, elementum arcu in, aliquet sem. Aliquam elementum varius nisl, pellentesque ultrices odio lacinia sed. Curabitur elementum malesuada volutpat. Morbi viverra fringilla nisi, sed sagittis enim ultricies eu.</p>
-    <v-lazy
-      :options="{
+    <div v-if="!swapLanguage">
+      <p class="nicetitle text-center">Presentiamoci un po'</p>
+      <p class="presentation text-center mt-5"></p>
+      <v-lazy
+        :options="{
           threshold: .8
         }"
-      v-model="isActive"
-      transition="fade-transition"
-      min-height="200"
-    >
-    <v-slide-group class="swiper mt-3 mb-3" :options="swiperOption" style="height:100%" v-if="$vuetify.breakpoint.mdAndUp" >
-      <v-slide-item v-for="i in 25" :key="i" class="ma-1">
-         <v-card
-            shaped
-            outlined
-            :width="$vuetify.breakpoint.xsOnly?300:400"
-            :height="$vuetify.breakpoint.xsOnly?480:600"
-            class="ma-2"
-          >
-          <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
-            <v-img
-              :height="$vuetify.breakpoint.xsOnly?220:320"
-              :src="require('@/assets/us_desktop/'+i+'.jpg')"
-            ></v-img>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class="name">{{getTitle(i)}}</v-list-item-title>
-                <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i)}}</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-card-text class="mt-0 pt-0" style="white-space: normal;">{{getDescription(i)}}</v-card-text>
-          </v-card>
-      </v-slide-item>
-    </v-slide-group>
-      <swiper class="swiper mt-3 mb-3" :options="swiperOption" style="height:100%" v-else>
-        <swiper-slide v-for="i in 25" :key="i" class="ma-1">
-          <v-card
-            shaped
-            outlined
-            :width="$vuetify.breakpoint.xsOnly?300:600"
-            :height="$vuetify.breakpoint.xsOnly?480:600"
-            class="mx-auto"
-          >
-          <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
-            <v-img
-              :height="$vuetify.breakpoint.xsOnly?220:320"
-              :src="require('@/assets/us_mobile/'+i+'.jpg')"
-            ></v-img>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class="name">{{getTitle(i)}}</v-list-item-title>
-                <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i)}}</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-card-text class="mt-0 pt-0" style=" max-width: 250px;white-space: normal;">{{getDescription(i)}}</v-card-text>
-          </v-card>
-        </swiper-slide>
-      </swiper>
-    </v-lazy>
+        v-model="isActive"
+        transition="fade-transition"
+        min-height="200"
+      >
+        <v-slide-group
+          class="swiper mt-3 mb-3"
+          :options="swiperOption"
+          style="height:100%"
+          v-if="$vuetify.breakpoint.mdAndUp"
+        >
+          <v-slide-item v-for="i in 25" :key="i" class="ma-1">
+            <v-card
+              shaped
+              outlined
+              :width="$vuetify.breakpoint.xsOnly?300:400"
+              :height="$vuetify.breakpoint.xsOnly?480:600"
+              class="ma-2"
+            >
+              <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
+              <v-img height="320" :src="require('@/assets/us_mobile/'+i+'.jpg')"></v-img>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title class="name">{{getTitle(i)}}</v-list-item-title>
+                  <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i)}}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-card-text class="mt-0 pt-0" style="white-space: normal;">{{getDescription(i)}}</v-card-text>
+            </v-card>
+          </v-slide-item>
+        </v-slide-group>
+        <swiper class="swiper mt-3 mb-3" :options="swiperOption" style="height:100%" v-else>
+          <swiper-slide v-for="i in 25" :key="i" class="ma-1">
+            <v-card
+              shaped
+              outlined
+              :width="$vuetify.breakpoint.xsOnly?300:600"
+              :height="$vuetify.breakpoint.xsOnly?480:600"
+              class="mx-auto"
+            >
+              <v-img
+                :height="$vuetify.breakpoint.xsOnly?220:320"
+                :src="require('@/assets/us_mobile/'+i+'.jpg')"
+              ></v-img>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title class="name">{{getTitle(i)}}</v-list-item-title>
+                  <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i)}}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-card-text
+                class="mt-0 pt-0"
+                style=" max-width: 250px;white-space: normal;"
+              >{{getDescription(i)}}</v-card-text>
+            </v-card>
+          </swiper-slide>
+        </swiper>
+      </v-lazy>
+    </div>
+    <div v-else>
+      <p class="nicetitle text-center">About us</p>
+      <p class="presentation text-center mt-5"></p>
+      <v-lazy
+        :options="{
+          threshold: .8
+        }"
+        v-model="isActive"
+        transition="fade-transition"
+        min-height="200"
+      >
+        <v-slide-group
+          class="swiper mt-3 mb-3"
+          :options="swiperOption"
+          style="height:100%"
+          v-if="$vuetify.breakpoint.mdAndUp"
+        >
+          <v-slide-item v-for="i in 25" :key="i" class="ma-1">
+            <v-card
+              shaped
+              outlined
+              :width="$vuetify.breakpoint.xsOnly?300:400"
+              :height="$vuetify.breakpoint.xsOnly?480:600"
+              class="ma-2"
+            >
+              <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
+              <v-img height="320" :src="require('@/assets/us_mobile/'+i+'.jpg')"></v-img>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title class="name">{{getTitle(i,true)}}</v-list-item-title>
+                  <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i,true)}}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-card-text class="mt-0 pt-0" style="white-space: normal;">{{getDescription(i,true)}}</v-card-text>
+            </v-card>
+          </v-slide-item>
+        </v-slide-group>
+        <swiper class="swiper mt-3 mb-3" :options="swiperOption" style="height:100%" v-else>
+          <swiper-slide v-for="i in 25" :key="i" class="ma-1">
+            <v-card
+              shaped
+              outlined
+              :width="$vuetify.breakpoint.xsOnly?300:600"
+              :height="$vuetify.breakpoint.xsOnly?480:600"
+              class="mx-auto"
+            >
+              <v-img
+                :height="$vuetify.breakpoint.xsOnly?220:320"
+                :src="require('@/assets/us_mobile/'+i+'.jpg')"
+              ></v-img>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title class="name">{{getTitle(i)}}</v-list-item-title>
+                  <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i)}}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-card-text
+                class="mt-0 pt-0"
+                style=" max-width: 250px;white-space: normal;"
+              >{{getDescription(i)}}</v-card-text>
+            </v-card>
+          </swiper-slide>
+        </swiper>
+      </v-lazy>
+    </div>
   </v-container>
 </template>
 
@@ -89,12 +158,14 @@ export default {
         {
           title: 'Primo Appuntamento',
           subtitle: "Montisola, Lago d'Iseo",
-          description: '"Andiamo al lago?". Mi aspettavo di passeggiare sulla riva e invece mi ritrovo sudato in cima al santuario di Mont\'isola. Non so cosa aspettarmi per i prossimi apppuntamenti!'
+          description:
+            '"Andiamo al lago?". Mi aspettavo di passeggiare sulla riva e invece mi ritrovo sudato in cima al santuario di Mont\'isola. Non so cosa aspettarmi per i prossimi apppuntamenti!'
         },
         {
           title: 'Un turista a Brescia',
           subtitle: 'Castello di Brescia',
-          description: 'Abituato ai tre castelli di San Marino, per fortuna Brescia ne ha almeno uno.'
+          description:
+            'Abituato ai tre castelli di San Marino, per fortuna Brescia ne ha almeno uno.'
         },
         {
           title: 'Serata romantica',
@@ -104,22 +175,26 @@ export default {
         {
           title: 'Raccolta delle mele',
           subtitle: 'Brez, Val di Non',
-          description: 'San Marino - Brez, 5 ore, 4 cambi di treno e un autobus pensando di godermi qualche giorno tranquillo in mezzo alla natura con la mia bella. Di certo non mi aspettavo di conoscere tutti in un colpo: 7 fratelli, 8 cugini, 2 zii e la nonna. E nemmeno di raccogliere le mele tutti i giorni!'
+          description:
+            'San Marino - Brez, 5 ore, 4 cambi di treno e un autobus pensando di godermi qualche giorno tranquillo in mezzo alla natura con la mia bella. Di certo non mi aspettavo di conoscere tutti in un colpo: 7 fratelli, 8 cugini, 2 zii e la nonna. E nemmeno di raccogliere le mele tutti i giorni!'
         },
         {
           title: 'Il bosco segreto',
           subtitle: 'Mulini di Canepa, San Marino',
-          description: 'E così ho capito che basta poco a farla felice: una cascatella e un bosco (e forse io).'
+          description:
+            'E così ho capito che basta poco a farla felice: una cascatella e un bosco (e forse io).'
         },
         {
           title: 'Un posto speciale',
           subtitle: 'Assisi',
-          description: 'In ascolto di belle parole che ci hanno unito e rafforzato.'
+          description:
+            'In ascolto di belle parole che ci hanno unito e rafforzato.'
         },
         {
           title: '"In montagna"',
           subtitle: 'Carpegna, Pesaro Urbino',
-          description: 'E così tutto orgoglioso mi dice "Giovi, oggi ti porto in montagna". Arrivati in cima ho capito che aveva bisogno di una spiegazione tra collina romagnola e montagna bresciana.'
+          description:
+            'E così tutto orgoglioso mi dice "Giovi, oggi ti porto in montagna". Arrivati in cima ho capito che aveva bisogno di una spiegazione tra collina romagnola e montagna bresciana.'
         },
         {
           title: 'Il mio capitano Jack',
@@ -127,14 +202,15 @@ export default {
           description: 'Dritti alla meta e conquista la preda.'
         },
         {
-          title: 'Uno sguardo d\'intesa',
-          subtitle: 'Zone, Lago d\'Iseoo',
+          title: "Uno sguardo d'intesa",
+          subtitle: "Zone, Lago d'Iseoo",
           description: 'E così con quel dolce sguardo mi dà forza.'
         },
         {
           title: 'Due zaini, due sorrisi',
           subtitle: 'San Miniato, Pisa',
-          description: 'Insieme il peso dello zaino si dimezza ("per forza portavo tutto io" ~Jack).'
+          description:
+            'Insieme il peso dello zaino si dimezza ("per forza portavo tutto io" ~Jack).'
         },
         {
           title: 'Gran stile in cucina',
@@ -142,39 +218,44 @@ export default {
           description: 'Superchef in aiuto della nonna.'
         },
         {
-          title: 'Un po\' di classe',
+          title: "Un po' di classe",
           subtitle: 'Brescia',
           description: 'Super festa a casa Mazzacani.'
         },
         {
           title: 'Pic-nic, i nostri preferiti',
           subtitle: 'San Mauro Pascoli, Rimini',
-          description: 'Mi è andata bene, non la devo neanche portare al ristorante, per lei i pic-nic valgono molto di più.'
+          description:
+            'Mi è andata bene, non la devo neanche portare al ristorante, per lei i pic-nic valgono molto di più.'
         },
         {
           title: '"Aprimi la strada"',
-          subtitle: 'Isola d\'Arbia, Siena',
+          subtitle: "Isola d'Arbia, Siena",
           description: ''
         },
         {
           title: 'Allo stesso passo',
           subtitle: 'Montefiascone, Viterbo',
-          description: 'Ci vuole impegno e fatica per stare allo stesso passo ma quando ci si riesce è tutto più facile.'
+          description:
+            'Ci vuole impegno e fatica per stare allo stesso passo ma quando ci si riesce è tutto più facile.'
         },
         {
-          title: 'Arrivo o inzio?',
+          title: 'Arrivo o inizio?',
           subtitle: 'Roma',
-          description: 'Dopo 270 km, qualche litigata e tante risate ci facciamo abbracciare da piazza S. Pietro. E ora che abbiamo affrontato questa prova siamo pronti a tutto, a un nuovo inizio.'
+          description:
+            'Dopo 270 km, qualche litigata e tante risate ci facciamo abbracciare da piazza S. Pietro. E ora che abbiamo affrontato questa prova siamo pronti a tutto, a un nuovo inizio.'
         },
         {
           title: '"Jack, non cadere!"',
           subtitle: 'Parco del Mincio, Mantova',
-          description: '13 anni che non pedala una bicicletta, per fortuna nonostante la sua goffaggine non è mai caduto!'
+          description:
+            '13 anni che non pedala una bicicletta, per fortuna nonostante la sua goffaggine non è mai caduto!'
         },
         {
           title: 'A un matrimonio importante',
           subtitle: 'Flero, Brescia',
-          description: 'Francesca e Faustino sposi nel Signore. Una felicità contagiosa.'
+          description:
+            'Francesca e Faustino sposi nel Signore. Una felicità contagiosa.'
         },
         {
           title: 'Casa, dolce casa',
@@ -184,22 +265,25 @@ export default {
         {
           title: 'Un brindisi...',
           subtitle: 'Verona',
-          description: '...a noi sposi. Un annuncio inaspettato e super festeggiato.'
+          description:
+            '...a noi sposi. Un annuncio inaspettato e super festeggiato.'
         },
         {
           title: '#Stayathome',
-          subtitle: 'Collina Sant\'Anna, Brescia.',
+          subtitle: "Collina Sant'Anna, Brescia.",
           description: 'Cose che si fanno solo in quarantena!'
         },
         {
           title: 'Serio quando serve',
           subtitle: 'Pasquetta dai Musicco',
-          description: 'Ride sempre ma quando si tratta di preparare gli hamburger raggiunge la massima concentrazione.'
+          description:
+            'Ride sempre ma quando si tratta di preparare gli hamburger raggiunge la massima concentrazione.'
         },
         {
           title: 'Smartworking',
-          subtitle: 'Quarantena felice.',
-          description: 'Sammarinese bloccato a Brescia, ma tutto sommato non se la passa male.'
+          subtitle: 'Quarantena felice',
+          description:
+            'Sammarinese bloccato a Brescia, ma tutto sommato non se la passa male.'
         },
         {
           title: 'Lei',
@@ -209,19 +293,163 @@ export default {
         {
           title: 'Lui',
           subtitle: 'Monte Maddalena, Brescia',
-          description: 'Onesto, semplice, coraggioso e dall\'animo buono. Appassionato del suo lavoro, dal cuore grande, spontaneo e allegro. Con una birra e un panino alla salsiccia raggiunge la sua estasi. A volte goffo e maldestro riesce sempre a stupirti, questo è Giacomo.'
+          description:
+            "Onesto, semplice, coraggioso e dall'animo buono. Appassionato del suo lavoro, dal cuore grande, spontaneo e allegro. Con una birra e un panino alla salsiccia raggiunge la sua estasi. A volte goffo e maldestro riesce sempre a stupirti, questo è Giacomo."
+        }
+      ],
+      imageTextEnglish: [
+        {
+          title: 'First Date',
+          subtitle: "Montisola, Lago d'Iseo",
+          description:
+            '"Do you want to go the lake?". I thought we would just walk alongside the shore, but I found my self sweaty up to Mont\'Isola\'s sanctuary . I really don\' know what to expect from the next ones!'
+        },
+        {
+          title: 'A tourist in Brescia',
+          subtitle: 'Castello di Brescia',
+          description:
+            'He is used to San Marino\'s three castless, luckly Brescia has got at least one.'
+        },
+        {
+          title: 'Romantic Evening',
+          subtitle: 'Capitolino Temple, Brescia',
+          description: 'Have you ever seen Jack with an elegant shirt on?'
+        },
+        {
+          title: 'Apples gathering',
+          subtitle: 'Brez, Val di Non',
+          description:
+            'San Marino - Brez, 5 hours, 4 different trains and one bus thinking I would enjoy some relax in nature with my bella. Surely did not think I would have met everyone at once: 7 siblings, 8 cousins, 2 oncles e grandma. Neither I would have helped them gather apples each day'
+        },
+        {
+          title: 'Secret woods',
+          subtitle: 'Mills di Canepa, San Marino',
+          description:
+            'E così ho capito che basta poco a farla felice: una cascatella e un bosco (e forse io).'
+        },
+        {
+          title: 'Un posto speciale',
+          subtitle: 'Assisi',
+          description:
+            'In ascolto di belle parole che ci hanno unito e rafforzato.'
+        },
+        {
+          title: '"In montagna"',
+          subtitle: 'Carpegna, Pesaro Urbino',
+          description:
+            'E così tutto orgoglioso mi dice "Giovi, oggi ti porto in montagna". Arrivati in cima ho capito che aveva bisogno di una spiegazione tra collina romagnola e montagna bresciana.'
+        },
+        {
+          title: 'Il mio capitano Jack',
+          subtitle: 'Fiorenzuola, Pesaro',
+          description: 'Dritti alla meta e conquista la preda.'
+        },
+        {
+          title: "Uno sguardo d'intesa",
+          subtitle: "Zone, Lago d'Iseoo",
+          description: 'E così con quel dolce sguardo mi dà forza.'
+        },
+        {
+          title: 'Due zaini, due sorrisi',
+          subtitle: 'San Miniato, Pisa',
+          description:
+            'Insieme il peso dello zaino si dimezza ("per forza portavo tutto io" ~Jack).'
+        },
+        {
+          title: 'Gran stile in cucina',
+          subtitle: 'Dalla nonna Gio',
+          description: 'Superchef in aiuto della nonna.'
+        },
+        {
+          title: "Un po' di classe",
+          subtitle: 'Brescia',
+          description: 'Super festa a casa Mazzacani.'
+        },
+        {
+          title: 'Pic-nic, i nostri preferiti',
+          subtitle: 'San Mauro Pascoli, Rimini',
+          description:
+            'Mi è andata bene, non la devo neanche portare al ristorante, per lei i pic-nic valgono molto di più.'
+        },
+        {
+          title: '"Aprimi la strada"',
+          subtitle: "Isola d'Arbia, Siena",
+          description: ''
+        },
+        {
+          title: 'Allo stesso passo',
+          subtitle: 'Montefiascone, Viterbo',
+          description:
+            'Ci vuole impegno e fatica per stare allo stesso passo ma quando ci si riesce è tutto più facile.'
+        },
+        {
+          title: 'Arrivo o inizio?',
+          subtitle: 'Roma',
+          description:
+            'Dopo 270 km, qualche litigata e tante risate ci facciamo abbracciare da piazza S. Pietro. E ora che abbiamo affrontato questa prova siamo pronti a tutto, a un nuovo inizio.'
+        },
+        {
+          title: '"Jack, non cadere!"',
+          subtitle: 'Parco del Mincio, Mantova',
+          description:
+            '13 anni che non pedala una bicicletta, per fortuna nonostante la sua goffaggine non è mai caduto!'
+        },
+        {
+          title: 'A un matrimonio importante',
+          subtitle: 'Flero, Brescia',
+          description:
+            'Francesca e Faustino sposi nel Signore. Una felicità contagiosa.'
+        },
+        {
+          title: 'Casa, dolce casa',
+          subtitle: 'San Marino',
+          description: 'Lei e San Marino, che cosa vuoi di più?'
+        },
+        {
+          title: 'Un brindisi...',
+          subtitle: 'Verona',
+          description:
+            '...a noi sposi. Un annuncio inaspettato e super festeggiato.'
+        },
+        {
+          title: '#Stayathome',
+          subtitle: "Collina Sant'Anna, Brescia.",
+          description: 'Cose che si fanno solo in quarantena!'
+        },
+        {
+          title: 'Serio quando serve',
+          subtitle: 'Pasquetta dai Musicco',
+          description:
+            'Ride sempre ma quando si tratta di preparare gli hamburger raggiunge la massima concentrazione.'
+        },
+        {
+          title: 'Smartworking',
+          subtitle: 'Quarantena felice',
+          description:
+            'Sammarinese bloccato a Brescia, ma tutto sommato non se la passa male.'
+        },
+        {
+          title: 'Lei',
+          subtitle: 'Adamello, Brescia',
+          description: 'Dolce, seria e romantica ma anche un po\' "rompina".'
+        },
+        {
+          title: 'Lui',
+          subtitle: 'Monte Maddalena, Brescia',
+          description:
+            "Onesto, semplice, coraggioso e dall'animo buono. Appassionato del suo lavoro, dal cuore grande, spontaneo e allegro. Con una birra e un panino alla salsiccia raggiunge la sua estasi. A volte goffo e maldestro riesce sempre a stupirti, questo è Giacomo."
         }
       ]
     }
   },
   methods: {
-    getTitle (index) {
+    getTitle (index, isEnglish = false) {
       return this.imageText[index - 1].title
     },
-    getDescription (index) {
+    getDescription (index, isEnglish = false) {
       return this.imageText[index - 1].description
     },
-    getSubtitle (index) {
+    getSubtitle (index, isEnglish = false) {
       return this.imageText[index - 1].subtitle
     }
   }
@@ -229,5 +457,4 @@ export default {
 </script>
 
 <style>
-
 </style>

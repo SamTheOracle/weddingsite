@@ -80,10 +80,10 @@ export default {
       },
       hint: 'Puoi anche inventartelo ;-)',
       nameRules: [
-        v => (v && v.length < 10) || 'Al massimo 10 caratteri'
+        v => (v && v.length < 15) || 'Al massimo 10 caratteri'
       ],
       lastNameRules: [
-        v => (v && v.length < 10) || 'Al massimo 10 caratteri'
+        v => (v && v.length < 15) || 'Al massimo 10 caratteri'
       ],
       commentRules: [
         v => (v && v.length < 120) || 'Non più di 120 caratteri'

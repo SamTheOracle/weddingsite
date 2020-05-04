@@ -58,9 +58,9 @@
         </v-list>
       </v-navigation-drawer>
 
-      <Information />
+      <Information :language="language"/>
 
-      <Partecipation v-on:partecipationclicked="dialog = true" id="partecipation" />
+      <Partecipation v-on:partecipationclicked="dialog = true" id="partecipation" :language="language"/>
 
       <Us id="us" />
 
@@ -84,36 +84,51 @@
       </v-dialog>
     </div>
     <v-divider />
-    <v-footer v-if="mainLoaded" color="white">
-      <v-row>
-        <v-col cols="6">
-          <v-row align="end" justify="end" no-gutters>
-            <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i">
-              <v-btn
-                text
-                :small="$vuetify.breakpoint.xsOnly"
-                @click="doAction(link.button)"
-              >{{link.button}}</v-btn>
-            </v-col>
-            <v-col>
-              <v-btn
-                text
-                :small="$vuetify.breakpoint.xsOnly"
-                @click="swapLanguage = true"
-              >{{language}}</v-btn>
-            </v-col>
-          </v-row>
-        </v-col>
-        <v-col cols="6" class="text-center">
-          <v-img src="@/assets/github-logo.svg" height="70" width="70" class="mx-auto" />
-          <p class="text-center mt-2 mb-0" style="white-spaces:pre-line;">
-            Fatto con
-            <v-icon color="red">mdi-heart</v-icon> da
-          </p>
-          <v-btn :small="$vuetify.breakpoint.xsOnly" depressed @click="onOracleClick()" color="success">SamTheOracle</v-btn>
-        </v-col>
-      </v-row>
-    </v-footer>
+    <v-lazy
+      :options="{
+          threshold: .2
+        }"
+      v-model="footerLazy"
+      transition="fade-transition"
+      min-height="200"
+    >
+      <v-footer v-if="mainLoaded" color="white">
+        <v-row>
+          <v-col cols="6">
+            <v-row align="end" justify="end" no-gutters>
+              <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i">
+                <v-btn
+                  text
+                  :small="$vuetify.breakpoint.xsOnly"
+                  @click="doAction(link.button)"
+                >{{link.button}}</v-btn>
+              </v-col>
+              <v-col>
+                <v-btn
+                  text
+                  :small="$vuetify.breakpoint.xsOnly"
+                  @click="language == 'English'?language = 'Italiano':language='English'"
+                >{{language}}</v-btn>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col cols="6" class="text-center">
+            <v-img src="@/assets/github-logo.svg" height="70" width="70" class="mx-auto" />
+            <p class="text-center mt-2 mb-0" style="white-spaces:pre-line;">
+              Fatto con
+              <v-icon color="red">mdi-heart</v-icon>da
+            </p>
+            <v-btn
+              :small="$vuetify.breakpoint.xsOnly"
+              depressed
+              @click="onOracleClick()"
+              color="#607D8B"
+              dark
+            >SamTheOracle</v-btn>
+          </v-col>
+        </v-row>
+      </v-footer>
+    </v-lazy>
   </v-app>
 </template>
 
@@ -140,6 +155,7 @@ export default {
     overlay: false,
     dialog: false,
     mainLoaded: false,
+    footerLazy: false,
     buttons: [
       {
         text: 'Informazioni'
@@ -275,35 +291,35 @@ export default {
 }
 .contacttitle {
   font-family: "Satisfy", cursive;
-  font-size: 45px!important;
+  font-size: 45px !important;
   font-weight: 400;
   font-style: italic;
   white-space: pre-line;
 }
-.name{
-  font-family: 'Patrick Hand SC', cursive;
-  font-size: 28px!important;
+.name {
+  font-family: "Patrick Hand SC", cursive;
+  font-size: 28px !important;
   font-weight: 300;
   white-space: pre-line;
-  text-overflow: unset!important;
+  text-overflow: unset !important;
 }
-.comment{
-  font-family: 'Pompiere', cursive!important;
-  font-size: 24px!important;
-  font-weight: bold!important;
-  line-height: 1.6!important;
-  overflow: hidden!important;
-  max-width: 250px!important;
-  white-space: normal!important;
+.comment {
+  font-family: "Pompiere", cursive !important;
+  font-size: 24px !important;
+  font-weight: bold !important;
+  line-height: 1.6 !important;
+  overflow: hidden !important;
+  max-width: 250px !important;
+  white-space: normal !important;
 }
-.commentsubtitle{
-  font-family: 'Patrick Hand SC', cursive;
-  font-size: 18px!important;
+.commentsubtitle {
+  font-family: "Patrick Hand SC", cursive;
+  font-size: 18px !important;
   font-weight: 300;
 }
 .cardtitle {
   font-family: "Patrick Hand SC", cursive;
-  font-size: 45px!important;
+  font-size: 45px !important;
   font-weight: 400;
   font-style: italic;
   white-space: pre-line;
@@ -314,27 +330,26 @@ export default {
   font-family: "Pompiere", cursive;
   font-style: italic;
   font-weight: 300;
-  font-size: 28px!important;
+  font-size: 28px !important;
 }
-.caption{
+.caption {
   font-weight: 300;
-
 }
 .nicetitle {
   font-family: "Satisfy", cursive;
-  font-size: 50px!important;
+  font-size: 50px !important;
   font-weight: 200;
 }
 
 @media only screen and (max-width: 600px) {
   .contacttitle {
-    font-size: 35px!important;
+    font-size: 35px !important;
   }
   .cardtitle {
-    font-size: 35px!important;
+    font-size: 35px !important;
   }
-   .nicetitle {
-    font-size: 30px!important;
+  .nicetitle {
+    font-size: 30px !important;
   }
 }
 @media only screen and (max-width: 425px) {

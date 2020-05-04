@@ -12,18 +12,43 @@
       transition="fade-transition"
       min-height="200"
     >
-      <swiper class="swiper mt-3 mb-3" :options="swiperOption" style="height:100%">
+    <v-slide-group class="swiper mt-3 mb-3" :options="swiperOption" style="height:100%" v-if="$vuetify.breakpoint.mdAndUp" >
+      <v-slide-item v-for="i in 25" :key="i" class="ma-1">
+         <v-card
+            shaped
+            outlined
+            :width="$vuetify.breakpoint.xsOnly?300:400"
+            :height="$vuetify.breakpoint.xsOnly?480:600"
+            class="ma-2"
+          >
+          <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
+            <v-img
+              :height="$vuetify.breakpoint.xsOnly?220:320"
+              :src="require('@/assets/us/'+i+'-min.jpg')"
+              transition="expand-x-transition"
+            ></v-img>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="name">{{getTitle(i)}}</v-list-item-title>
+                <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i)}}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-card-text class="mt-0 pt-0" style="white-space: normal;">{{getDescription(i)}}</v-card-text>
+          </v-card>
+      </v-slide-item>
+    </v-slide-group>
+      <swiper class="swiper mt-3 mb-3" :options="swiperOption" style="height:100%" v-else>
         <swiper-slide v-for="i in 25" :key="i" class="ma-1">
           <v-card
             shaped
             outlined
-            :width="$vuetify.breakpoint.xsOnly?300:500"
-            :height="$vuetify.breakpoint.xsOnly?480:500"
+            :width="$vuetify.breakpoint.xsOnly?300:600"
+            :height="$vuetify.breakpoint.xsOnly?480:600"
             class="mx-auto"
           >
           <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
             <v-img
-              :height="$vuetify.breakpoint.xsOnly?220:400"
+              :height="$vuetify.breakpoint.xsOnly?220:320"
               :src="require('@/assets/us/'+i+'-min.jpg')"
               transition="expand-x-transition"
             ></v-img>

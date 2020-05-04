@@ -112,7 +112,7 @@
             Fatto con
             <v-icon color="red">mdi-heart</v-icon> da
           </p>
-          <v-btn :small="$vuetify.breakpoint.xsOnly" depressed @click="onOracleClick()">SamTheOracle</v-btn>
+          <v-btn :small="$vuetify.breakpoint.xsOnly" depressed @click="onOracleClick()" color="success">SamTheOracle</v-btn>
         </v-col>
       </v-row>
     </v-footer>
@@ -232,10 +232,9 @@ export default {
 }
 </script>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Patrick+Hand+SC&family=Pompiere&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Patrick+Hand+SC&family=Pompiere&display=swap"); */
 .nice {
   font-family: "Satisfy", cursive;
   color: #431008;

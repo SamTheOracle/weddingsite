@@ -86,37 +86,40 @@
     <v-divider />
     <v-footer v-if="mainLoaded" color="white">
       <v-row>
-        <v-col cols="7">
+        <v-col cols="6">
           <v-row align="end" justify="end" no-gutters>
             <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i">
-              <v-btn text x-small @click="doAction(link.button)" style="font-size:8px">{{link.button}}</v-btn>
+              <v-btn
+                text
+                :small="$vuetify.breakpoint.xsOnly"
+                @click="doAction(link.button)"
+                :style="$vuetify.breakpoint.xsOnly?'font-size:10px':''"
+              >{{link.button}}</v-btn>
             </v-col>
             <v-col>
-              <v-btn text x-small @click="doAction(link.button)" style="font-size:8px">{{language}}</v-btn>
+              <v-btn
+                text
+                :small="$vuetify.breakpoint.xsOnly"
+                @click="swapLanguage = true"
+                :style="$vuetify.breakpoint.xsOnly?'font-size:10px':''"
+              >{{language}}</v-btn>
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="5">
-
+        <v-col cols="6" class="text-center">
+          <v-img src="@/assets/github-logo.svg" height="70" width="70" class="mx-auto" />
+          <p class="text-center mt-2 mb-0" style="white-spaces:pre-line;">
+            Fatto con
+            <v-icon color="red">mdi-heart</v-icon> da
+          </p>
+          <v-btn :small="$vuetify.breakpoint.xsOnly" depressed @click="onOracleClick()">SamTheOracle</v-btn>
         </v-col>
       </v-row>
-      <!-- <p class="footertext text-center mx-auto">
-        Fatto con
-        <v-icon color="red">mdi-heart</v-icon>da Oracolo Solutions s.r.l.
-      </p>-->
     </v-footer>
   </v-app>
 </template>
 
 <script>
-/* const Information = () => import('./components/Information')
-const Timeline = () => import('./components/Timeline')
-const SaveTheDate = () => import('./components/SaveTheDate')
-const Partecipation = () => import('./components/Partecipation')
-const SliderComments = () => import('./components/SliderComments')
-const Us = () => import('./components/Us')
-const Front = () => import('./components/Front') */
-
 export default {
   name: 'App',
 
@@ -133,6 +136,7 @@ export default {
   },
 
   data: () => ({
+    swapLanguage: false,
     language: 'English',
     drawer: false,
     overlay: false,
@@ -220,6 +224,9 @@ export default {
       } else {
         return this.links
       }
+    },
+    onOracleClick () {
+      window.location.href = 'https://github.com/SamTheOracle/weddingsite'
     }
   }
 }
@@ -228,7 +235,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Coming+Soon&family=Patrick+Hand+SC&family=Pompiere&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
 .nice {
   font-family: "Satisfy", cursive;
   color: #431008;

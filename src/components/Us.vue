@@ -17,15 +17,15 @@
           <v-card
             shaped
             outlined
-            :width="$vuetify.breakpoint.xsOnly?300:450"
-            :height="$vuetify.breakpoint.xsOnly?480:450"
+            :width="$vuetify.breakpoint.xsOnly?300:500"
+            :height="$vuetify.breakpoint.xsOnly?480:500"
             class="mx-auto"
           >
           <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
             <v-img
-              height="220px"
+              :height="$vuetify.breakpoint.xsOnly?220:400"
               :src="require('@/assets/us/'+i+'-min.jpg')"
-              @click="onImageClick(key)"
+              transition="expand-x-transition"
             ></v-img>
             <v-list-item>
               <v-list-item-content>
@@ -85,7 +85,7 @@ export default {
         },
         {
           title: 'Il bosco segreto',
-          subtitle: 'Canepa',
+          subtitle: 'Mulini di Canepa, San Marino',
           description: 'E così ho capito che basta poco a farla felice: una cascatella e un bosco (e forse io).'
         },
         {
@@ -131,7 +131,7 @@ export default {
         {
           title: '"Aprimi la strada"',
           subtitle: 'Isola d\'Arbia, Siena',
-          description: 'Superchef in aiuto della nonna.'
+          description: ''
         },
         {
           title: 'Allo stesso passo',
@@ -179,14 +179,14 @@ export default {
           description: 'Sammarinese bloccato a Brescia, ma tutto sommato non se la passa male.'
         },
         {
-          title: 'Lui',
-          subtitle: 'Monte Maddalena, Brescia',
-          description: 'Onesto, semplice, coraggioso e dall\'animo buono. Appassionato del suo lavoro, dal cuore grande, spontaneo e allegro. Con una birra e un panino alla salsiccia raggiunge la sua estasi. A volte goffo e maldestro riesce sempre a stupirti, questo è Giacomo.'
-        },
-        {
           title: 'Lei',
           subtitle: 'Adamello, Brescia',
           description: 'Dolce, seria e romantica ma anche un po\' "rompina".'
+        },
+        {
+          title: 'Lui',
+          subtitle: 'Monte Maddalena, Brescia',
+          description: 'Onesto, semplice, coraggioso e dall\'animo buono. Appassionato del suo lavoro, dal cuore grande, spontaneo e allegro. Con una birra e un panino alla salsiccia raggiunge la sua estasi. A volte goffo e maldestro riesce sempre a stupirti, questo è Giacomo.'
         }
       ]
     }

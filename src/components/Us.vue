@@ -25,7 +25,6 @@
             <v-img
               :height="$vuetify.breakpoint.xsOnly?220:320"
               :src="require('@/assets/us_desktop/'+i+'.jpg')"
-              transition="expand-x-transition"
             ></v-img>
             <v-list-item>
               <v-list-item-content>
@@ -50,7 +49,6 @@
             <v-img
               :height="$vuetify.breakpoint.xsOnly?220:320"
               :src="require('@/assets/us_mobile/'+i+'.jpg')"
-              transition="expand-x-transition"
             ></v-img>
             <v-list-item>
               <v-list-item-content>

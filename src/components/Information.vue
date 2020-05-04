@@ -26,14 +26,5 @@ export default {
 </script>
 
 <style>
-.nicetitle {
-  font-family: "Satisfy", cursive;
-  font-size: 50px;
-  font-weight: 200;
-}
-@media only screen and (max-width: 600px) {
-  .nicetitle {
-    font-size: 30px;
-  }
-}
+
 </style>

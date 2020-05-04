@@ -322,6 +322,11 @@ export default {
   font-weight: 300;
 
 }
+.nicetitle {
+  font-family: "Satisfy", cursive;
+  font-size: 50px;
+  font-weight: 200;
+}
 
 @media only screen and (max-width: 600px) {
   .contacttitle {
@@ -329,6 +334,9 @@ export default {
   }
   .cardtitle {
     font-size: 35px;
+  }
+   .nicetitle {
+    font-size: 30px;
   }
 }
 @media only screen and (max-width: 425px) {

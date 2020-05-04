@@ -35,25 +35,5 @@ export default {
 </script>
 
 <style>
-.name{
-  font-family: 'Patrick Hand SC', cursive;
-  font-size: 28px;
-  font-weight: 300;
-  white-space: pre-line;
-  text-overflow: unset!important;
-}
-.comment{
-  font-family: 'Pompiere', cursive!important;
-  font-size: 24px!important;
-  font-weight: bold!important;
-  line-height: 1.6!important;
-  overflow: hidden!important;
-  max-width: 250px!important;
-  white-space: normal!important;
-}
-.commentsubtitle{
-  font-family: 'Patrick Hand SC', cursive;
-  font-size: 18px;
-  font-weight: 300;
-}
+
 </style>

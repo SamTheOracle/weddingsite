@@ -47,28 +47,4 @@ export default {
 </script>
 
 <style>
-.cardtitle {
-  font-family: "Patrick Hand SC", cursive;
-  font-size: 45px;
-  font-weight: 400;
-  font-style: italic;
-  white-space: pre-line;
-}
-.descr {
-  /*   font-family: "Open Sans", cursive;
- */
-  font-family: "Pompiere", cursive;
-  font-style: italic;
-  font-weight: 300;
-  font-size: 28px;
-}
-.caption{
-  font-weight: 300;
-
-}
-@media only screen and (max-width: 600px) {
-  .cardtitle {
-    font-size: 35px;
-  }
-}
 </style>

@@ -32,16 +32,5 @@ export default {
 </script>
 
 <style>
-.contacttitle {
-  font-family: "Satisfy", cursive;
-  font-size: 45px;
-  font-weight: 400;
-  font-style: italic;
-  white-space: pre-line;
-}
-@media only screen and (max-width: 600px) {
-  .contacttitle {
-    font-size: 35px;
-  }
-}
+
 </style>

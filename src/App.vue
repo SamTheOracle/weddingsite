@@ -249,6 +249,88 @@ export default {
   font-family: "Exo", sans-serif;
   font-size: 34px !important;
 }
+.subtitle {
+  font-family: "Patrick Hand SC", cursive;
+  font-size: 28px;
+  font-weight: 400;
+  font-style: italic;
+  white-space: pre-line;
+  margin: 10px 0 0 0;
+}
+.presentation {
+  /*   font-family: "Open Sans", cursive;
+ */
+  font-family: "Pompiere", cursive;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 23px;
+}
+#main-container {
+  background-color: #f7f9e4;
+  min-height: 100vh;
+}
+.nicemain {
+  font-family: "Satisfy", cursive;
+  color: #431008;
+  font-size: 45px !important;
+  transform: rotate(-10deg);
+}
+.contacttitle {
+  font-family: "Satisfy", cursive;
+  font-size: 45px;
+  font-weight: 400;
+  font-style: italic;
+  white-space: pre-line;
+}
+.name{
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 28px;
+  font-weight: 300;
+  white-space: pre-line;
+  text-overflow: unset!important;
+}
+.comment{
+  font-family: 'Pompiere', cursive!important;
+  font-size: 24px!important;
+  font-weight: bold!important;
+  line-height: 1.6!important;
+  overflow: hidden!important;
+  max-width: 250px!important;
+  white-space: normal!important;
+}
+.commentsubtitle{
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 18px;
+  font-weight: 300;
+}
+.cardtitle {
+  font-family: "Patrick Hand SC", cursive;
+  font-size: 45px;
+  font-weight: 400;
+  font-style: italic;
+  white-space: pre-line;
+}
+.descr {
+  /*   font-family: "Open Sans", cursive;
+ */
+  font-family: "Pompiere", cursive;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 28px;
+}
+.caption{
+  font-weight: 300;
+
+}
+
+@media only screen and (max-width: 600px) {
+  .contacttitle {
+    font-size: 35px;
+  }
+  .cardtitle {
+    font-size: 35px;
+  }
+}
 @media only screen and (max-width: 425px) {
   .footertext {
     font-size: 20px !important;

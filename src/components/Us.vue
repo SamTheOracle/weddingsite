@@ -231,12 +231,5 @@ export default {
 </script>
 
 <style>
-.presentation {
-  /*   font-family: "Open Sans", cursive;
- */
-  font-family: "Pompiere", cursive;
-  font-style: italic;
-  font-weight: 300;
-  font-size: 23px;
-}
+
 </style>

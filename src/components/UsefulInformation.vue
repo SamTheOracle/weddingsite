@@ -206,13 +206,6 @@ export default {
 }
 </script>
 
-<style scoped>
-.subtitle {
-  font-family: "Patrick Hand SC", cursive;
-  font-size: 28px;
-  font-weight: 400;
-  font-style: italic;
-  white-space: pre-line;
-  margin: 10px 0 0 0;
-}
+<style>
+
 </style>

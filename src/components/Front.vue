@@ -48,17 +48,5 @@ export default {
 </script>
 
 <style>
-#main-container {
-  background-color: #f7f9e4;
-  min-height: 100vh;
-}
-.nicemain {
-  font-family: "Satisfy", cursive;
-  color: #431008;
-  font-size: 45px !important;
-  transform: rotate(-10deg);
-}
-/* @media only screen and (max-width: 600px){
 
-} */
 </style>

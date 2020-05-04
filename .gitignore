@@ -21,3 +21,6 @@ yarn-error.log*
 *.sln
 *.sw?
 
+#original images
+/src/assets/original
+

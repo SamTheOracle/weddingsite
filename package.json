@@ -42,6 +42,8 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.2.2",
+    "imagemin": "^7.0.1",
+    "imagemin-mozjpeg": "^8.0.0",
     "lint-staged": "^9.5.0",
     "nodemon": "^2.0.3",
     "sass": "^1.19.0",

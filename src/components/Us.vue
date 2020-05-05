@@ -325,19 +325,19 @@ export default {
           title: 'Secret woods',
           subtitle: 'Mills di Canepa, San Marino',
           description:
-            'E così ho capito che basta poco a farla felice: una cascatella e un bosco (e forse io).'
+            'I have finally realized it does not take much to make her happy: a little cascade and woods (and maybe me as well).'
         },
         {
-          title: 'Un posto speciale',
+          title: 'A special place',
           subtitle: 'Assisi',
           description:
-            'In ascolto di belle parole che ci hanno unito e rafforzato.'
+            'Listening to beatiful words that united and strengthen us.'
         },
         {
-          title: '"In montagna"',
+          title: '"Up to the mountain"',
           subtitle: 'Carpegna, Pesaro Urbino',
           description:
-            'E così tutto orgoglioso mi dice "Giovi, oggi ti porto in montagna". Arrivati in cima ho capito che aveva bisogno di una spiegazione tra collina romagnola e montagna bresciana.'
+            'So he proudly told me: "Giovi, today I am taking you up to the mountains". After we got there, I realized that he needed some explanations in distinguishing a Romagna hill from a mountain'
         },
         {
           title: 'Il mio capitano Jack',

@@ -4,14 +4,10 @@
       <v-btn fab text @click="$emit('dialogcommentclose')">
         <v-icon>mdi-close</v-icon>
       </v-btn>
-      <v-spacer />
-      <v-toolbar-title v-if="!english">Crea un commento</v-toolbar-title>
+      <v-toolbar-title v-if="!english" class="text-center">Crea un commento</v-toolbar-title>
       <v-toolbar-title v-else>Make a comment</v-toolbar-title>
 
       <v-spacer />
-      <v-btn class="ma-5" text fab :loading="loading" @click="onSendClick()">
-        <v-icon>mdi-send</v-icon>
-      </v-btn>
     </v-toolbar>
     <v-container fluid v-if="!english">
       <v-form v-model="valid" ref="form">
@@ -54,14 +50,14 @@
               label="Commento"
               placeholder="Scrivici qualcosa!"
               :rules="commentRules"
-              rows="3"
+              rows="5"
               v-model="newComment.comment"
             />
           </v-col>
         </v-row>
       </v-form>
       <v-row justify="start">
-        <v-btn rounded color="#EBF0BA" @click="$refs.form.reset()" class="ml-4">Ricomincia</v-btn>
+        <v-btn rounded color="#EBF0BA" :loading="loading" @click="onSendClick()" class="ml-4">Invia</v-btn>
       </v-row>
     </v-container>
     <v-container fluid v-else>
@@ -105,14 +101,14 @@
               label="Comment"
               placeholder="Write something for us"
               :rules="commentRulesEnglish"
-              rows="3"
+              rows="5"
               v-model="newComment.comment"
             />
           </v-col>
         </v-row>
       </v-form>
       <v-row justify="start">
-        <v-btn rounded color="#EBF0BA" @click="$refs.form.reset()" class="ml-4">Ricomincia</v-btn>
+        <v-btn rounded color="#EBF0BA" @click="onSendClick()" class="ml-4">Send</v-btn>
       </v-row>
     </v-container>
   </v-card>

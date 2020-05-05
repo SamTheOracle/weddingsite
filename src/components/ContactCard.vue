@@ -1,7 +1,7 @@
 <template>
   <v-card color="#f7f9e4" height="300" max-width="600" class="mx-auto">
     <v-list-item>
-      <v-list-item-avatar height="70px" width="70px">
+      <v-list-item-avatar height="80px" width="80px">
         <v-img :src="require('@/assets/'+contact.image)" contain />
   </v-list-item-avatar>
       <v-list-item-content>

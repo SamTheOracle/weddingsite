@@ -5,13 +5,15 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
       <v-spacer />
-      <v-toolbar-title>Crea un commento</v-toolbar-title>
+      <v-toolbar-title v-if="!english">Crea un commento</v-toolbar-title>
+      <v-toolbar-title v-else>Make a comment</v-toolbar-title>
+
       <v-spacer />
       <v-btn class="ma-5" text fab :loading="loading" @click="onSendClick()">
         <v-icon>mdi-send</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-container fluid>
+    <v-container fluid v-if="!english">
       <v-form v-model="valid" ref="form">
         <v-row align="center" justify="center">
           <v-col :cols="this.$vuetify.breakpoint.smAndUp?6:12">
@@ -24,7 +26,7 @@
               placeholder="Inserisci il tuo nome"
               :rules="nameRules"
               :hint="hint"
-              counter="10"
+              counter="15"
               :dense="$vuetify.breakpoint.xs"
             ></v-text-field>
           </v-col>
@@ -38,7 +40,7 @@
               placeholder="Inserisci il tuo cognome"
               :rules="lastNameRules"
               :hint="hint"
-              counter="10"
+              counter="15"
               :dense="$vuetify.breakpoint.xs"
             ></v-text-field>
           </v-col>
@@ -59,7 +61,58 @@
         </v-row>
       </v-form>
       <v-row justify="start">
-          <v-btn rounded color="#EBF0BA" @click="$refs.form.reset()" class="ml-4">Ricomincia</v-btn>
+        <v-btn rounded color="#EBF0BA" @click="$refs.form.reset()" class="ml-4">Ricomincia</v-btn>
+      </v-row>
+    </v-container>
+    <v-container fluid v-else>
+      <v-form v-model="valid" ref="form">
+        <v-row align="center" justify="center">
+          <v-col :cols="this.$vuetify.breakpoint.smAndUp?6:12">
+            <v-text-field
+              type="text"
+              color="orange"
+              outlined
+              v-model="newComment.firstName"
+              label="Name"
+              placeholder="Write your name"
+              :rules="nameRulesEnglish"
+              :hint="englishHint"
+              counter="15"
+              :dense="$vuetify.breakpoint.xs"
+            ></v-text-field>
+          </v-col>
+          <v-col :cols="this.$vuetify.breakpoint.smAndUp?6:12">
+            <v-text-field
+              type="text"
+              color="orange"
+              outlined
+              v-model="newComment.lastName"
+              label="Family name"
+              placeholder="Write your family name"
+              :rules="lastNameRulesEnglish"
+              :hint="englishHint"
+              counter="15"
+              :dense="$vuetify.breakpoint.xs"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row align="center" justify="center">
+          <v-col>
+            <v-textarea
+              counter="120"
+              outlined
+              color="orange"
+              label="Comment"
+              placeholder="Write something for us"
+              :rules="commentRulesEnglish"
+              rows="3"
+              v-model="newComment.comment"
+            />
+          </v-col>
+        </v-row>
+      </v-form>
+      <v-row justify="start">
+        <v-btn rounded color="#EBF0BA" @click="$refs.form.reset()" class="ml-4">Ricomincia</v-btn>
       </v-row>
     </v-container>
   </v-card>
@@ -68,7 +121,10 @@
 <script>
 export default {
   props: {
-    loading: Boolean
+    loading: Boolean,
+    english: {
+      default: false
+    }
   },
   data: () => {
     return {
@@ -79,14 +135,18 @@ export default {
         subscription: {}
       },
       hint: 'Puoi anche inventartelo ;-)',
-      nameRules: [
-        v => (v && v.length < 15) || 'Al massimo 10 caratteri'
+      nameRules: [v => (v && v.length < 15) || 'Al massimo 15 caratteri'],
+      lastNameRules: [v => (v && v.length < 15) || 'Al massimo 15 caratteri'],
+      commentRules: [v => (v && v.length < 120) || 'Non più di 120 caratteri'],
+      englishHint: 'You can come up with your own ;-)',
+      nameRulesEnglish: [
+        v => (v && v.length < 15) || 'No more than 15 characters'
       ],
-      lastNameRules: [
-        v => (v && v.length < 15) || 'Al massimo 10 caratteri'
+      lastNameRulesEnglish: [
+        v => (v && v.length < 15) || 'No more than 15 characters'
       ],
-      commentRules: [
-        v => (v && v.length < 120) || 'Non più di 120 caratteri'
+      commentRulesEnglish: [
+        v => (v && v.length < 120) || 'No more than 120 characters'
       ],
       valid: true
     }

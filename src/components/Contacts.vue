@@ -1,10 +1,16 @@
 <template>
   <v-container fluid>
-    <p class="nicetitle text-center">Contatti</p>
+    <p class="nicetitle text-center" v-if="!english">Contatti</p>
+    <p class="nicetitle text-center" v-else>Contacts</p>
 
-    <v-row align="center" justify="center">
+    <v-row align="center" justify="center" v-if="!english">
       <v-col :cols="$vuetify.breakpoint.xsOnly?12:6" v-for="(contact,i) in contacts" :key="i">
-        <ContactCard :contact="contact" />
+        <ContactCard :contact="contact"/>
+      </v-col>
+    </v-row>
+    <v-row align="center" justify="center" v-else>
+      <v-col :cols="$vuetify.breakpoint.xsOnly?12:6" v-for="(contact,i) in contactsEnglish" :key="i" >
+        <ContactCard :contact="contact"/>
       </v-col>
     </v-row>
   </v-container>
@@ -15,8 +21,12 @@ export default {
   components: {
     ContactCard: () => import('./ContactCard')
   },
+  props: {
+    language: String
+  },
   data: () => {
     return {
+      english: false,
       contacts: [
         {
           name: 'Giovanna',
@@ -64,7 +74,60 @@ export default {
             }
           ]
         }
+      ],
+      contactsEnglish: [
+        {
+          name: 'Giovanna',
+          type: 'The bride',
+          image: 'giovibella.jpg',
+          contacts: [
+            {
+              icon: 'phone',
+              value: '+39 3394453815',
+              sub: 'Phone'
+
+            },
+            {
+              icon: 'email',
+              value: 'musicco.giovanna@gmail.com',
+              sub: 'E-mail'
+
+            },
+            {
+              icon: 'home',
+              value: 'Via Arimanno, 9 Brescia (BS)',
+              sub: 'Address'
+            }
+          ]
+        },
+        {
+          name: 'Giacomo',
+          type: 'The groom',
+          image: 'ioegiovitorbiere.jpg',
+          contacts: [
+            {
+              icon: 'phone',
+              value: '+39 3398485788',
+              sub: 'Phone'
+            },
+            {
+              icon: 'email',
+              value: 'gzano93@gmail.com',
+              sub: 'E-mail'
+            },
+            {
+              icon: 'home',
+              value: 'Via Cella del Poggiolo, n. 5 Domagnano (RSM)',
+              sub: 'Address'
+            }
+          ]
+        }
       ]
+    }
+  },
+  watch: {
+    language: function () {
+      this.english = !this.english
     }
   }
 }

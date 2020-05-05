@@ -1,7 +1,9 @@
 <template>
   <v-container fluid style="background-color:#f7f9e4">
-    <p class="nicetitle text-center">Informazioni</p>
-    <v-expansion-panels style="max-width:900px" class="mx-auto">
+    <p class="nicetitle text-center" v-if="!english">Informazioni</p>
+    <p class="nicetitle text-center" v-else>Information</p>
+
+    <v-expansion-panels style="max-width:900px" class="mx-auto" v-if="!english">
       <v-expansion-panel>
         <v-expansion-panel-header class="descr">Come raggiungere la chiesa</v-expansion-panel-header>
         <v-expansion-panel-content eager>
@@ -64,7 +66,12 @@
             </v-list-item-group>
           </v-list>
           <div class="text-center">
-            <v-btn rounded :small="$vuetify.breakpoint.xsOnly" color="#EBF0BA" @click="onRestaurantClick()" >
+            <v-btn
+              rounded
+              :small="$vuetify.breakpoint.xsOnly"
+              color="#EBF0BA"
+              @click="onRestaurantClick()"
+            >
               mappa
               <v-icon small>mdi-map-marker</v-icon>
             </v-btn>
@@ -98,13 +105,126 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-    <v-dialog v-model="dialog" :fullscreen="$vuetify.breakpoint.xsOnly" :hide-overlay="$vuetify.breakpoint.xsOnly" transition="dialog-bottom-transition">
 
-      <MapComponent :coordinates="coordinates" :center="center" v-on:mapdialogclosed="dialog=false" :title="title"/>
+    <v-expansion-panels style="max-width:900px" class="mx-auto" v-else>
+      <v-expansion-panel>
+        <v-expansion-panel-header class="descr" >How to reach the church</v-expansion-panel-header>
+
+        <v-expansion-panel-content eager>
+          <p class="subtitle">Entering in the crypt</p>
+          <p>This is a sentence in english explaing how to get into the church</p>
+          <v-divider />
+          <p class="subtitle">Parking areas</p>
+          <v-list shaped>
+            <v-list-item-group color="primary">
+              <v-list-item
+                class="pa-0"
+                v-for="(parking,i) in parkingsEnglish"
+                :key="i"
+                @click="onParkingClick(parking)"
+              >
+                <v-list-item-avatar>
+                  <v-icon>mdi-map-marker</v-icon>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title
+                    style="white-space:pre-line!important"
+                  >{{parking.coordinates.label}} - {{parking.name}} ({{parking.type}})</v-list-item-title>
+                  <v-list-item-subtitle style="white-space:pre-line!important">{{parking.address}}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+          <div class="text-center">
+            <v-btn
+              rounded
+              :small="$vuetify.breakpoint.xsOnly"
+              color="#EBF0BA"
+              @click="onParkingMapClick()"
+            >
+              map
+              <v-icon small>mdi-map-marker</v-icon>
+            </v-btn>
+          </div>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+
+      <v-expansion-panel>
+        <v-expansion-panel-header class="descr">How to reach the agriturismo</v-expansion-panel-header>
+        <v-expansion-panel-content eager>
+          <p class="subtitle">Bedizzole exit</p>
+          <p>This is a sentence in english that briefly explains how to get there</p>
+          <v-divider />
+          <p class="subtitle">Parcheggi</p>
+          <v-list shaped>
+            <v-list-item-group color="primary">
+              <v-list-item class="pa-0" @click="onRestaurantClick()">
+                <v-list-item-avatar>
+                  <v-icon>mdi-map-marker</v-icon>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>Restaurant parking area</v-list-item-title>
+                  <v-list-item-subtitle>Via F.lli Venturoli, Bedizzole (Bs)</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+          <div class="text-center">
+            <v-btn
+              rounded
+              :small="$vuetify.breakpoint.xsOnly"
+              color="#EBF0BA"
+              @click="onRestaurantClick()"
+            >
+              amp
+              <v-icon small>mdi-map-marker</v-icon>
+            </v-btn>
+          </div>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+
+      <v-expansion-panel>
+        <v-expansion-panel-header class="descr">Advices for accomodation</v-expansion-panel-header>
+        <v-expansion-panel-content eager>
+          <p class="subtitle">Bed & Breakfast</p>
+          <v-list shaped>
+            <v-list-item-group color="primary">
+              <v-list-item class="pa-0" v-for="(sleep,i) in sleepingsEnglish" :key="i">
+                <v-list-item-avatar>
+                  <v-icon>mdi-bed</v-icon>
+                </v-list-item-avatar>
+                <v-list-item-content @click="onClickSleep(sleep.link)">
+                  <v-list-item-title>{{sleep.name}}</v-list-item-title>
+                  <v-list-item-subtitle>{{sleep.address}}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+          <div class="text-center">
+            <v-btn rounded :small="$vuetify.breakpoint.xsOnly" color="#EBF0BA">
+              map
+              <v-icon small>mdi-map-marker</v-icon>
+            </v-btn>
+          </div>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+    <v-dialog
+      v-model="dialog"
+      :fullscreen="$vuetify.breakpoint.xsOnly"
+      :hide-overlay="$vuetify.breakpoint.xsOnly"
+      transition="dialog-bottom-transition"
+    >
+      <MapComponent
+        :coordinates="coordinates"
+        :center="center"
+        v-on:mapdialogclosed="dialog=false"
+        :title="title"
+      />
       <!-- <v-snackbar v-model="snackbar" :timeout="2000">
         Ingradisci la mappa per vedere gli altri parcheggi
         <v-btn text @click="snackbar = false">close</v-btn>
-      </v-snackbar> -->
+      </v-snackbar>-->
     </v-dialog>
   </v-container>
 </template>
@@ -114,8 +234,12 @@ export default {
   components: {
     MapComponent: () => import('./MapComponent')
   },
+  props: {
+    language: String
+  },
   data: () => {
     return {
+      english: false,
       dialog: false,
       center: {},
       title: '',
@@ -125,7 +249,7 @@ export default {
       },
       restaurant: {
         lat: 45.517735,
-        lng: 10.413570
+        lng: 10.41357
       },
       parkings: [
         {
@@ -147,19 +271,48 @@ export default {
             lng: 10.2307,
             label: 'P2'
           }
-        } /* ,
-        {
-          type: 'Pagamento',
-          name: 'Bel Parcheggio',
-          address: 'Via Arimanno 9, \n Brescia (BS)'
-        },
-        {
-          type: 'Pagamento',
-          name: 'Bel Parcheggio',
-          address: 'Via Arimanno 9, \n Brescia (BS)'
-        } */
+        }
       ],
       sleepings: [
+        {
+          name: 'Agriturismo Roccolo',
+          address: 'Via F.lli Venturoli',
+          link: 'http://www.agriturismoroccolo.com/'
+        },
+        {
+          name: 'Agriturismo Roccolo',
+          address: 'Via F.lli Venturoli',
+          link: 'http://www.agriturismoroccolo.com/'
+        },
+        {
+          name: 'Agriturismo Roccolo',
+          address: 'Via F.lli Venturoli',
+          link: 'http://www.agriturismoroccolo.com/'
+        }
+      ],
+      parkingsEnglish: [
+        {
+          type: 'Toll',
+          name: 'Parking area Goito Brescia',
+          address: 'Via Spalto S. Marco, 8, \n 25121  Brescia BS',
+          coordinates: {
+            lat: 45.5349,
+            lng: 10.2301,
+            label: 'P1'
+          }
+        },
+        {
+          type: 'Toll',
+          name: 'Piazzale Arnaldo',
+          address: 'Piazzale Arnaldo, \n 25121 Brescia BS ',
+          coordinates: {
+            lat: 45.5363,
+            lng: 10.2307,
+            label: 'P2'
+          }
+        }
+      ],
+      sleepingsEnglish: [
         {
           name: 'Agriturismo Roccolo',
           address: 'Via F.lli Venturoli',
@@ -202,10 +355,14 @@ export default {
       this.title = 'Agriturismo Roccolo'
       this.dialog = true
     }
+  },
+  watch: {
+    language: function () {
+      this.english = !this.english
+    }
   }
 }
 </script>
 
 <style>
-
 </style>

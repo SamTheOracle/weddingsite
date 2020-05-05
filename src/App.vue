@@ -3,16 +3,27 @@
     <v-app-bar color="#EBF0BA" app inverted-scroll max-width="100vw" v-if="mainLoaded">
       <v-app-bar-nav-icon @click.stop="drawer=true" v-if="$vuetify.breakpoint.smAndDown"></v-app-bar-nav-icon>
       <v-spacer v-if="$vuetify.breakpoint.smAndDown" />
-      <v-toolbar-title class="nice">Giovanna e Giacomo</v-toolbar-title>
+      <v-toolbar-title class="nice" v-if="!english">Giovanna e Giacomo</v-toolbar-title>
+      <v-toolbar-title class="nice" v-else>Giovanna e Giacomo</v-toolbar-title>
+
       <v-spacer />
-      <div v-if="$vuetify.breakpoint.mdAndUp">
+      <div v-if="$vuetify.breakpoint.mdAndUp&&!english">
         <v-btn
           text
           color="#431008"
-          v-for="(button,i) in buttons"
+          v-for="(link,i) in links.filter(l=>l.button === 'Aiutaci' || l.button === 'Informazioni' || l.button==='Noi')"
           :key="i"
-          @click="doAction(button.text)"
-        >{{button.text}}</v-btn>
+          @click="doAction(link.button)"
+        >{{link.button}}</v-btn>
+      </div>
+      <div v-else-if="$vuetify.breakpoint.mdAndUp">
+        <v-btn
+          text
+          color="#431008"
+          v-for="(link,i) in linksEnglish.filter(l=>l.button === 'Help us' || l.button === 'Information' || l.button==='Us')"
+          :key="i"
+          @click="doAction(link.button)"
+        >{{link.button}}</v-btn>
       </div>
     </v-app-bar>
     <Front v-on:imageloaded="mainLoaded=true" />
@@ -30,17 +41,38 @@
             <v-img src="@/assets/ioegiovi.svg" contain />
           </v-list-item-avatar>
           <v-list-item-content>
-            <p class="drawertitle mb-1">Giovanna e Giacomo</p>
+            <p class="drawertitle mb-1" v-if="!english">Giovanna e Giacomo</p>
+            <p class="drawertitle mb-1" v-else>Giovanna & Giacomo</p>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list nav flat>
+        <v-list nav flat v-if="!english">
           <v-list-item-group color="primary">
             <v-list-item
-              v-for="(element,i) in computedLinks()"
+              v-for="(element,i) in links"
               :key="i"
               @click="doAction(element.button)"
-              v-resize="computedLinks"
+              two-line
+            >
+              <v-list-item-avatar tile>
+                <v-img :src="require('@/assets/'+element.image)" />
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title
+                  :class="$vuetify.breakpoint.smAndUp?'subtitle-1':''"
+                  v-text="element.button"
+                ></v-list-item-title>
+                <v-list-item-subtitle v-text="element.text"></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+        <v-list nav flat v-else>
+          <v-list-item-group color="primary">
+            <v-list-item
+              v-for="(element,i) in linksEnglish"
+              :key="i"
+              @click="doAction(element.button)"
               two-line
             >
               <v-list-item-avatar tile>
@@ -66,15 +98,15 @@
         :language="language"
       />
 
-      <Us id="us" />
+      <Us id="us" :language="language" />
 
-      <HelpUs id="help" />
+      <HelpUs id="help" :language="language" />
 
-      <SliderComments id="comments" />
+      <SliderComments id="comments" :language="language" />
 
-      <UsefulInformation id="information" />
+      <UsefulInformation id="information" :language="language" />
 
-      <Contacts id="contacts" />
+      <Contacts id="contacts" :language="language" />
 
       <v-dialog
         v-model="dialog"
@@ -99,7 +131,7 @@
       <v-footer v-if="mainLoaded" color="white">
         <v-row>
           <v-col cols="6">
-            <v-row align="end" justify="end" no-gutters>
+            <v-row align="end" justify="end" no-gutters v-if="!english">
               <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i">
                 <v-btn
                   text
@@ -111,12 +143,28 @@
                 <v-btn
                   text
                   :small="$vuetify.breakpoint.xsOnly"
-                  @click="language == 'English'?language = 'Italiano':language='English'"
+                  @click="onChangeLanguageClick()"
+                >{{language}}</v-btn>
+              </v-col>
+            </v-row>
+            <v-row align="end" justify="end" no-gutters v-else>
+              <v-col v-for="(link,i) in linksEnglish.filter(f=>f.button!=='Contacts')" :key="i">
+                <v-btn
+                  text
+                  :small="$vuetify.breakpoint.xsOnly"
+                  @click="doAction(link.button)"
+                >{{link.button}}</v-btn>
+              </v-col>
+              <v-col>
+                <v-btn
+                  text
+                  :small="$vuetify.breakpoint.xsOnly"
+                  @click="onChangeLanguageClick()"
                 >{{language}}</v-btn>
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="6" class="text-center">
+          <v-col cols="6" class="text-center" v-if="!english">
             <v-img src="@/assets/github-logo.svg" height="70" width="70" class="mx-auto" />
             <p class="text-center mt-2 mb-0" style="white-spaces:pre-line;">
               Fatto con
@@ -124,6 +172,23 @@
                 <v-icon color="red">mdi-heart</v-icon>
               </span>
               da
+            </p>
+            <v-btn
+              :small="$vuetify.breakpoint.xsOnly"
+              depressed
+              @click="onOracleClick()"
+              color="#607D8B"
+              dark
+            >SamTheOracle</v-btn>
+          </v-col>
+          <v-col cols="6" class="text-center" v-else>
+            <v-img src="@/assets/github-logo.svg" height="70" width="70" class="mx-auto" />
+            <p class="text-center mt-2 mb-0" style="white-spaces:pre-line;">
+              Made with
+              <span>
+                <v-icon color="red">mdi-heart</v-icon>
+              </span>
+              by
             </p>
             <v-btn
               :small="$vuetify.breakpoint.xsOnly"
@@ -156,24 +221,13 @@ export default {
   },
 
   data: () => ({
-    swapLanguage: false,
+    english: false,
     language: 'English',
     drawer: false,
     overlay: false,
     dialog: false,
     mainLoaded: false,
     footerLazy: false,
-    buttons: [
-      {
-        text: 'Informazioni'
-      },
-      {
-        text: 'Conferma'
-      },
-      {
-        text: 'Aiutaci'
-      }
-    ],
     links: [
       {
         text: 'Verrai?',
@@ -205,49 +259,87 @@ export default {
         text: 'Contatta gli sposi',
         image: 'contacts.svg'
       }
+    ],
+    linksEnglish: [
+      {
+        text: 'Are you coming?',
+        button: 'Confirm',
+        image: 'confirmationblack.svg'
+      },
+      {
+        button: 'Us',
+        text: 'Our story',
+        image: 'couple.svg'
+      },
+      {
+        text: 'for the house to be',
+        button: 'Help us',
+        image: 'house.svg'
+      },
+      {
+        button: 'Comments',
+        text: 'A thought for the spouses',
+        image: 'comment.svg'
+      },
+      {
+        button: 'Information',
+        text: 'How to get around',
+        image: 'information.svg'
+      },
+      {
+        button: 'Contacts',
+        text: 'Contact the spouses',
+        image: 'contacts.svg'
+      }
     ]
   }),
   methods: {
     doAction (action) {
-      if (action === 'Informazioni') {
+      if (action === 'Informazioni' || action === 'Information') {
         this.$vuetify.goTo('#information', { duration: 1000, offset: 100 })
       }
-      if (action === 'Conferma') {
+      if (action === 'Conferma' || action === 'Confirm') {
         this.$vuetify.goTo('#partecipation', { duration: 1000, offset: 100 })
       }
       // if (action === 'La nostra casa') {
-      if (action === 'Aiutaci') {
+      if (action === 'Aiutaci' || action === 'Help us') {
         this.$vuetify.goTo('#help', { duration: 1000, offset: -100 })
 
         /*  this.dialog = true */
       }
-      if (action === 'Noi') {
+      if (action === 'Noi' || action === 'Us') {
         this.$vuetify.goTo('#us', { duration: 1000, offset: 100 })
       }
-      if (action === 'Contatti') {
+      if (action === 'Contatti' || action === 'Contacts') {
         this.$vuetify.goTo('#contacts', { duration: 1000, offset: 100 })
       }
       /*       if (action === 'Uno spazio per voi') {
 
  */
 
-      if (action === 'Aiutaci') {
+      if (action === 'Commenti' || action === 'Comments') {
         this.$vuetify.goTo('#comments', { duration: 1000, offset: 100 })
       }
       if (window.innerWidth <= 800) {
         this.drawer = false
       }
     },
-    computedLinks: function () {
+    /*  computedLinks: function () {
       const width = window.innerWidth
       if (width < 360) {
         return this.links.filter(link => link.button !== 'Informazioni')
       } else {
         return this.links
       }
-    },
+    }, */
     onOracleClick () {
       window.location.href = 'https://github.com/SamTheOracle/weddingsite'
+    },
+    onChangeLanguageClick () {
+      this.language === 'English'
+        ? (this.language = 'Italiano')
+        : (this.language = 'English')
+      this.english = !this.english
     }
   }
 }

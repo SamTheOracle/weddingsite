@@ -41,7 +41,6 @@ export default {
   },
   watch: {
     language: function () {
-      console.log(this.language)
       this.swapLanguage = !this.swapLanguage
     }
   }

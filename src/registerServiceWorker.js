@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
           var isSubscribed = !(sub === null)
 
           if (isSubscribed) {
-            console.log('User IS subscribed.', sub)
+            console.log('User IS subscribed.')
             sessionStorage.setItem('sub', JSON.stringify(sub))
           } else {
             const pKey = 'BCVoxq4sXh_Wk-oScRQbiEK-nhStTRbrrGQ4y0dJx6b0vDDGzZgFnthPAWFBORqGKQrz1UmpizkdGP5ITPtZbFM'
@@ -23,7 +23,6 @@ if (process.env.NODE_ENV === 'production') {
               applicationServerKey: urlBase64ToUint8Array(pKey)
             }
             reg.pushManager.subscribe(newSub).then(newSub => {
-              console.log(newSub)
               fetch(`${host}/subscriptions`, {
                 method: 'post',
                 headers: {
@@ -33,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
               }).then(_ => {
                 sessionStorage.setItem('sub', JSON.stringify(newSub))
               })
-            }).catch(err => console.log(err))
+            }).catch(err => err)
           }
         })
     },

@@ -1,10 +1,22 @@
 <template>
   <v-container fluid class="mt-5">
-    <p class="nicetitle text-center">Uno spazio per voi</p>
-    <p class="descr text-center">Un pensiero per gli sposi</p>
-    <div class="text-center">
+    <div v-if="!swapLanguage">
+      <p class="nicetitle text-center">Uno spazio per voi</p>
+      <p class="descr text-center">Un pensiero per gli sposi</p>
+    </div>
+    <div v-else>
+      <p class="nicetitle text-center">A place for you</p>
+      <p class="descr text-center">A thought for the wedding couple</p>
+    </div>
+    <div class="text-center" v-if="!swapLanguage">
       <v-btn color="#EBF0BA" :large="$vuetify.breakpoint.mdAndUp" @click="onAddClick()" rounded>
         Aggiungi
+        <v-icon small class="ml-2">mdi-send</v-icon>
+      </v-btn>
+    </div>
+    <div class="text-center" v-else>
+      <v-btn color="#EBF0BA" :large="$vuetify.breakpoint.mdAndUp" @click="onAddClick()" rounded>
+        Send
         <v-icon small class="ml-2">mdi-send</v-icon>
       </v-btn>
     </div>
@@ -46,11 +58,16 @@
       max-height="500"
       max-width="500"
     >
-      <CommentForm v-on:dialogcommentclose="dialog = false" v-on:validcomment="postComment" />
+      <CommentForm v-on:dialogcommentclose="dialog = false" v-on:validcomment="postComment" :loading="loading"  :english="swapLanguage" />
     </v-dialog>
-    <v-snackbar color="warning" :timeout="3000" v-model="snackbar">
+
+    <v-snackbar color="warning" :timeout="3000" v-model="snackbar" v-if="!swapLanguage">
       Sei correntemente off-line, attiva internet oppure aspetta una connessione migliore
       <v-btn text @click="snackbar = false">Chiudi</v-btn>
+    </v-snackbar>
+    <v-snackbar color="warning" :timeout="3000" v-model="snackbar" v-else>
+      You are currently off-line, turn on your data or wait for a better connection
+      <v-btn text @click="snackbar = false">Close</v-btn>
     </v-snackbar>
   </v-container>
 </template>
@@ -70,12 +87,17 @@ export default {
     Swiper,
     SwiperSlide
   },
+  props: {
+    language: String
+  },
   directives: {
     swiper: directive
   },
   data: () => {
     return {
+      swapLanguage: false,
       snackbar: false,
+      loading: false,
       swiperOption: {
         slidesPerView: 1,
         spaceBetween: 2,
@@ -126,7 +148,6 @@ export default {
     this.fakeComments.forEach(fc => (fc.icon = this.getIcon()))
   },
   mounted () {
-    console.log('fetching...')
     const vm = this
 
     // eslint-disable-next-line no-return-assign
@@ -138,9 +159,8 @@ export default {
           v.icon = vm.getIcon()
         })
       })
-      .catch(err => console.log(err))
+      .catch(err => err)
     navigator.serviceWorker.addEventListener('message', function (event) {
-      console.log('Received a message from service worker: ', event.data)
       const newComment = event.data.comment
       newComment.icon = vm.getIcon()
       vm.values.unshift(newComment)
@@ -148,6 +168,7 @@ export default {
   },
   methods: {
     async postComment (newComment) {
+      this.loading = true
       const vm = this
       const objectComment = JSON.parse(newComment)
       objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
@@ -162,7 +183,6 @@ export default {
             body: JSON.stringify(objectComment)
           }
         )
-        console.log('object comment', response)
         response.json().then(data => {
           if (data.comment) {
             data.icon = this.getIcon()
@@ -170,8 +190,9 @@ export default {
           }
         })
       } catch (err) {
-        console.log(err)
+        return err
       } finally {
+        this.loading = false
         this.dialog = false
       }
     },
@@ -195,6 +216,11 @@ export default {
       } else {
         this.snackbar = true
       }
+    }
+  },
+  watch: {
+    language: function () {
+      this.swapLanguage = !this.swapLanguage
     }
   }
 }

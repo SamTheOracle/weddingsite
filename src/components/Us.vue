@@ -145,8 +145,12 @@ export default {
   directives: {
     swiper: directive
   },
+  props: {
+    language: String
+  },
   data: () => {
     return {
+      swapLanguage: false,
       swiperOption: {
         slidesPerView: 1,
         spaceBetween: 2,
@@ -258,7 +262,7 @@ export default {
             'Francesca e Faustino sposi nel Signore. Una felicità contagiosa.'
         },
         {
-          title: 'Casa, dolce casa',
+          title: 'Casa, dolce "monte"',
           subtitle: 'San Marino',
           description: 'Lei e San Marino, che cosa vuoi di più?'
         },
@@ -302,13 +306,13 @@ export default {
           title: 'First Date',
           subtitle: "Montisola, Lago d'Iseo",
           description:
-            '"Do you want to go the lake?". I thought we would just walk alongside the shore, but I found my self sweaty up to Mont\'Isola\'s sanctuary . I really don\' know what to expect from the next ones!'
+            "\"Do you want to go the lake?\". I thought we would just walk alongside the shore, but I found my self sweaty up to Mont'Isola's sanctuary . I really don' know what to expect from the next ones!"
         },
         {
           title: 'A tourist in Brescia',
           subtitle: 'Castello di Brescia',
           description:
-            'He is used to San Marino\'s three castless, luckly Brescia has got at least one.'
+            "He is used to San Marino's three castless, luckly Brescia has got at least one."
         },
         {
           title: 'Romantic Evening',
@@ -319,11 +323,11 @@ export default {
           title: 'Apples gathering',
           subtitle: 'Brez, Val di Non',
           description:
-            'San Marino - Brez, 5 hours, 4 different trains and one bus thinking I would enjoy some relax in nature with my bella. Surely did not think I would have met everyone at once: 7 siblings, 8 cousins, 2 oncles e grandma. Neither I would have helped them gather apples each day'
+            'San Marino - Brez, 5 hours, 4 different trains and one bus thinking I would enjoy some relax in nature with my bella. Surely did not think I would have met everyone at once: 7 siblings, 8 cousins, 2 oncles and grandma. Neither I would have helped them gather apples each day'
         },
         {
           title: 'Secret woods',
-          subtitle: 'Mills di Canepa, San Marino',
+          subtitle: 'Mills of Canepa, San Marino',
           description:
             'I have finally realized it does not take much to make her happy: a little cascade and woods (and maybe me as well).'
         },
@@ -345,112 +349,117 @@ export default {
           description: 'Dritti alla meta e conquista la preda.'
         },
         {
-          title: "Uno sguardo d'intesa",
+          title: 'Knowing glances',
           subtitle: "Zone, Lago d'Iseoo",
-          description: 'E così con quel dolce sguardo mi dà forza.'
+          description: 'And so, that sweet look gives me strength.'
         },
         {
-          title: 'Due zaini, due sorrisi',
+          title: 'Two backpacks, two smiles',
           subtitle: 'San Miniato, Pisa',
           description:
-            'Insieme il peso dello zaino si dimezza ("per forza portavo tutto io" ~Jack).'
+            'Together, the weight of the backpack is halved ("of course, I was bringing everything in mine! ~Jack).'
         },
         {
           title: 'Gran stile in cucina',
           subtitle: 'Dalla nonna Gio',
-          description: 'Superchef in aiuto della nonna.'
+          description: 'Superchef helping grandma.'
         },
         {
           title: "Un po' di classe",
           subtitle: 'Brescia',
-          description: 'Super festa a casa Mazzacani.'
+          description: "Big party at Mazzacani's."
         },
         {
           title: 'Pic-nic, i nostri preferiti',
           subtitle: 'San Mauro Pascoli, Rimini',
           description:
-            'Mi è andata bene, non la devo neanche portare al ristorante, per lei i pic-nic valgono molto di più.'
+            'I got lucky, I do not need to take her out in fancy restaurant, she enjoys pic-nics way more.'
         },
         {
-          title: '"Aprimi la strada"',
+          title: '"Open the road"',
           subtitle: "Isola d'Arbia, Siena",
           description: ''
         },
         {
-          title: 'Allo stesso passo',
+          title: 'At the same pace',
           subtitle: 'Montefiascone, Viterbo',
           description:
-            'Ci vuole impegno e fatica per stare allo stesso passo ma quando ci si riesce è tutto più facile.'
+            'Will and effort are needed to walk at the same pace, but everything gets easier when after reaching it'
         },
         {
-          title: 'Arrivo o inizio?',
+          title: 'Arrival or beginning?',
           subtitle: 'Roma',
           description:
-            'Dopo 270 km, qualche litigata e tante risate ci facciamo abbracciare da piazza S. Pietro. E ora che abbiamo affrontato questa prova siamo pronti a tutto, a un nuovo inizio.'
+            'After 270 kms, some fights and lots of laughs S. Peter square embraces us. Now we are ready for anything to come, and for a new beginning.'
         },
         {
-          title: '"Jack, non cadere!"',
-          subtitle: 'Parco del Mincio, Mantova',
+          title: '"Jack, don\'t fall!"',
+          subtitle: "Mincio's Park, Mantova",
           description:
-            '13 anni che non pedala una bicicletta, per fortuna nonostante la sua goffaggine non è mai caduto!'
+            'It has been 13 years since he used a bycicle. In despite of his clumsiness, he luckly did not fall off!'
         },
         {
-          title: 'A un matrimonio importante',
+          title: 'An important wedding',
           subtitle: 'Flero, Brescia',
           description:
-            'Francesca e Faustino sposi nel Signore. Una felicità contagiosa.'
+            'Francesca e Faustino are wed in the name of the Lord. A contagious happiness.'
         },
         {
-          title: 'Casa, dolce casa',
+          title: 'Home, sweet mount',
           subtitle: 'San Marino',
-          description: 'Lei e San Marino, che cosa vuoi di più?'
+          description: 'Her and San Marino, what do you want more?'
         },
         {
-          title: 'Un brindisi...',
+          title: 'A toast to...',
           subtitle: 'Verona',
           description:
-            '...a noi sposi. Un annuncio inaspettato e super festeggiato.'
+            '...us, engaged. An unexpected surprise but still very celebrated '
         },
         {
           title: '#Stayathome',
-          subtitle: "Collina Sant'Anna, Brescia.",
-          description: 'Cose che si fanno solo in quarantena!'
+          subtitle: "Sant'Anna's hill, Brescia.",
+          description: 'Things you only do in quarantine'
         },
         {
-          title: 'Serio quando serve',
-          subtitle: 'Pasquetta dai Musicco',
+          title: 'Serious when needed',
+          subtitle: "Pasquetta at Musicco's",
           description:
-            'Ride sempre ma quando si tratta di preparare gli hamburger raggiunge la massima concentrazione.'
+            'He alwasy laughs, but when it is time to make burgers he always reaches maximum concentration'
         },
         {
           title: 'Smartworking',
-          subtitle: 'Quarantena felice',
+          subtitle: 'Happy quarantine',
           description:
-            'Sammarinese bloccato a Brescia, ma tutto sommato non se la passa male.'
+            'Saintmarinese stuck in Brescia, but after all he is doing pretty good'
         },
         {
-          title: 'Lei',
+          title: 'Her',
           subtitle: 'Adamello, Brescia',
-          description: 'Dolce, seria e romantica ma anche un po\' "rompina".'
+          description: 'Sweet, serious and romantic. A little annoying though'
         },
         {
-          title: 'Lui',
-          subtitle: 'Monte Maddalena, Brescia',
+          title: 'Him',
+          subtitle: 'Mount Maddalena, Brescia',
           description:
-            "Onesto, semplice, coraggioso e dall'animo buono. Appassionato del suo lavoro, dal cuore grande, spontaneo e allegro. Con una birra e un panino alla salsiccia raggiunge la sua estasi. A volte goffo e maldestro riesce sempre a stupirti, questo è Giacomo."
+            'Honest, simple, brave and good will. Passionated about his job, big hearted, spontaneous and always happy. He gets the happiest with a beer and a sausage sandwich. Sometimes goofy and clumsy, but he alwasys surprises you, this is Giacomo.'
         }
       ]
     }
   },
   methods: {
     getTitle (index, isEnglish = false) {
-      return this.imageText[index - 1].title
+      return this.swapLanguage ? this.imageTextEnglish[index - 1].title : this.imageText[index - 1].title
     },
     getDescription (index, isEnglish = false) {
-      return this.imageText[index - 1].description
+      return this.swapLanguage ? this.imageTextEnglish[index - 1].description : this.imageText[index - 1].description
     },
     getSubtitle (index, isEnglish = false) {
-      return this.imageText[index - 1].subtitle
+      return this.swapLanguage ? this.imageTextEnglish[index - 1].subtitle : this.imageText[index - 1].subtitle
+    }
+  },
+  watch: {
+    language: function () {
+      this.swapLanguage = !this.swapLanguage
     }
   }
 }

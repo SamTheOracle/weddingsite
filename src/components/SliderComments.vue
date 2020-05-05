@@ -30,21 +30,8 @@
     >
       <swiper
         class="swiper mt-5"
-        v-if="$vuetify.breakpoint.mdAndUp"
-        :options="swiperOptionsMdAndUp"
-        style="height:400px"
-      >
-        <swiper-slide v-for="(comment,i) in values" :key="i">
-          <Comment :comment="comment" />
-        </swiper-slide>
-        <swiper-slide v-for="(fake) in fakeComments " :key="fake.comment">
-          <Comment :comment="fake" />
-        </swiper-slide>
-      </swiper>
-      <swiper
-        class="swiper mt-5"
-        v-else
-        :options="$vuetify.breakpoint.xsOnly?swiperOptions:swiperOptionsSm"
+        :options="getOptions()"
+        v-resize="getOptions"
         style="height:400px"
       >
         <swiper-slide v-for="(comment,i) in values" :key="i">
@@ -108,8 +95,17 @@ export default {
       swapLanguage: false,
       snackbar: false,
       loading: false,
-      swiperOptionsMdAndUp: {
-        slidesPerView: 2,
+      swiperOptionsLgAndUp: {
+        slidesPerView: 4,
+        centeredSlides: true,
+        centeredSlidesBounds: true,
+        spaceBetween: 10,
+        autoplay: {
+          delay: 5000
+        }
+      },
+      swiperOptionsMdOnly: {
+        slidesPerView: 3,
         centeredSlides: true,
         centeredSlidesBounds: true,
         spaceBetween: 10,
@@ -250,6 +246,19 @@ export default {
         this.dialog = true
       } else {
         this.snackbar = true
+      }
+    },
+    getOptions () {
+      if (this.$vuetify.breakpoint.xsOnly) {
+        return this.swiperOptions
+      }
+      if (this.$vuetify.breakpoint.smOnly) {
+        return this.swiperOptionsSm
+      }
+      if (this.$vuetify.breakpoint.mdOnly) {
+        return this.swiperOptionsMdOnly
+      } else {
+        return this.swiperOptionsLgAndUp
       }
     }
   },

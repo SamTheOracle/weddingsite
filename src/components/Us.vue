@@ -1,11 +1,11 @@
 <template>
-  <v-container fluid>
+  <v-container fluid style="min-height:400px">
     <div v-if="!swapLanguage">
       <p class="nicetitle text-center">Presentiamoci un po'</p>
       <p class="presentation text-center mt-5"></p>
       <v-lazy
         :options="{
-          threshold: .8
+          threshold: .6
         }"
         v-model="isActive"
         transition="fade-transition"
@@ -13,7 +13,7 @@
       >
         <v-slide-group
           class="swiper mt-3 mb-3"
-          :options="swiperOption"
+          :options="swiperOptions"
           style="height:100%"
           v-if="$vuetify.breakpoint.mdAndUp"
         >
@@ -22,7 +22,7 @@
               shaped
               outlined
               :width="$vuetify.breakpoint.xsOnly?300:400"
-              :height="$vuetify.breakpoint.xsOnly?480:600"
+              :height="$vuetify.breakpoint.xsOnly?480:620"
               class="ma-2"
             >
               <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
@@ -33,17 +33,22 @@
                   <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i)}}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
-              <v-card-text class="mt-0 pt-0" style="white-space: normal;">{{getDescription(i)}}</v-card-text>
+              <v-card-text class="usdescription">{{getDescription(i)}}</v-card-text>
             </v-card>
           </v-slide-item>
         </v-slide-group>
-        <swiper class="swiper mt-3 mb-3" :options="swiperOption" style="height:100%" v-else>
-          <swiper-slide v-for="i in 25" :key="i" class="ma-1">
+        <swiper
+          class="swiper mt-3 mb-3"
+          :options="$vuetify.breakpoint.xsOnly?swiperOptions:swiperOptionsSm"
+          style="height:100%"
+          v-else
+        >
+          <swiper-slide v-for="i in 25" :key="i">
             <v-card
               shaped
               outlined
-              :width="$vuetify.breakpoint.xsOnly?300:600"
-              :height="$vuetify.breakpoint.xsOnly?480:600"
+              :max-width="$vuetify.breakpoint.smAndDown?340:500"
+              :min-height="$vuetify.breakpoint.xsOnly?480:600"
               class="mx-auto"
             >
               <v-img
@@ -56,10 +61,7 @@
                   <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i)}}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
-              <v-card-text
-                class="mt-0 pt-0"
-                style=" max-width: 250px;white-space: normal;"
-              >{{getDescription(i)}}</v-card-text>
+              <v-card-text class="usdescription">{{getDescription(i)}}</v-card-text>
             </v-card>
           </swiper-slide>
         </swiper>
@@ -70,7 +72,7 @@
       <p class="presentation text-center mt-5"></p>
       <v-lazy
         :options="{
-          threshold: .8
+          threshold: .6
         }"
         v-model="isActive"
         transition="fade-transition"
@@ -87,8 +89,8 @@
               shaped
               outlined
               :width="$vuetify.breakpoint.xsOnly?300:400"
-              :height="$vuetify.breakpoint.xsOnly?480:600"
-              class="ma-2"
+              :height="$vuetify.breakpoint.xsOnly?480:620"
+              class="mx-auto"
             >
               <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
               <v-img height="320" :src="require('@/assets/us_mobile/'+i+'.jpg')"></v-img>
@@ -98,18 +100,22 @@
                   <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i,true)}}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
-              <v-card-text class="mt-0 pt-0" style="white-space: normal;">{{getDescription(i,true)}}</v-card-text>
+              <v-card-text class="usdescription">{{getDescription(i,true)}}</v-card-text>
             </v-card>
           </v-slide-item>
         </v-slide-group>
-        <swiper class="swiper mt-3 mb-3" :options="swiperOption" style="height:100%" v-else>
+        <swiper
+          class="swiper mt-3 mb-3"
+          :options="$vuetify.breakpoint.xsOnly?swiperOptions:swiperOptionsSm"
+          style="height:100%"
+          v-else
+        >
           <swiper-slide v-for="i in 25" :key="i" class="ma-1">
             <v-card
               shaped
               outlined
-              :width="$vuetify.breakpoint.xsOnly?300:600"
-              :height="$vuetify.breakpoint.xsOnly?480:600"
-              class="mx-auto"
+              :max-width="$vuetify.breakpoint.smAndDown?340:500"
+              :min-height="$vuetify.breakpoint.xsOnly?480:600"
             >
               <v-img
                 :height="$vuetify.breakpoint.xsOnly?220:320"
@@ -117,14 +123,11 @@
               ></v-img>
               <v-list-item>
                 <v-list-item-content>
-                  <v-list-item-title class="name">{{getTitle(i)}}</v-list-item-title>
-                  <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i)}}</v-list-item-subtitle>
+                  <v-list-item-title class="name">{{getTitle(i,true)}}</v-list-item-title>
+                  <v-list-item-subtitle class="commentsubtitle">{{getSubtitle(i,true)}}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
-              <v-card-text
-                class="mt-0 pt-0"
-                style=" max-width: 250px;white-space: normal;"
-              >{{getDescription(i)}}</v-card-text>
+              <v-card-text class="usdescription">{{getDescription(i,true)}}</v-card-text>
             </v-card>
           </swiper-slide>
         </swiper>
@@ -151,11 +154,21 @@ export default {
   data: () => {
     return {
       swapLanguage: false,
-      swiperOption: {
-        slidesPerView: 1,
-        spaceBetween: 2,
+      swiperOptionsSm: {
+        slidesPerView: 2,
         centeredSlides: true,
-        cssMode: true
+        centeredSlidesBounds: true,
+        autoplay: {
+          delay: 5000
+        }
+      },
+      swiperOptions: {
+        slidesPerView: 1,
+        cssMode: true,
+        spaceBetween: 5,
+        autoplay: {
+          delay: 5000
+        }
       },
       isActive: false,
       imageText: [
@@ -448,13 +461,19 @@ export default {
   },
   methods: {
     getTitle (index, isEnglish = false) {
-      return this.swapLanguage ? this.imageTextEnglish[index - 1].title : this.imageText[index - 1].title
+      return this.swapLanguage
+        ? this.imageTextEnglish[index - 1].title
+        : this.imageText[index - 1].title
     },
     getDescription (index, isEnglish = false) {
-      return this.swapLanguage ? this.imageTextEnglish[index - 1].description : this.imageText[index - 1].description
+      return this.swapLanguage
+        ? this.imageTextEnglish[index - 1].description
+        : this.imageText[index - 1].description
     },
     getSubtitle (index, isEnglish = false) {
-      return this.swapLanguage ? this.imageTextEnglish[index - 1].subtitle : this.imageText[index - 1].subtitle
+      return this.swapLanguage
+        ? this.imageTextEnglish[index - 1].subtitle
+        : this.imageText[index - 1].subtitle
     }
   },
   watch: {

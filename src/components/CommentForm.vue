@@ -48,7 +48,7 @@
         <v-row align="center" justify="center">
           <v-col>
             <v-textarea
-              counter="120"
+              counter="200"
               outlined
               color="orange"
               label="Commento"
@@ -99,7 +99,7 @@
         <v-row align="center" justify="center">
           <v-col>
             <v-textarea
-              counter="120"
+              counter="200"
               outlined
               color="orange"
               label="Comment"
@@ -137,7 +137,7 @@ export default {
       hint: 'Puoi anche inventartelo ;-)',
       nameRules: [v => (v && v.length < 15) || 'Al massimo 15 caratteri'],
       lastNameRules: [v => (v && v.length < 15) || 'Al massimo 15 caratteri'],
-      commentRules: [v => (v && v.length < 120) || 'Non più di 120 caratteri'],
+      commentRules: [v => (v && v.length <= 200) || 'Non più di 200 caratteri'],
       englishHint: 'You can come up with your own ;-)',
       nameRulesEnglish: [
         v => (v && v.length < 15) || 'No more than 15 characters'
@@ -146,7 +146,7 @@ export default {
         v => (v && v.length < 15) || 'No more than 15 characters'
       ],
       commentRulesEnglish: [
-        v => (v && v.length < 120) || 'No more than 120 characters'
+        v => (v && v.length <= 200) || 'No more than 200 characters'
       ],
       valid: true
     }

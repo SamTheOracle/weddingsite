@@ -1,5 +1,5 @@
 <template>
-  <v-card shaped color="#f7f9e4" light :width="$vuetify.breakpoint.xsOnly?280:350" :height="380" class="mx-auto ma-sm-2 ma-md-2 ma-lg-4">
+  <v-card shaped color="#f7f9e4" light :max-width="$vuetify.breakpoint.xsOnly?340:350" :height="380" class="mx-auto" :min-width="$vuetify.breakpoint.mdAndUp?400:undefined">
 
     <v-list-item>
       <v-list-item-avatar tile width="50" height="50">
@@ -10,7 +10,7 @@
       <v-list-item-subtitle class="commentsubtitle">{{comment.date}}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
-    <v-card-text  class="comment mx-auto">{{comment.comment}}</v-card-text>
+    <v-card-text class="comment">{{comment.comment}}</v-card-text>
   </v-card>
 </template>
 

@@ -22,30 +22,35 @@
     </div>
     <v-lazy
       :options="{
-          threshold: .8
+          threshold: .4
         }"
       v-model="isActive"
       transition="fade-transition"
       min-height="200"
     >
-      <v-slide-group
-        class="pa-4"
-        style="max-width:100%"
-        show-arrows
-        v-if="$vuetify.breakpoint.smAndUp"
+      <swiper
+        class="swiper mt-5"
+        v-if="$vuetify.breakpoint.mdAndUp"
+        :options="swiperOptionsMdAndUp"
+        style="height:400px"
       >
-        <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
-          <Comment :comment="comment" />
-        </v-slide-item>
-        <v-slide-item class="ma-2" v-for="(fake,i) in fakeComments " :key="i">
-          <Comment :comment="fake" />
-        </v-slide-item>
-      </v-slide-group>
-      <swiper class="swiper mt-5" v-else :options="swiperOption" style="height:400px">
         <swiper-slide v-for="(comment,i) in values" :key="i">
           <Comment :comment="comment" />
         </swiper-slide>
-        <swiper-slide v-for="(fake,i) in fakeComments " :key="i">
+        <swiper-slide v-for="(fake) in fakeComments " :key="fake.comment">
+          <Comment :comment="fake" />
+        </swiper-slide>
+      </swiper>
+      <swiper
+        class="swiper mt-5"
+        v-else
+        :options="$vuetify.breakpoint.xsOnly?swiperOptions:swiperOptionsSm"
+        style="height:400px"
+      >
+        <swiper-slide v-for="(comment,i) in values" :key="i">
+          <Comment :comment="comment" />
+        </swiper-slide>
+        <swiper-slide v-for="(fake) in fakeComments " :key="fake.comment">
           <Comment :comment="fake" />
         </swiper-slide>
       </swiper>
@@ -55,10 +60,15 @@
       :fullscreen="$vuetify.breakpoint.xsOnly"
       :hide-overlay="$vuetify.breakpoint.xsOnly"
       transition="dialog-bottom-transition"
-      max-height="500"
-      max-width="500"
+      max-height="620"
+      max-width="620"
     >
-      <CommentForm v-on:dialogcommentclose="dialog = false" v-on:validcomment="postComment" :loading="loading"  :english="swapLanguage" />
+      <CommentForm
+        v-on:dialogcommentclose="dialog = false"
+        v-on:validcomment="postComment"
+        :loading="loading"
+        :english="swapLanguage"
+      />
     </v-dialog>
 
     <v-snackbar color="warning" :timeout="3000" v-model="snackbar" v-if="!swapLanguage">
@@ -98,11 +108,29 @@ export default {
       swapLanguage: false,
       snackbar: false,
       loading: false,
-      swiperOption: {
-        slidesPerView: 1,
-        spaceBetween: 2,
+      swiperOptionsMdAndUp: {
+        slidesPerView: 2,
         centeredSlides: true,
-        cssMode: true
+        centeredSlidesBounds: true,
+        spaceBetween: 10,
+        autoplay: {
+          delay: 5000
+        }
+      },
+      swiperOptionsSm: {
+        slidesPerView: 2,
+        spaceBetween: 5,
+        autoplay: {
+          delay: 5000
+        }
+      },
+      swiperOptions: {
+        slidesPerView: 1,
+        cssMode: true,
+        spaceBetween: 10,
+        autoplay: {
+          delay: 5000
+        }
       },
       isActive: false,
       model: null,
@@ -171,29 +199,36 @@ export default {
       this.loading = true
       const vm = this
       const objectComment = JSON.parse(newComment)
-      objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
-      try {
-        const response = await fetch(
-          'https://www.giovannaegiacomo.app/comments',
-          {
-            method: 'post',
-            headers: {
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify(objectComment)
-          }
-        )
-        response.json().then(data => {
-          if (data.comment) {
-            data.icon = this.getIcon()
-            vm.values.unshift(data)
-          }
-        })
-      } catch (err) {
-        return err
-      } finally {
+      // eslint-disable-next-line no-constant-condition
+      if (true) {
+        objectComment.icon = this.getIcon()
+        vm.values.unshift(objectComment)
         this.loading = false
-        this.dialog = false
+      } else {
+        objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
+        try {
+          const response = await fetch(
+            'https://www.giovannaegiacomo.app/comments',
+            {
+              method: 'post',
+              headers: {
+                'Content-type': 'application/json'
+              },
+              body: JSON.stringify(objectComment)
+            }
+          )
+          response.json().then(data => {
+            if (data.comment) {
+              data.icon = this.getIcon()
+              vm.values.unshift(data)
+            }
+          })
+        } catch (err) {
+          return err
+        } finally {
+          this.loading = false
+          this.dialog = false
+        }
       }
     },
     getIcon () {

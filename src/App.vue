@@ -66,13 +66,13 @@
               </v-list-item-content>
             </v-list-item>
             <v-list-item @click="onChangeLanguageClick()">
-            <v-list-item-avatar tile>
-              <v-img src="@/assets/english.svg" />
-            </v-list-item-avatar>
-            <v-list-item-content>
-              <v-list-item-title>{{language}}</v-list-item-title>
-              <v-list-item-subtitle>Switch to English</v-list-item-subtitle>
-            </v-list-item-content>
+              <v-list-item-avatar tile>
+                <v-img src="@/assets/english.svg" />
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>{{language}}</v-list-item-title>
+                <v-list-item-subtitle>Switch to English</v-list-item-subtitle>
+              </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
         </v-list>
@@ -140,7 +140,7 @@
     <v-divider />
     <v-lazy
       :options="{
-          threshold: .2
+          threshold: .6
         }"
       v-model="footerLazy"
       transition="fade-transition"
@@ -150,14 +150,14 @@
         <v-row>
           <v-col cols="6">
             <v-row align="end" justify="end" no-gutters v-if="!english">
-              <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i">
+              <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i" >
                 <v-btn
                   text
                   :small="$vuetify.breakpoint.xsOnly"
                   @click="doAction(link.button)"
                 >{{link.button}}</v-btn>
               </v-col>
-              <v-col>
+              <v-col >
                 <v-btn
                   text
                   :small="$vuetify.breakpoint.xsOnly"
@@ -173,7 +173,7 @@
                   @click="doAction(link.button)"
                 >{{link.button}}</v-btn>
               </v-col>
-              <v-col>
+              <v-col >
                 <v-btn
                   text
                   :small="$vuetify.breakpoint.xsOnly"
@@ -321,12 +321,12 @@ export default {
       }
       // if (action === 'La nostra casa') {
       if (action === 'Aiutaci' || action === 'Help us') {
-        this.$vuetify.goTo('#help', { duration: 1000, offset: -100 })
+        this.$vuetify.goTo('#help', { duration: 1000, offset: 100 })
 
         /*  this.dialog = true */
       }
       if (action === 'Noi' || action === 'Us') {
-        this.$vuetify.goTo('#us', { duration: 1000, offset: 100 })
+        this.$vuetify.goTo('#us', { duration: 1000, offset: 50 })
       }
       if (action === 'Contatti' || action === 'Contacts') {
         this.$vuetify.goTo('#contacts', { duration: 1000, offset: 100 })
@@ -426,8 +426,10 @@ export default {
   font-weight: bold !important;
   line-height: 1.6 !important;
   overflow: hidden !important;
-  max-width: 250px !important;
-  white-space: normal !important;
+  word-break: normal;
+/*   max-width: 250px !important;
+ */  white-space: normal !important;
+ max-width: fit-content!important;
 }
 .commentsubtitle {
   font-family: "Patrick Hand SC", cursive;
@@ -457,7 +459,24 @@ export default {
   font-size: 50px !important;
   font-weight: 200;
 }
+.usdescription{
+  white-space: normal;
+  word-break: normal;
+  font-family: "Pompiere", cursive;
+  font-weight: 600!important;
+  font-size: 24px!important;
+  line-height: 1.2 !important;
+  max-width: fit-content!important;
+}
 
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+.cardtitle{
+  font-size: 32px!important;
+}
+.nicetitle{
+  font-size: 40px!important;
+}
+}
 @media only screen and (max-width: 600px) {
   .contacttitle {
     font-size: 35px !important;
@@ -467,6 +486,9 @@ export default {
   }
   .nicetitle {
     font-size: 30px !important;
+  }
+  .usdescription{
+    font-size: 20px!important;
   }
 }
 @media only screen and (max-width: 425px) {

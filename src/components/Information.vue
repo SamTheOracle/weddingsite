@@ -4,7 +4,7 @@
     <p class="nicetitle text-center" v-else>Joyfully invite you to their wedding</p>
     <v-row align="center" justify="center" v-if="!swapLanguage">
       <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
-        <Celebration :type="'Celebrazione'" :icon="'church.svg'" :title="'Cripta \n Sant\' Afra'" :place="'Corso Magenta, 68'" :timeSentence="'Sabato 10 Ottobre 2020'" :timeSecondSentence="'ore 11:00'" :placeSecondSentence="'Brescia (BS)'"/>
+        <Celebration :type="'Celebrazione'" :icon="'church.svg'" :title="'Cripta Sant\'Afra'" :place="'Corso Magenta, 68'" :timeSentence="'Sabato 10 Ottobre 2020'" :timeSecondSentence="'ore 11:00'" :placeSecondSentence="'Brescia (BS)'"/>
       </v-col>
       <v-col :cols="$vuetify.breakpoint.smAndUp?6:12">
         <Celebration :type="'Ricevimento'" :icon="'wedding-cake.svg'" :title="'Agriturismo Roccolo'" :place="'Via F.lli Venturoli'" :placeSecondSentence="'Bedizzole (BS)'"/>

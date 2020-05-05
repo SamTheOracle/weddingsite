@@ -65,6 +65,15 @@
                 <v-list-item-subtitle v-text="element.text"></v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
+            <v-list-item @click="onChangeLanguageClick()">
+            <v-list-item-avatar tile>
+              <v-img src="@/assets/english.svg" />
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>{{language}}</v-list-item-title>
+              <v-list-item-subtitle>Switch to English</v-list-item-subtitle>
+            </v-list-item-content>
+            </v-list-item>
           </v-list-item-group>
         </v-list>
         <v-list nav flat v-else>
@@ -84,6 +93,15 @@
                   v-text="element.button"
                 ></v-list-item-title>
                 <v-list-item-subtitle v-text="element.text"></v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item @click="onChangeLanguageClick()">
+              <v-list-item-avatar tile>
+                <v-img src="@/assets/italian.svg" />
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>{{language}}</v-list-item-title>
+                <v-list-item-subtitle>Cambia in italiano</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>

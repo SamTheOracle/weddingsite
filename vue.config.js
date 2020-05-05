@@ -8,7 +8,7 @@ module.exports = {
     manifestOptions: {
       start_url: '/',
       background_color: '#F7F9E4',
-      short_name: 'GeG',
+      short_name: 'G&G',
       icons: [
         {
           src: './img/icons/android-chrome-512x512.png',

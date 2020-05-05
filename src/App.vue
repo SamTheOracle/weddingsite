@@ -423,7 +423,7 @@ export default {
 .comment {
   font-family: "Pompiere", cursive !important;
   font-size: 24px !important;
-  font-weight: bold !important;
+  font-weight: 500 !important;
   line-height: 1.6 !important;
   overflow: hidden !important;
   word-break: normal;
@@ -463,7 +463,7 @@ export default {
   white-space: normal;
   word-break: normal;
   font-family: "Pompiere", cursive;
-  font-weight: 600!important;
+  font-weight: 500!important;
   font-size: 24px!important;
   line-height: 1.2 !important;
   max-width: fit-content!important;

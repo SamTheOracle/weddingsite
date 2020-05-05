@@ -31,7 +31,7 @@ export default {
         {
           name: 'Giovanna',
           type: 'La sposa',
-          image: 'giovibella.jpg',
+          image: 'her.jpg',
           contacts: [
             {
               icon: 'phone',
@@ -55,7 +55,7 @@ export default {
         {
           name: 'Giacomo',
           type: 'Lo sposo',
-          image: 'ioegiovitorbiere.jpg',
+          image: 'him.jpg',
           contacts: [
             {
               icon: 'phone',

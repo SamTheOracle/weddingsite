@@ -77,7 +77,7 @@ function mergeNotifications (registration, event) {
       } */
       const options = {
         icon: './img/icons/android-chrome-96x96.png',
-        badge: './img/icons/android-chrome-72x72.png'
+        badge: './img/icons/ioegiovi.svg'
       }
 
       if (currentNotification && currentNotification.data) {

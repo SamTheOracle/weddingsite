@@ -328,6 +328,7 @@ export default {
     })
     window.addEventListener('beforeinstallprompt', e => {
       if (e) {
+        localStorage.removeItem('weddingsite_installed')
         e.preventDefault()
         this.beforeInstallEvent = e
       }

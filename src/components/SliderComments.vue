@@ -212,7 +212,6 @@ export default {
   },
   methods: {
     async postComment (newComment) {
-      console.log('ciao')
       this.loading = true
       const vm = this
       const objectComment = JSON.parse(newComment)

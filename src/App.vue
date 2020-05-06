@@ -340,7 +340,7 @@ export default {
     // show install prompt after a minute of usage
     setTimeout(() => {
       this.showAlert = true
-    }, 10000)
+    }, 60 * 1000)
   },
   methods: {
     doAction (action) {

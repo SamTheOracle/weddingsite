@@ -217,35 +217,29 @@ export default {
       const vm = this
       const objectComment = JSON.parse(newComment)
       // eslint-disable-next-line no-constant-condition
-      if (true) {
-        objectComment.icon = this.getIcon()
-        vm.values.unshift(objectComment)
+      objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
+      try {
+        const response = await fetch(
+          'https://www.giovannaegiacomo.app/comments',
+          {
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify(objectComment)
+          }
+        )
+        response.json().then(data => {
+          if (data.comment) {
+            data.icon = this.getIcon()
+            vm.values.unshift(data)
+          }
+        })
+      } catch (err) {
+        return err
+      } finally {
         this.loading = false
-      } else {
-        objectComment.subscription = JSON.parse(sessionStorage.getItem('sub'))
-        try {
-          const response = await fetch(
-            'https://www.giovannaegiacomo.app/comments',
-            {
-              method: 'post',
-              headers: {
-                'Content-type': 'application/json'
-              },
-              body: JSON.stringify(objectComment)
-            }
-          )
-          response.json().then(data => {
-            if (data.comment) {
-              data.icon = this.getIcon()
-              vm.values.unshift(data)
-            }
-          })
-        } catch (err) {
-          return err
-        } finally {
-          this.loading = false
-          this.dialog = false
-        }
+        this.dialog = false
       }
     },
     getIcon () {

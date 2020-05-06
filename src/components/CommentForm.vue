@@ -108,7 +108,7 @@
         </v-row>
       </v-form>
       <v-row justify="start">
-        <v-btn rounded color="#EBF0BA" @click="onSendClick()" class="ml-4">Send</v-btn>
+        <v-btn rounded color="#EBF0BA" @click="onSendClick()" class="ml-4" :loading="loading">Send</v-btn>
       </v-row>
     </v-container>
   </v-card>

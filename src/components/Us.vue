@@ -13,7 +13,6 @@
       >
         <v-slide-group
           class="swiper mt-3 mb-3"
-          :options="swiperOptions"
           style="height:100%"
           v-if="$vuetify.breakpoint.mdAndUp"
         >
@@ -80,7 +79,6 @@
       >
         <v-slide-group
           class="swiper mt-3 mb-3"
-          :options="swiperOption"
           style="height:100%"
           v-if="$vuetify.breakpoint.mdAndUp"
         >

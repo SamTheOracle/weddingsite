@@ -56,13 +56,17 @@ export default {
         icon: { url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' }
       })
       this.coordinates.forEach(
-        coordinate =>
-          new google.maps.Marker({
+        coordinate => {
+          var marker = new google.maps.Marker({
             position: coordinate,
             map: this.map,
             label: coordinate.label
           })
+        }
       )
+      /* this.map.addListener('click',function(){
+        this.map.setCenter()
+      }) */
       // eslint-disable-next-line no-new
     }
   },

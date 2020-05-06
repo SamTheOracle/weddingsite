@@ -28,11 +28,24 @@
       transition="fade-transition"
       min-height="200"
     >
+      <v-slide-group
+        class="swiper mt-3 mb-3"
+        style="height:100%"
+        v-if="$vuetify.breakpoint.mdAndUp"
+      >
+        <v-slide-item v-for="(comment,i) in values" :key="i" class="ma-2">
+          <Comment :comment="comment" />
+        </v-slide-item>
+         <v-slide-item v-for="(fake) in fakeComments" :key="fake.comment" class="ma-1">
+          <Comment :comment="fake" />
+        </v-slide-item>
+      </v-slide-group>
       <swiper
         class="swiper mt-5"
         :options="getOptions()"
         v-resize="getOptions"
         style="height:400px"
+        v-else
       >
         <swiper-slide v-for="(comment,i) in values" :key="i">
           <Comment :comment="comment" />
@@ -153,6 +166,13 @@ export default {
           comment:
             "È stato lo sposo a suggerirmi la fantastica idea di terraformare Marte, bombardando il pianeta con l'arsenale atomico mondiale",
           date: '18 Luglio 2020'
+        },
+        {
+          lastName: 'Il Grigio',
+          firstName: 'Gandalf',
+          comment:
+            "Uno stregone non è mai in ritardo, nè anticipo ma arriva precisamente quando intende farlo. Avrò comunque i miei fuochi d'artificio",
+          date: '16 Agosto 2020'
         }
       ],
       icons: [
@@ -251,14 +271,8 @@ export default {
     getOptions () {
       if (this.$vuetify.breakpoint.xsOnly) {
         return this.swiperOptions
-      }
-      if (this.$vuetify.breakpoint.smOnly) {
-        return this.swiperOptionsSm
-      }
-      if (this.$vuetify.breakpoint.mdOnly) {
-        return this.swiperOptionsMdOnly
       } else {
-        return this.swiperOptionsLgAndUp
+        return this.swiperOptionsSm
       }
     }
   },

@@ -79,7 +79,7 @@ export default {
         {
           name: 'Giovanna',
           type: 'The bride',
-          image: 'giovibella.jpg',
+          image: 'her.jpg',
           contacts: [
             {
               icon: 'phone',
@@ -103,7 +103,7 @@ export default {
         {
           name: 'Giacomo',
           type: 'The groom',
-          image: 'ioegiovitorbiere.jpg',
+          image: 'him.jpg',
           contacts: [
             {
               icon: 'phone',

@@ -29,6 +29,12 @@
     <Front v-on:imageloaded="mainLoaded=true" />
 
     <div v-if="mainLoaded">
+      <v-alert type="info" dismissible  dense v-if="showAlert && !appInstalled && beforeInstallEvent">
+       Ti piace il sito? puoi anche scaricare l'applicazione per il telefono
+
+           <div class="text-left mt-2"> <v-btn @click="onInstallClick()" :small="$vuetify.breakpoint.xsOnly">Scarica</v-btn></div>
+
+      </v-alert>
       <v-navigation-drawer
         app
         clipped
@@ -150,14 +156,14 @@
         <v-row>
           <v-col cols="6">
             <v-row align="end" justify="end" no-gutters v-if="!english">
-              <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i" >
+              <v-col v-for="(link,i) in links.filter(f=>f.button!=='Contatti')" :key="i">
                 <v-btn
                   text
                   :small="$vuetify.breakpoint.xsOnly"
                   @click="doAction(link.button)"
                 >{{link.button}}</v-btn>
               </v-col>
-              <v-col >
+              <v-col>
                 <v-btn
                   text
                   :small="$vuetify.breakpoint.xsOnly"
@@ -173,7 +179,7 @@
                   @click="doAction(link.button)"
                 >{{link.button}}</v-btn>
               </v-col>
-              <v-col >
+              <v-col>
                 <v-btn
                   text
                   :small="$vuetify.breakpoint.xsOnly"
@@ -239,6 +245,8 @@ export default {
   },
 
   data: () => ({
+    appInstalled: false,
+    showAlert: false,
     english: false,
     language: 'English',
     drawer: false,
@@ -309,8 +317,31 @@ export default {
         text: 'Contact the spouses',
         image: 'contacts.svg'
       }
-    ]
+    ],
+    beforeInstallEvent: undefined
   }),
+  mounted () {
+    const isInstalled = !!localStorage.getItem('weddingsite_installed')
+    this.appInstalled = isInstalled
+    window.addEventListener('appinstalled', e => {
+      this.appInstalled = true
+    })
+    window.addEventListener('beforeinstallprompt', e => {
+      if (e) {
+        e.preventDefault()
+        this.beforeInstallEvent = e
+      }
+    })
+
+    window.addEventListener('appinstalled', (evt) => {
+      localStorage.setItem('weddingsite_installed', true)
+      this.appInstalled = true
+    })
+    // show install prompt after a minute of usage
+    setTimeout(() => {
+      this.showAlert = true
+    }, 10000)
+  },
   methods: {
     doAction (action) {
       if (action === 'Informazioni' || action === 'Information') {
@@ -358,6 +389,16 @@ export default {
         ? (this.language = 'Italiano')
         : (this.language = 'English')
       this.english = !this.english
+    },
+    onInstallClick () {
+      this.beforeInstallEvent.prompt()
+      this.beforeInstallEvent.userChoice.then(choiceResult => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt')
+        } else {
+          console.log('User dismissed the install prompt')
+        }
+      })
     }
   }
 }
@@ -427,9 +468,10 @@ export default {
   line-height: 1.6 !important;
   overflow: hidden !important;
   word-break: normal;
-/*   max-width: 250px !important;
- */  white-space: normal !important;
- max-width: fit-content!important;
+  /*   max-width: 250px !important;
+ */
+  white-space: normal !important;
+  max-width: fit-content !important;
 }
 .commentsubtitle {
   font-family: "Patrick Hand SC", cursive;
@@ -459,23 +501,23 @@ export default {
   font-size: 50px !important;
   font-weight: 200;
 }
-.usdescription{
+.usdescription {
   white-space: normal;
   word-break: normal;
   font-family: "Pompiere", cursive;
-  font-weight: 500!important;
-  font-size: 24px!important;
+  font-weight: 500 !important;
+  font-size: 24px !important;
   line-height: 1.2 !important;
-  max-width: fit-content!important;
+  max-width: fit-content !important;
 }
 
 @media only screen and (min-width: 601px) and (max-width: 768px) {
-.cardtitle{
-  font-size: 32px!important;
-}
-.nicetitle{
-  font-size: 40px!important;
-}
+  .cardtitle {
+    font-size: 32px !important;
+  }
+  .nicetitle {
+    font-size: 40px !important;
+  }
 }
 @media only screen and (max-width: 600px) {
   .contacttitle {
@@ -487,8 +529,8 @@ export default {
   .nicetitle {
     font-size: 30px !important;
   }
-  .usdescription{
-    font-size: 20px!important;
+  .usdescription {
+    font-size: 20px !important;
   }
 }
 @media only screen and (max-width: 425px) {

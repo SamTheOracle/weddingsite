@@ -218,7 +218,7 @@ export default {
         },
         {
           title: "Uno sguardo d'intesa",
-          subtitle: "Zone, Lago d'Iseoo",
+          subtitle: "Zone, Lago d'Iseo",
           description: 'E così con quel dolce sguardo mi dà forza.'
         },
         {
@@ -361,7 +361,7 @@ export default {
         },
         {
           title: 'Knowing glances',
-          subtitle: "Zone, Lago d'Iseoo",
+          subtitle: "Zone, Lago d'Iseo",
           description: 'And so, that sweet look gives me strength.'
         },
         {

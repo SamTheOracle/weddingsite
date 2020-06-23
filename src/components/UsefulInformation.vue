@@ -7,8 +7,8 @@
       <v-expansion-panel>
         <v-expansion-panel-header class="descr">Come raggiungere la chiesa</v-expansion-panel-header>
         <v-expansion-panel-content eager>
-          <p class="subtitle">Entrata in cripta</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p class="subtitle">Arrivo alla piazzetta</p>
+          <p>La chiesa non dispone di un parcheggio proprio, consigliamo di trovare il posto auto nelle vicinanze oppure nei vicini parcheggi mostrati sotto</p>
           <v-divider />
           <p class="subtitle">Parcheggi</p>
           <v-list shaped>
@@ -48,8 +48,11 @@
       <v-expansion-panel>
         <v-expansion-panel-header class="descr">Come raggiungere l' agriturismo</v-expansion-panel-header>
         <v-expansion-panel-content eager>
-          <p class="subtitle">Uscita Bedizzole</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p class="subtitle">Bedizzole</p>
+          <p>
+            La strada più veloce è sicuramente la strada provinciale proseguendo in direzione lago, uscendo poi a Bedizzole. 
+            Per dettagli più precisi vedere la mappa.
+          </p>
           <v-divider />
           <p class="subtitle">Parcheggi</p>
           <v-list shaped>
@@ -108,7 +111,7 @@
 
     <v-expansion-panels style="max-width:900px" class="mx-auto" v-else>
       <v-expansion-panel>
-        <v-expansion-panel-header class="descr" >How to reach the church</v-expansion-panel-header>
+        <v-expansion-panel-header class="descr">How to reach the church</v-expansion-panel-header>
 
         <v-expansion-panel-content eager>
           <p class="subtitle">Entering in the crypt</p>
@@ -232,7 +235,7 @@
 <script>
 export default {
   components: {
-    MapComponent: () => import('./MapComponent')
+    MapComponent: () => import("./MapComponent")
   },
   props: {
     language: String
@@ -242,7 +245,7 @@ export default {
       english: false,
       dialog: false,
       center: {},
-      title: '',
+      title: "",
       church: {
         lat: 45.5358,
         lng: 10.2296
@@ -253,115 +256,119 @@ export default {
       },
       parkings: [
         {
-          type: 'Pagamento',
-          name: 'Parcheggio Goito Brescia',
-          address: 'Via Spalto S. Marco, 8, \n 25121  Brescia BS',
+          type: "Pagamento",
+          name: "Parcheggio Goito Brescia",
+          address: "Via Spalto S. Marco, 8, \n 25121  Brescia BS",
           coordinates: {
             lat: 45.5349,
             lng: 10.2301,
-            label: 'P1'
+            label: "P1"
           }
         },
         {
-          type: 'Pagamento',
-          name: 'Piazzale Arnaldo',
-          address: 'Piazzale Arnaldo, \n 25121 Brescia BS ',
+          type: "Pagamento",
+          name: "Piazzale Arnaldo",
+          address: "Piazzale Arnaldo, \n 25121 Brescia BS ",
           coordinates: {
             lat: 45.5363,
             lng: 10.2307,
-            label: 'P2'
+            label: "P2"
           }
         }
       ],
       sleepings: [
         {
-          name: 'Agriturismo Roccolo',
-          address: 'Via F.lli Venturoli',
-          link: 'http://www.agriturismoroccolo.com/'
+          name: "Agriturismo Roccolo",
+          address: "Via F.lli Venturoli",
+          link: "http://www.agriturismoroccolo.com/"
         },
         {
-          name: 'Agriturismo Roccolo',
-          address: 'Via F.lli Venturoli',
-          link: 'http://www.agriturismoroccolo.com/'
+          name: "Agriturismo Roccolo",
+          address: "Via F.lli Venturoli",
+          link: "http://www.agriturismoroccolo.com/"
         },
         {
-          name: 'Agriturismo Roccolo',
-          address: 'Via F.lli Venturoli',
-          link: 'http://www.agriturismoroccolo.com/'
+          name: "Agriturismo Roccolo",
+          address: "Via F.lli Venturoli",
+          link: "http://www.agriturismoroccolo.com/"
         }
       ],
       parkingsEnglish: [
         {
-          type: 'Toll',
-          name: 'Parking area Goito Brescia',
-          address: 'Via Spalto S. Marco, 8, \n 25121  Brescia BS',
+          type: "Toll",
+          name: "Parking area Goito Brescia",
+          address: "Via Spalto S. Marco, 8, \n 25121  Brescia BS",
           coordinates: {
             lat: 45.5349,
             lng: 10.2301,
-            label: 'P1'
+            label: "P1"
           }
         },
         {
-          type: 'Toll',
-          name: 'Piazzale Arnaldo',
-          address: 'Piazzale Arnaldo, \n 25121 Brescia BS ',
+          type: "Toll",
+          name: "Piazzale Arnaldo",
+          address: "Piazzale Arnaldo, \n 25121 Brescia BS ",
           coordinates: {
             lat: 45.5363,
             lng: 10.2307,
-            label: 'P2'
+            label: "P2"
           }
         }
       ],
       sleepingsEnglish: [
         {
-          name: 'Agriturismo Roccolo',
-          address: 'Via F.lli Venturoli',
-          link: 'http://www.agriturismoroccolo.com/'
+          name: "Agriturismo Roccolo",
+          address: "Via F.lli Venturoli",
+          link: "http://www.agriturismoroccolo.com/"
         },
         {
-          name: 'Agriturismo Roccolo',
-          address: 'Via F.lli Venturoli',
-          link: 'http://www.agriturismoroccolo.com/'
+          name: "Agriturismo Roccolo",
+          address: "Via F.lli Venturoli",
+          link: "http://www.agriturismoroccolo.com/"
         },
         {
-          name: 'Agriturismo Roccolo',
-          address: 'Via F.lli Venturoli',
-          link: 'http://www.agriturismoroccolo.com/'
+          name: "Agriturismo Roccolo",
+          address: "Via F.lli Venturoli",
+          link: "http://www.agriturismoroccolo.com/"
         }
       ],
       coordinates: []
-    }
+    };
   },
   methods: {
-    onClickSleep (link) {
-      window.location.href = link
+    onDirectionClick() {
+      window.location.href =
+        "https://www.google.it/maps/dir/Piazzetta+Santa+Maria+Calchera,+25121+Brescia+BS/Agriturismo+Roccolo+Societa'+Agricola+Roccolo+S.S.,+Via+Fratelli+Venturoli,+Bedizzole,+BS/@45.5080153,10.2859178,13z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x47817614208bc87f:0x321cd14c8579a963!2m2!1d10.2271568!2d45.5369419!1m5!1m1!1s0x47819a1aa0e98943:0x71a8a11d9b46d847!2m2!1d10.4134633!2d45.517728!3e0";
     },
-    onParkingClick (parking) {
-      this.coordinates = []
-      this.coordinates.push(parking.coordinates)
-      this.center = this.church
-      this.title = parking.name
-      this.dialog = true
+    onClickSleep(link) {
+      window.location.href = link;
     },
-    onParkingMapClick () {
-      this.coordinates = this.parkings.map(parking => parking.coordinates)
-      this.center = this.church
-      this.title = 'Parcheggi per la chiesa'
-      this.dialog = true
+    onParkingClick(parking) {
+      this.coordinates = [];
+      this.coordinates.push(parking.coordinates);
+      this.center = this.church;
+      this.title = parking.name;
+      this.dialog = true;
     },
-    onRestaurantClick () {
-      this.coordinates = []
-      this.center = this.restaurant
-      this.title = 'Agriturismo Roccolo'
-      this.dialog = true
+    onParkingMapClick() {
+      this.coordinates = this.parkings.map(parking => parking.coordinates);
+      this.center = this.church;
+      this.title = "Parcheggi per la chiesa";
+      this.dialog = true;
+    },
+    onRestaurantClick() {
+      this.coordinates = [];
+      this.center = this.restaurant;
+      this.title = "Agriturismo Roccolo";
+      this.dialog = true;
     }
   },
   watch: {
-    language: function () {
-      this.english = !this.english
+    language: function() {
+      this.english = !this.english;
     }
   }
-}
+};
 </script>
 
 <style>

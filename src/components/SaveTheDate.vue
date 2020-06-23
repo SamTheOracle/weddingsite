@@ -9,15 +9,14 @@
       <v-spacer v-if="$vuetify.breakpoint.smAndUp" />
     </v-toolbar>
     <v-row align="start" justify="center">
-
       <v-col>
         <div class="text-center">
           <v-progress-circular color="red" indeterminate v-if="spinner" />
         </div>
         <v-container fluid class="text-center fill-height">
           <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSd71mswKRJUgsO_bdybbwCJyfEXHMjQK685keIucqYW0TRBig/viewform?embedded=true"
-            width="100%"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfRQ9yLePTk4n4JzuxNSlY9NDDYl6wLjBfMhrPqIQvf_0Hurg/viewform?embedded=true"
+           width="100%"
             height="600px"
             frameborder="0"
             marginheight="0"
@@ -27,6 +26,7 @@
           >
             <v-progress-circular color="red" indeterminate class="mx-auto" />
           </iframe>
+  
         </v-container>
       </v-col>
     </v-row>
@@ -35,32 +35,32 @@
 
 <script>
 export default {
-  name: 'SaveTheDate',
+  name: "SaveTheDate",
   data: () => {
     return {
       width: null,
       height: 700,
       spinner: true
-    }
+    };
   },
-  mounted () {
-    this.resize()
+  mounted() {
+    this.resize();
   },
   methods: {
-    resize () {
-      const width = window.innerWidth
+    resize() {
+      const width = window.innerWidth;
       if (width < 450) {
-        this.width = 320
+        this.width = 320;
       } else if ((width >= 450) & (width < 600)) {
-        this.width = 400
+        this.width = 400;
       } else if ((width >= 600) & (width < 768)) {
-        this.width = 550
+        this.width = 550;
       } else {
-        this.width = 700
+        this.width = 700;
       }
     }
   }
-}
+};
 </script>
 <style>
 </style>

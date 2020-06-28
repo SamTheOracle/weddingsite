@@ -50,7 +50,7 @@
         <v-expansion-panel-content eager>
           <p class="subtitle">Bedizzole</p>
           <p>
-            La strada più veloce è sicuramente la strada provinciale proseguendo in direzione lago, uscendo poi a Bedizzole. 
+            La strada più veloce è sicuramente la strada provinciale proseguendo in direzione lago, uscendo poi a Bedizzole.
             Per dettagli più precisi vedere la mappa.
           </p>
           <v-divider />
@@ -100,7 +100,12 @@
             </v-list-item-group>
           </v-list>
           <div class="text-center">
-            <v-btn rounded :small="$vuetify.breakpoint.xsOnly" color="#EBF0BA">
+            <v-btn
+              rounded
+              :small="$vuetify.breakpoint.xsOnly"
+              color="#EBF0BA"
+              @click="onClickSleepMap()"
+            >
               mappa
               <v-icon small>mdi-map-marker</v-icon>
             </v-btn>
@@ -192,7 +197,7 @@
           <p class="subtitle">Bed & Breakfast</p>
           <v-list shaped>
             <v-list-item-group color="primary">
-              <v-list-item class="pa-0" v-for="(sleep,i) in sleepingsEnglish" :key="i">
+              <v-list-item class="pa-0" v-for="(sleep,i) in sleepings" :key="i">
                 <v-list-item-avatar>
                   <v-icon>mdi-bed</v-icon>
                 </v-list-item-avatar>
@@ -204,7 +209,7 @@
             </v-list-item-group>
           </v-list>
           <div class="text-center">
-            <v-btn rounded :small="$vuetify.breakpoint.xsOnly" color="#EBF0BA">
+            <v-btn rounded :small="$vuetify.breakpoint.xsOnly" color="#EBF0BA" @click="onClickSleepMap()">
               map
               <v-icon small>mdi-map-marker</v-icon>
             </v-btn>
@@ -221,6 +226,7 @@
       <MapComponent
         :coordinates="coordinates"
         :center="center"
+        :initialZoom="initialZoom"
         v-on:mapdialogclosed="dialog=false"
         :title="title"
       />
@@ -246,6 +252,7 @@ export default {
       dialog: false,
       center: {},
       title: "",
+      initialZoom:16,
       church: {
         lat: 45.5358,
         lng: 10.2296
@@ -278,19 +285,34 @@ export default {
       ],
       sleepings: [
         {
-          name: "Agriturismo Roccolo",
-          address: "Via F.lli Venturoli",
-          link: "http://www.agriturismoroccolo.com/"
+          name: "Il Glicine",
+          address: "Via Ersone, 3, 25081 Bedizzole BS",
+          link: "https://www.ilglicine.it/",
+          coordinates: {
+            lat: 45.510967,
+            lng: 10.43128,
+            label: "S1"
+          }
         },
         {
-          name: "Agriturismo Roccolo",
-          address: "Via F.lli Venturoli",
-          link: "http://www.agriturismoroccolo.com/"
+          name: "Agriturismo Parco del Chiese",
+          address: "V. Garibaldi 28, 25081 Bedizzole BS",
+          link: "https://www.agriturismoparcodelchiese.com/",
+          coordinates: {
+            lat: 45.522408,
+            lng: 10.407016,
+            label: "S2"
+          }
         },
         {
-          name: "Agriturismo Roccolo",
-          address: "Via F.lli Venturoli",
-          link: "http://www.agriturismoroccolo.com/"
+          name: "Borgo Antico",
+          address: "Via F. Gioia 18/20, 25081 Bedizzole BS",
+          link: "https://alborgoantico.info/index.php/bed-and-breakfast/",
+          coordinates: {
+            lat: 45.517373,
+            lng: 10.413189,
+            label: "S3"
+          }
         }
       ],
       parkingsEnglish: [
@@ -315,33 +337,17 @@ export default {
           }
         }
       ],
-      sleepingsEnglish: [
-        {
-          name: "Agriturismo Roccolo",
-          address: "Via F.lli Venturoli",
-          link: "http://www.agriturismoroccolo.com/"
-        },
-        {
-          name: "Agriturismo Roccolo",
-          address: "Via F.lli Venturoli",
-          link: "http://www.agriturismoroccolo.com/"
-        },
-        {
-          name: "Agriturismo Roccolo",
-          address: "Via F.lli Venturoli",
-          link: "http://www.agriturismoroccolo.com/"
-        }
-      ],
       coordinates: []
     };
   },
   methods: {
     onDirectionClick() {
-      window.location.href =
-        "https://www.google.it/maps/dir/Piazzetta+Santa+Maria+Calchera,+25121+Brescia+BS/Agriturismo+Roccolo+Societa'+Agricola+Roccolo+S.S.,+Via+Fratelli+Venturoli,+Bedizzole,+BS/@45.5080153,10.2859178,13z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x47817614208bc87f:0x321cd14c8579a963!2m2!1d10.2271568!2d45.5369419!1m5!1m1!1s0x47819a1aa0e98943:0x71a8a11d9b46d847!2m2!1d10.4134633!2d45.517728!3e0";
+      window.open(
+        "https://www.google.it/maps/dir/Piazzetta+Santa+Maria+Calchera,+25121+Brescia+BS/Agriturismo+Roccolo+Societa'+Agricola+Roccolo+S.S.,+Via+Fratelli+Venturoli,+Bedizzole,+BS/@45.5080153,10.2859178,13z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x47817614208bc87f:0x321cd14c8579a963!2m2!1d10.2271568!2d45.5369419!1m5!1m1!1s0x47819a1aa0e98943:0x71a8a11d9b46d847!2m2!1d10.4134633!2d45.517728!3e0"
+      );
     },
     onClickSleep(link) {
-      window.location.href = link;
+      window.open(link);
     },
     onParkingClick(parking) {
       this.coordinates = [];
@@ -361,6 +367,13 @@ export default {
       this.center = this.restaurant;
       this.title = "Agriturismo Roccolo";
       this.dialog = true;
+    },
+    onClickSleepMap() {
+      this.coordinates = this.sleepings.map(sleeping => sleeping.coordinates);
+      this.center = this.restaurant;
+      this.title = "B&B";
+      this.dialog = true;
+      this.initialZoom = 14;
     }
   },
   watch: {

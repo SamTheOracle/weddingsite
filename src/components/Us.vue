@@ -303,7 +303,7 @@ export default {
         {
           title: 'Lei',
           subtitle: 'Adamello, Brescia',
-          description: 'Dolce, seria e romantica ma anche un po\' "rompina".'
+          description: 'Dolce, seria e romantica'
         },
         {
           title: 'Lui',
@@ -446,7 +446,7 @@ export default {
         {
           title: 'Her',
           subtitle: 'Adamello, Brescia',
-          description: 'Sweet, serious and romantic. A little annoying though'
+          description: 'Sweet, serious and romantic.'
         },
         {
           title: 'Him',

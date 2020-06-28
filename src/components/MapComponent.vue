@@ -25,7 +25,8 @@ export default {
   props: {
     coordinates: Array,
     center: Object,
-    title: String
+    title: String,
+    initialZoom:Number
   },
   data: () => {
     return {
@@ -47,7 +48,7 @@ export default {
       const mapContainer = this.$refs.map
       var center = new google.maps.LatLng(this.center.lat, this.center.lng)
       this.map = new google.maps.Map(mapContainer, {
-        zoom: 16,
+        zoom: this.initialZoom == null?16:this.initialZoom,
         center: center
       })
       var mark = new google.maps.Marker({

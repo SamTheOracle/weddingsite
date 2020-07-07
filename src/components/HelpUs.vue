@@ -14,7 +14,7 @@
         <p class="nicetitle text-center">Some help for our future</p>
         <p class="descr text-center">Many, small dreams to be realized</p>
         <p class="overline mt-8" style="font-size:15px!important">DE42100110012626903491</p>
-        <p class="text-caption">Giacomo Zanotti</p>
+        <p class="text-caption">Giacomo e Giovanna</p>
         <p class="descr text-center mt-8">Thank you</p>
       </v-col>
     </v-row>

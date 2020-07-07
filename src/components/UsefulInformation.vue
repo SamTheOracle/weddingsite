@@ -7,8 +7,7 @@
       <v-expansion-panel>
         <v-expansion-panel-header class="descr">Come raggiungere la chiesa</v-expansion-panel-header>
         <v-expansion-panel-content eager>
-          <p class="subtitle">Arrivo alla piazzetta</p>
-          <p>La chiesa non dispone di un parcheggio proprio, consigliamo di trovare il posto auto nelle vicinanze oppure nei vicini parcheggi mostrati sotto</p>
+          <p>La chiesa non dispone di un parcheggio proprio, consigliamo di trovare il posto auto nelle vicinanze (Via dei Mille or Via Calatafimi), oppure nei parcheggi mostrati sotto</p>
           <v-divider />
           <p class="subtitle">Parcheggi</p>
           <v-list shaped>
@@ -25,7 +24,8 @@
                 <v-list-item-content>
                   <v-list-item-title
                     style="white-space:pre-line!important"
-                  >{{parking.coordinates.label}} - {{parking.name}} ({{parking.type}})</v-list-item-title>
+                  >{{parking.coordinates.label}} - {{parking.name}} ({{parking.type}}) {{parking.time}}</v-list-item-title>
+
                   <v-list-item-subtitle style="white-space:pre-line!important">{{parking.address}}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -119,8 +119,7 @@
         <v-expansion-panel-header class="descr">How to reach the church</v-expansion-panel-header>
 
         <v-expansion-panel-content eager>
-          <p class="subtitle">Entering in the crypt</p>
-          <p>This is a sentence in english explaing how to get into the church</p>
+          <p>The church does not have its own parking place. We recommend to find one nearby (Via dei Mille or Via Calatafimi) or one shown below</p>
           <v-divider />
           <p class="subtitle">Parking areas</p>
           <v-list shaped>
@@ -137,7 +136,7 @@
                 <v-list-item-content>
                   <v-list-item-title
                     style="white-space:pre-line!important"
-                  >{{parking.coordinates.label}} - {{parking.name}} ({{parking.type}})</v-list-item-title>
+                  >{{parking.coordinates.label}} - {{parking.name}} ({{parking.type}}) {{parking.time}}</v-list-item-title>
                   <v-list-item-subtitle style="white-space:pre-line!important">{{parking.address}}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -161,7 +160,7 @@
         <v-expansion-panel-header class="descr">How to reach the agriturismo</v-expansion-panel-header>
         <v-expansion-panel-content eager>
           <p class="subtitle">Bedizzole exit</p>
-          <p>This is a sentence in english that briefly explains how to get there</p>
+          <p>Follow directions to the lake and then exit to Bedizzole</p>
           <v-divider />
           <p class="subtitle">Parcheggi</p>
           <v-list shaped>
@@ -209,7 +208,12 @@
             </v-list-item-group>
           </v-list>
           <div class="text-center">
-            <v-btn rounded :small="$vuetify.breakpoint.xsOnly" color="#EBF0BA" @click="onClickSleepMap()">
+            <v-btn
+              rounded
+              :small="$vuetify.breakpoint.xsOnly"
+              color="#EBF0BA"
+              @click="onClickSleepMap()"
+            >
               map
               <v-icon small>mdi-map-marker</v-icon>
             </v-btn>
@@ -252,7 +256,7 @@ export default {
       dialog: false,
       center: {},
       title: "",
-      initialZoom:16,
+      initialZoom: 14,
       church: {
         lat: 45.542699,
         lng: 10.213236
@@ -266,6 +270,7 @@ export default {
           type: "Pagamento",
           name: "Parcheggio Randaccio",
           address: "Via Spalto S. Marco, 8, \n 25121  Brescia BS",
+          time: "4 minuti a piedi",
           coordinates: {
             lat: 45.544605,
             lng: 10.213892,
@@ -274,11 +279,12 @@ export default {
         },
         {
           type: "Pagamento",
-          name: "Piazzale Arnaldo",
-          address: "Piazzale Arnaldo, \n 25121 Brescia BS ",
+          name: "Parcheggio Vittoria",
+          address: "Piazza della Vittoria, 25121 Brescia BS",
+          time:"12 minuti a piedi",
           coordinates: {
-            lat: 45.5363,
-            lng: 10.2307,
+            lat: 45.538179,
+            lng: 10.219048,
             label: "P2"
           }
         }
@@ -321,19 +327,19 @@ export default {
           name: "Parking area Goito Brescia",
           address: "Via Spalto S. Marco, 8, \n 25121  Brescia BS",
           coordinates: {
-           lat: 45.544605,
+            lat: 45.544605,
             lng: 10.213892,
             label: "P1"
           }
         },
         {
           type: "Toll",
-          name: "Piazzale Arnaldo",
-          address: "Piazzale Arnaldo, \n 25121 Brescia BS ",
+          name: "Parking Vittoria",
+          address: "Piazza della Vittoria, 25121 Brescia BS",
           coordinates: {
-            lat: 45.5363,
-            lng: 10.2307,
-            label: "P2"
+            lat: 45.538179,
+            lng: 10.219048,
+            label: "P1"
           }
         }
       ],

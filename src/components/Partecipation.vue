@@ -15,7 +15,7 @@
           Parteciperò
           <!-- <v-icon color="red">mdi-heart</v-icon> -->
         </v-btn>
-          <p class="overline mt-8" style="font-size:12px!important">È gradita la conferma entro il 30 Agosto</p>
+          <p class="overline mt-8" style="font-size:12px!important">È gradita la conferma entro il 10 Settembre</p>
 
       </v-col>
     </v-row>
@@ -34,7 +34,7 @@
           Signup
           <!-- <v-icon color="red">mdi-heart</v-icon> -->
         </v-btn>
-          <p class="overline mt-8" style="font-size:12px!important">Confirmation by 30 August</p>
+          <p class="overline mt-8" style="font-size:12px!important">Confirmation by 10 September</p>
 
       </v-col>
     </v-row>

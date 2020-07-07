@@ -323,9 +323,7 @@ export default {
   mounted () {
     const isInstalled = !!localStorage.getItem('weddingsite_installed')
     this.appInstalled = isInstalled
-    window.addEventListener('appinstalled', e => {
-      this.appInstalled = true
-    })
+
     window.addEventListener('beforeinstallprompt', e => {
       if (e) {
         localStorage.removeItem('weddingsite_installed')

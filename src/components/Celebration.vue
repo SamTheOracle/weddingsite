@@ -1,5 +1,5 @@
 <template>
-  <v-card :min-height="$vuetify.breakpoint.xsOnly?300:400" shaped outlined :max-width="$vuetify.breakpoint.smAndDown?400:500" class="mx-auto">
+  <v-card :min-height="$vuetify.breakpoint.xsOnly?300:400" shaped :flat="!$vuetify.breakpoint.xsOnly" :outlined="$vuetify.breakpoint.xsOnly" :max-width="$vuetify.breakpoint.smAndDown?400:500" class="mx-auto">
       <v-list-item two-line>
         <v-list-item-content>
           <div class="overline mb-1">{{type}}</div>

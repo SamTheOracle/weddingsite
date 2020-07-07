@@ -77,7 +77,7 @@
         transition="fade-transition"
         min-height="200"
       >
-        <v-slide-group
+         <v-slide-group
           class="swiper mt-3 mb-3"
           style="height:100%"
           v-if="$vuetify.breakpoint.mdAndUp"
@@ -88,7 +88,7 @@
               outlined
               :width="$vuetify.breakpoint.xsOnly?300:400"
               :height="$vuetify.breakpoint.xsOnly?480:620"
-              class="mx-auto"
+              class="ma-2"
             >
               <!-- :src="require('@/assets/us/'+i+'.jpg')" -->
               <v-img height="320" :src="require('@/assets/us_mobile/'+i+'.jpg')"></v-img>
@@ -108,12 +108,13 @@
           style="height:100%"
           v-else
         >
-          <swiper-slide v-for="i in 25" :key="i" class="ma-1">
+          <swiper-slide v-for="i in 25" :key="i">
             <v-card
               shaped
               outlined
               :max-width="$vuetify.breakpoint.smAndDown?340:500"
               :min-height="$vuetify.breakpoint.xsOnly?480:600"
+              class="mx-auto"
             >
               <v-img
                 :height="$vuetify.breakpoint.xsOnly?220:320"
@@ -244,9 +245,9 @@ export default {
             'Mi è andata bene, non la devo neanche portare al ristorante, per lei i pic-nic valgono molto di più.'
         },
         {
-          title: '"Aprimi la strada"',
+          title: 'Un viandante tra le colline toscane ',
           subtitle: "Isola d'Arbia, Siena",
-          description: ''
+          description: 'La strada è da fare è ancora lunga, ma la natura circostante ci solleva d\'animo!'
         },
         {
           title: 'Allo stesso passo',
@@ -387,9 +388,9 @@ export default {
             'I got lucky, I do not need to take her out in fancy restaurant, she enjoys pic-nics way more.'
         },
         {
-          title: '"Open the road"',
+          title: 'A wanderer among tuscany hills',
           subtitle: "Isola d'Arbia, Siena",
-          description: ''
+          description: 'The road after us is still long, but the nature sorrounding us cheers us up!'
         },
         {
           title: 'At the same pace',

@@ -254,8 +254,8 @@ export default {
       title: "",
       initialZoom:16,
       church: {
-        lat: 45.5358,
-        lng: 10.2296
+        lat: 45.542699,
+        lng: 10.213236
       },
       restaurant: {
         lat: 45.517735,
@@ -264,11 +264,11 @@ export default {
       parkings: [
         {
           type: "Pagamento",
-          name: "Parcheggio Goito Brescia",
+          name: "Parcheggio Randaccio",
           address: "Via Spalto S. Marco, 8, \n 25121  Brescia BS",
           coordinates: {
-            lat: 45.5349,
-            lng: 10.2301,
+            lat: 45.544605,
+            lng: 10.213892,
             label: "P1"
           }
         },
@@ -321,8 +321,8 @@ export default {
           name: "Parking area Goito Brescia",
           address: "Via Spalto S. Marco, 8, \n 25121  Brescia BS",
           coordinates: {
-            lat: 45.5349,
-            lng: 10.2301,
+           lat: 45.544605,
+            lng: 10.213892,
             label: "P1"
           }
         },

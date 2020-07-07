@@ -10,10 +10,7 @@
     </v-toolbar>
     <v-row align="start" justify="center">
       <v-col>
-        <div class="text-center">
-          <v-progress-circular color="red" indeterminate v-if="spinner" />
-        </div>
-        <v-container fluid class="text-center fill-height">
+            <v-container fluid class="text-center fill-height">
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLSfRQ9yLePTk4n4JzuxNSlY9NDDYl6wLjBfMhrPqIQvf_0Hurg/viewform?embedded=true"
            width="100%"
@@ -22,9 +19,7 @@
             marginheight="0"
             marginwidth="0"
             class="mx-auto"
-            :onload="spinner = false"
           >
-            <v-progress-circular color="red" indeterminate class="mx-auto" />
           </iframe>
   
         </v-container>

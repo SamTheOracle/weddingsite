@@ -396,7 +396,7 @@ export default {
           title: 'At the same pace',
           subtitle: 'Montefiascone, Viterbo',
           description:
-            'Will and effort are needed to walk at the same pace, but everything gets easier when after reaching it'
+            'Will and effort are needed to walk at the same pace, but everything gets easier after reaching it'
         },
         {
           title: 'Arrival or beginning?',

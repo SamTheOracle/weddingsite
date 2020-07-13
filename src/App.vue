@@ -29,11 +29,18 @@
     <Front v-on:imageloaded="mainLoaded=true" />
 
     <div v-if="mainLoaded">
-      <v-alert type="info" dismissible  dense v-if="showAlert && !appInstalled && beforeInstallEvent">
-       Ti piace il sito? puoi anche scaricare l'applicazione per il telefono
+      <v-alert
+        type="info"
+        dismissible
+        dense
+        v-if="showAlert && !appInstalled && beforeInstallEvent"
+       
+      >
+        <p v-if="!english">Ti piace il sito? puoi anche scaricare l'applicazione per  {{device}}</p>
 
-           <div class="text-left mt-2"> <v-btn @click="onInstallClick()" :small="$vuetify.breakpoint.xsOnly">Scarica</v-btn></div>
-
+        <div class="text-left mt-2">
+          <v-btn @click="onInstallClick()" :small="$vuetify.breakpoint.xsOnly">Scarica</v-btn>
+        </div>
       </v-alert>
       <v-navigation-drawer
         app
@@ -230,25 +237,25 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    Front: () => import('./components/Front'),
-    Information: () => import('./components/Information'),
-    SaveTheDate: () => import('./components/SaveTheDate'),
-    Partecipation: () => import('./components/Partecipation'),
-    SliderComments: () => import('./components/SliderComments'),
-    Us: () => import('./components/Us'),
-    HelpUs: () => import('./components/HelpUs'),
-    UsefulInformation: () => import('./components/UsefulInformation'),
-    Contacts: () => import('./components/Contacts')
+    Front: () => import("./components/Front"),
+    Information: () => import("./components/Information"),
+    SaveTheDate: () => import("./components/SaveTheDate"),
+    Partecipation: () => import("./components/Partecipation"),
+    SliderComments: () => import("./components/SliderComments"),
+    Us: () => import("./components/Us"),
+    HelpUs: () => import("./components/HelpUs"),
+    UsefulInformation: () => import("./components/UsefulInformation"),
+    Contacts: () => import("./components/Contacts")
   },
 
   data: () => ({
     appInstalled: false,
     showAlert: false,
     english: false,
-    language: 'English',
+    language: "English",
     drawer: false,
     overlay: false,
     dialog: false,
@@ -256,120 +263,134 @@ export default {
     footerLazy: false,
     links: [
       {
-        text: 'Verrai?',
-        button: 'Conferma',
-        image: 'confirmationblack.svg'
+        text: "Verrai?",
+        button: "Conferma",
+        image: "confirmationblack.svg"
       },
       {
-        button: 'Noi',
-        text: 'La nostra storia',
-        image: 'couple.svg'
+        button: "Noi",
+        text: "La nostra storia",
+        image: "couple.svg"
       },
       {
-        text: 'La nostra casa',
-        button: 'Aiutaci',
-        image: 'house.svg'
+        text: "La nostra casa",
+        button: "Aiutaci",
+        image: "house.svg"
       },
       {
-        button: 'Commenti',
-        text: 'Un pensiero per gli sposi',
-        image: 'comment.svg'
+        button: "Commenti",
+        text: "Un pensiero per gli sposi",
+        image: "comment.svg"
       },
       {
-        button: 'Informazioni',
-        text: 'Come raggiungere il luogo',
-        image: 'information.svg'
+        button: "Informazioni",
+        text: "Come raggiungere il luogo",
+        image: "information.svg"
       },
       {
-        button: 'Contatti',
-        text: 'Contatta gli sposi',
-        image: 'contacts.svg'
+        button: "Contatti",
+        text: "Contatta gli sposi",
+        image: "contacts.svg"
       }
     ],
     linksEnglish: [
       {
-        text: 'Are you coming?',
-        button: 'Confirm',
-        image: 'confirmationblack.svg'
+        text: "Are you coming?",
+        button: "Confirm",
+        image: "confirmationblack.svg"
       },
       {
-        button: 'Us',
-        text: 'Our story',
-        image: 'couple.svg'
+        button: "Us",
+        text: "Our story",
+        image: "couple.svg"
       },
       {
-        text: 'for the house to be',
-        button: 'Help us',
-        image: 'house.svg'
+        text: "for the house to be",
+        button: "Help us",
+        image: "house.svg"
       },
       {
-        button: 'Comments',
-        text: 'A thought for the spouses',
-        image: 'comment.svg'
+        button: "Comments",
+        text: "A thought for the spouses",
+        image: "comment.svg"
       },
       {
-        button: 'Information',
-        text: 'How to get around',
-        image: 'information.svg'
+        button: "Information",
+        text: "How to get around",
+        image: "information.svg"
       },
       {
-        button: 'Contacts',
-        text: 'Contact the spouses',
-        image: 'contacts.svg'
+        button: "Contacts",
+        text: "Contact the spouses",
+        image: "contacts.svg"
       }
     ],
     beforeInstallEvent: undefined
   }),
-  mounted () {
-    const isInstalled = !!localStorage.getItem('weddingsite_installed')
-    this.appInstalled = isInstalled
+  mounted() {
+    const isInstalled = !!localStorage.getItem("weddingsite_installed");
+    this.appInstalled = isInstalled;
 
-    window.addEventListener('beforeinstallprompt', e => {
+    window.addEventListener("beforeinstallprompt", e => {
       if (e) {
-        localStorage.removeItem('weddingsite_installed')
-        e.preventDefault()
-        this.beforeInstallEvent = e
+        localStorage.removeItem("weddingsite_installed");
+        e.preventDefault();
+        this.beforeInstallEvent = e;
       }
-    })
+    });
 
-    window.addEventListener('appinstalled', (evt) => {
-      localStorage.setItem('weddingsite_installed', true)
-      this.appInstalled = true
-    })
+    window.addEventListener("appinstalled", evt => {
+      localStorage.setItem("weddingsite_installed", true);
+      this.appInstalled = true;
+    });
     // show install prompt after a minute of usage
     setTimeout(() => {
-      this.showAlert = true
-    }, 60 * 1000)
+      this.showAlert = true;
+    }, 60 * 1000);
+  },
+  computed:{
+    device:function(){
+      const width = window.innerWidth;
+      if(width>=960){
+        return "il laptop";
+      }
+      else if(width<960 && width>600){
+        return "il tablet"
+      }
+      else {
+        return "lo smartphone";
+      }
+    }
   },
   methods: {
-    doAction (action) {
-      if (action === 'Informazioni' || action === 'Information') {
-        this.$vuetify.goTo('#information', { duration: 1000, offset: 100 })
+    doAction(action) {
+      if (action === "Informazioni" || action === "Information") {
+        this.$vuetify.goTo("#information", { duration: 1000, offset: 100 });
       }
-      if (action === 'Conferma' || action === 'Confirm') {
-        this.$vuetify.goTo('#partecipation', { duration: 1000, offset: 100 })
+      if (action === "Conferma" || action === "Confirm") {
+        this.$vuetify.goTo("#partecipation", { duration: 1000, offset: 100 });
       }
       // if (action === 'La nostra casa') {
-      if (action === 'Aiutaci' || action === 'Help us') {
-        this.$vuetify.goTo('#help', { duration: 1000, offset: 100 })
+      if (action === "Aiutaci" || action === "Help us") {
+        this.$vuetify.goTo("#help", { duration: 1000, offset: 100 });
 
         /*  this.dialog = true */
       }
-      if (action === 'Noi' || action === 'Us') {
-        this.$vuetify.goTo('#us', { duration: 1000, offset: 50 })
+      if (action === "Noi" || action === "Us") {
+        this.$vuetify.goTo("#us", { duration: 1000, offset: 50 });
       }
-      if (action === 'Contatti' || action === 'Contacts') {
-        this.$vuetify.goTo('#contacts', { duration: 1000, offset: 100 })
+      if (action === "Contatti" || action === "Contacts") {
+        this.$vuetify.goTo("#contacts", { duration: 1000, offset: 100 });
       }
       /*       if (action === 'Uno spazio per voi') {
 
  */
 
-      if (action === 'Commenti' || action === 'Comments') {
-        this.$vuetify.goTo('#comments', { duration: 1000, offset: 100 })
+      if (action === "Commenti" || action === "Comments") {
+        this.$vuetify.goTo("#comments", { duration: 1000, offset: 100 });
       }
       if (window.innerWidth <= 800) {
-        this.drawer = false
+        this.drawer = false;
       }
     },
     /*  computedLinks: function () {
@@ -380,27 +401,27 @@ export default {
         return this.links
       }
     }, */
-    onOracleClick () {
-      window.location.href = 'https://github.com/SamTheOracle/weddingsite'
+    onOracleClick() {
+      window.location.href = "https://github.com/SamTheOracle/weddingsite";
     },
-    onChangeLanguageClick () {
-      this.language === 'English'
-        ? (this.language = 'Italiano')
-        : (this.language = 'English')
-      this.english = !this.english
+    onChangeLanguageClick() {
+      this.language === "English"
+        ? (this.language = "Italiano")
+        : (this.language = "English");
+      this.english = !this.english;
     },
-    onInstallClick () {
-      this.beforeInstallEvent.prompt()
+    onInstallClick() {
+      this.beforeInstallEvent.prompt();
       this.beforeInstallEvent.userChoice.then(choiceResult => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt')
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the install prompt");
         } else {
-          console.log('User dismissed the install prompt')
+          console.log("User dismissed the install prompt");
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 <style>
 /* @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");

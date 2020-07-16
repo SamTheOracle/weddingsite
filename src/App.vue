@@ -29,14 +29,16 @@
     <Front v-on:imageloaded="mainLoaded=true" />
 
     <div v-if="mainLoaded">
+      <vue-telegram-login
+      mode="callback"
+      telegramLogin="@FindMyCarBot"/>
       <v-alert
         type="info"
         dismissible
         dense
         v-if="showAlert && !appInstalled && beforeInstallEvent"
-       
       >
-        <p v-if="!english">Ti piace il sito? puoi anche scaricare l'applicazione per  {{device}}</p>
+        <p v-if="!english">Ti piace il sito? puoi anche scaricare l'applicazione per {{device}}</p>
 
         <div class="text-left mt-2">
           <v-btn @click="onInstallClick()" :small="$vuetify.breakpoint.xsOnly">Scarica</v-btn>
@@ -236,6 +238,8 @@
 </template>
 
 <script>
+import {vueTelegramLogin} from 'vue-telegram-login'
+
 export default {
   name: "App",
 
@@ -248,7 +252,8 @@ export default {
     Us: () => import("./components/Us"),
     HelpUs: () => import("./components/HelpUs"),
     UsefulInformation: () => import("./components/UsefulInformation"),
-    Contacts: () => import("./components/Contacts")
+    Contacts: () => import("./components/Contacts"),
+    vueTelegramLogin
   },
 
   data: () => ({

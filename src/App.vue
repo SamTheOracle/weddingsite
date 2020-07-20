@@ -533,7 +533,7 @@ export default {
 .usdescriptionmodified{
   font-family: "Pompiere", cursive;
   font-weight: 500 !important;
-  font-size: 24px !important;
+  font-size: 26px !important;
 }
 
 @media only screen and (min-width: 601px) and (max-width: 768px) {

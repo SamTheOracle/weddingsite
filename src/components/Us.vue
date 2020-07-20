@@ -3,19 +3,35 @@
     <div v-if="!swapLanguage">
       <p class="nicetitle text-center">Presentiamoci un po'</p>
 
-      <v-row>
+      <v-row v-if="$vuetify.breakpoint.mdAndUp">
         <v-col></v-col>
         <v-col>
           <div>
             <p class="usdescriptionmodified text-center">- Carina quella ragazza, di dov'è dicevi?</p>
             <p class="usdescriptionmodified text-center">- Brescia</p>
-            <p class="usdescriptionmodified text-center">- Ah, niente 300 km, non si può fare... peccato!</p>
+            <p
+              class="usdescriptionmodified text-center"
+            >- Ah, niente 300 km, non si può fare... peccato!</p>
             <p class="usdescriptionmodified text-center">E invece poi, che sorpresa avventurosa!</p>
-            <p class="usdescriptionmodified text-center">
-            Ecco qualche nostro scatto tra zaino in spalla e cenette romantiche</p>
+            <p
+              class="usdescriptionmodified text-center"
+            >Ecco qualche nostro scatto tra zaino in spalla e cenette romantiche</p>
           </div>
         </v-col>
         <v-col></v-col>
+      </v-row>
+      <v-row v-else justify="center" align-content="start">
+        <div>
+          <p class="usdescriptionmodified text-center">- Carina quella ragazza, di dov'è dicevi?</p>
+          <p class="usdescriptionmodified text-center">- Brescia</p>
+          <p
+            class="usdescriptionmodified text-center"
+          >- Ah, niente 300 km, non si può fare... peccato!</p>
+          <p class="usdescriptionmodified text-center">E invece poi, che sorpresa avventurosa!</p>
+          <p
+            class="usdescriptionmodified text-center"
+          >Ecco qualche nostro scatto tra zaino in spalla e cenette romantiche</p>
+        </div>
       </v-row>
 
       <v-lazy
@@ -83,8 +99,36 @@
     </div>
     <div v-else>
       <p class="nicetitle text-center">About us</p>
-      <p class="presentation text-center mt-5"></p>
-      <v-lazy
+ <v-row v-if="$vuetify.breakpoint.mdAndUp">
+        <v-col></v-col>
+        <v-col>
+          <div>
+            <p class="usdescriptionmodified text-center">- That girl is pretty cute, where do you say she comes from?</p>
+            <p class="usdescriptionmodified text-center">- Brescia</p>
+            <p
+              class="usdescriptionmodified text-center"
+            >- 180 miles? Too bad, it cannot be done!</p>
+            <p class="usdescriptionmodified text-center">And then, what an adventurous surprise!</p>
+            <p
+              class="usdescriptionmodified text-center"
+            >Here there are some snapshots, with backpacks on our shoulder and romantic dinners</p>
+          </div>
+        </v-col>
+        <v-col></v-col>
+      </v-row>
+      <v-row v-else justify="center" align-content="start">
+        <div>
+          <p class="usdescriptionmodified text-center">- That girl is pretty cute, where do you say she comes from?</p>
+          <p class="usdescriptionmodified text-center">- Brescia</p>
+          <p
+            class="usdescriptionmodified text-center"
+          >- 180 miles? Too bad, it cannot be done!</p>
+          <p class="usdescriptionmodified text-center">And then, what an adventurous surprise!</p>
+          <p
+            class="usdescriptionmodified text-center"
+          >Here there are some snapshots, with backpacks on our shoulder and romantic dinners</p>
+        </div>
+      </v-row>      <v-lazy
         :options="{
           threshold: .6
         }"

@@ -530,6 +530,11 @@ export default {
   line-height: 1.2 !important;
   max-width: fit-content !important;
 }
+.usdescriptionmodified{
+  font-family: "Pompiere", cursive;
+  font-weight: 500 !important;
+  font-size: 24px !important;
+}
 
 @media only screen and (min-width: 601px) and (max-width: 768px) {
   .cardtitle {
@@ -550,6 +555,9 @@ export default {
     font-size: 30px !important;
   }
   .usdescription {
+    font-size: 20px !important;
+  }
+   .usdescriptionmodified {
     font-size: 20px !important;
   }
 }

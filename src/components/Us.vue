@@ -2,10 +2,22 @@
   <v-container fluid style="min-height:400px">
     <div v-if="!swapLanguage">
       <p class="nicetitle text-center">Presentiamoci un po'</p>
-      <!-- <p class="presentation text-center mt-5">
-        "Carina quella ragazza, di dov'è dicevi?" "Brescia"."Ah, niente 300 km, non si può fare...peccato!""
-        E invece poi ...che sorpresa avventurosa! Ecco qualche nostro scatto tra zaino in spalla e cenette romantiche...
-      </p> -->
+
+      <v-row>
+        <v-col></v-col>
+        <v-col>
+          <div>
+            <p class="usdescriptionmodified text-center">- Carina quella ragazza, di dov'è dicevi?</p>
+            <p class="usdescriptionmodified text-center">- Brescia</p>
+            <p class="usdescriptionmodified text-center">- Ah, niente 300 km, non si può fare... peccato!</p>
+            <p class="usdescriptionmodified text-center">E invece poi, che sorpresa avventurosa!</p>
+            <p class="usdescriptionmodified text-center">
+            Ecco qualche nostro scatto tra zaino in spalla e cenette romantiche</p>
+          </div>
+        </v-col>
+        <v-col></v-col>
+      </v-row>
+
       <v-lazy
         :options="{
           threshold: .6

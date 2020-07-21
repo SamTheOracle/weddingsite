@@ -236,9 +236,9 @@
       v-model="showUpdateSnackbar"
       color="#EBF0BA"
     >
-    <p style="color:#431008">Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
+    <p style="color: #431008" class="text-center">Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
     <v-span>
-      <v-btn text color="#431008"><v-icon>mdi-refresh<v-icon<v-btn>
+      <v-btn text color="#431008" @click="refresh()"><v-icon>mdi-refresh<v-icon<v-btn>
     </v-span>
 
       <template v-slot:action="{ attrs }">

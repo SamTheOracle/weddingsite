@@ -234,10 +234,9 @@
     </v-lazy>
     <v-snackbar
       v-model="showUpdateSnackbar"
-      :timeout="3000"
       color="#EBF0BA"
     >
-    Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!
+    <p style="color:#431008">Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
     <v-span>
       <v-btn text color="#431008"><v-icon>mdi-refresh<v-icon<v-btn>
     </v-span>

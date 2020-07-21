@@ -232,6 +232,27 @@
         </v-row>
       </v-footer>
     </v-lazy>
+    <v-snackbar
+      v-model="showUpdateSnackbar"
+      :timeout="3000"
+      color="#EBF0BA"
+    >
+    Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!
+    <v-span>
+      <v-btn text color="#431008"><v-icon>mdi-refresh<v-icon<v-btn>
+    </v-span>
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="#431008"
+          text
+          v-bind="attrs"
+          @click="showUpdateSnackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -261,6 +282,7 @@ export default {
     dialog: false,
     mainLoaded: false,
     footerLazy: false,
+    showUpdateSnackbar: false,
     links: [
       {
         text: "Verrai?",
@@ -343,6 +365,8 @@ export default {
       localStorage.setItem("weddingsite_installed", true);
       this.appInstalled = true;
     });
+    document.addEventListener(
+    'swUpdated', this.showRefreshUI, { once: true });
     // show install prompt after a minute of usage
     setTimeout(() => {
       this.showAlert = true;
@@ -363,6 +387,13 @@ export default {
     }
   },
   methods: {
+    showRefreshUI(e){
+      this.showUpdateSnackbar = true;
+    },
+    refresh(){
+      this.showUpdateSnackbar = false;
+      window.location.reload()
+    },
     doAction(action) {
       if (action === "Informazioni" || action === "Information") {
         this.$vuetify.goTo("#information", { duration: 1000, offset: 100 });

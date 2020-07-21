@@ -36,8 +36,10 @@ if (process.env.NODE_ENV === 'production') {
           }
         })
     },
-    registered () {
-
+    registered (reg) {
+      setInterval(() => {
+        reg.update();
+      }, 1000 * 60 * 60);// e.g. hourly checks
     },
     cached () {
       console.log('Content has been cached for offline use.')
@@ -45,8 +47,9 @@ if (process.env.NODE_ENV === 'production') {
     updatefound () {
       console.log('New content is downloading.')
     },
-    updated () {
+    updated (reg) {
       console.log('New content is available; please refresh.')
+      document.dispatchEvent(new CustomEvent('swUpdated',{detail:reg}));
     },
     offline () {
       console.log('No internet connection found. App is running in offline mode.')

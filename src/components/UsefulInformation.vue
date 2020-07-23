@@ -5,9 +5,9 @@
 
     <v-expansion-panels style="max-width:900px" class="mx-auto" v-if="!english">
       <v-expansion-panel>
-        <v-expansion-panel-header class="descr">Come raggiungere la chiesa</v-expansion-panel-header>
+        <v-expansion-panel-header class="descr">Come raggiungere la basilica</v-expansion-panel-header>
         <v-expansion-panel-content eager>
-          <p>La chiesa non dispone di un parcheggio proprio, consigliamo di trovare il posto auto nelle vicinanze (Via dei Mille or Via Calatafimi), oppure nei parcheggi mostrati sotto</p>
+          <p>La basilica non dispone di un parcheggio proprio, consigliamo di trovare il posto auto nelle vicinanze (Via dei Mille or Via Calatafimi), oppure nei parcheggi mostrati sotto</p>
           <v-divider />
           <p class="subtitle">Parcheggi</p>
           <v-list shaped>

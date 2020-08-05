@@ -25,7 +25,8 @@ export default {
   props: {
     coordinates: Array,
     center: Object,
-    title: String
+    title: String,
+    initialZoom:Number
   },
   data: () => {
     return {
@@ -47,7 +48,7 @@ export default {
       const mapContainer = this.$refs.map
       var center = new google.maps.LatLng(this.center.lat, this.center.lng)
       this.map = new google.maps.Map(mapContainer, {
-        zoom: 16,
+        zoom: this.initialZoom == null?16:this.initialZoom,
         center: center
       })
       var mark = new google.maps.Marker({
@@ -56,13 +57,17 @@ export default {
         icon: { url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' }
       })
       this.coordinates.forEach(
-        coordinate =>
-          new google.maps.Marker({
+        coordinate => {
+          var marker = new google.maps.Marker({
             position: coordinate,
             map: this.map,
             label: coordinate.label
           })
+        }
       )
+      /* this.map.addListener('click',function(){
+        this.map.setCenter()
+      }) */
       // eslint-disable-next-line no-new
     }
   },

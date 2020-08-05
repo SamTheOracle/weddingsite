@@ -14,12 +14,10 @@ workbox.core.setCacheNameDetails({ prefix: 'gg-cache' })
 self.addEventListener('push', event => {
   const promise = mergeNotifications(self.registration, event)
   event.waitUntil(promise)
-  console.log(promise)
 })
 
 self.addEventListener('notificationclick', event => {
   const urlToOpen = new URL('/', self.location.origin).href
-  console.log(urlToOpen)
   const promiseChain = clients.matchAll({
     type: 'window',
     includeUncontrolled: true
@@ -73,6 +71,10 @@ function mergeNotifications (registration, event) {
     .then((currentNotification) => {
       var notification = event.data.json()
       let notificationTitle
+      /* const options = {
+        icon: './img/icons/android-chrome-96x96.png',
+        badge: './img/icons/ioegiovi.svg'
+      } */
       const options = {
         icon: './img/icons/android-chrome-96x96.png',
         badge: './img/icons/ioegiovi.svg'

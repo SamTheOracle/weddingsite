@@ -27,17 +27,11 @@ module.exports = {
     workboxOptions: {
       swSrc: './src/service-worker.js'
     }
-    /* chainWebpack: config => {
-      config.plugin('VuetifyLoaderPlugin').tap(args => [{
-        match (originalTag, { kebabTag, camelTag, path, component }) {
-          if (kebabTag.startsWith('core-')) {
-            return [camelTag, `import ${camelTag} from '@/components/core/${camelTag.substring(4)}.vue'`]
-          }
-        }
-      },
-      {
-        progressiveImages: true
-      }])
-    } */
+  },
+  chainWebpack: config => {
+    config.plugin('VuetifyLoaderPlugin').tap(args => [{
+      size: 12, // Use higher-resolution previews
+      sharp: true // Use sharp instead of ImageMagick
+    }])
   }
 }

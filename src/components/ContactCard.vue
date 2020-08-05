@@ -1,10 +1,8 @@
 <template>
-  <v-card color="#f7f9e4">
+  <v-card color="#f7f9e4" height="300" max-width="600" class="mx-auto" flat shaped>
     <v-list-item>
-      <v-list-item-avatar height="40px" width="40px" color="grey">
-<!--         <v-img :src="require('@/assets/'+contact.image)" contain />
- -->
-
+      <v-list-item-avatar height="80px" width="80px">
+        <v-img :src="require('@/assets/'+contact.image)" contain />
   </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="contacttitle">{{contact.name}}</v-list-item-title>
@@ -32,16 +30,5 @@ export default {
 </script>
 
 <style>
-.contacttitle {
-  font-family: "Satisfy", cursive;
-  font-size: 45px;
-  font-weight: 400;
-  font-style: italic;
-  white-space: pre-line;
-}
-@media only screen and (max-width: 600px) {
-  .contacttitle {
-    font-size: 35px;
-  }
-}
+
 </style>

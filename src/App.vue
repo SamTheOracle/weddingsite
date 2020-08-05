@@ -232,7 +232,7 @@
         </v-row>
       </v-footer>
     </v-lazy>
-    <v-snackbar
+    <!-- <v-snackbar
       v-model="showUpdateSnackbar"
       color="#EBF0BA"
     >
@@ -252,7 +252,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </v-app>
+  </v-app> -->
 </template>
 
 <script>

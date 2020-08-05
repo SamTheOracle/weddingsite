@@ -366,6 +366,7 @@ export default {
     });
     document.addEventListener("swUpdated", this.showRefreshUI, { once: true });
     // show install prompt after a minute of usage
+    
     setTimeout(() => {
       this.showAlert = true;
     }, 60 * 1000);

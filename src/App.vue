@@ -230,10 +230,13 @@
           </v-col>
         </v-row>
       </v-footer>
-      <v-snackbar
+
+    </v-lazy>
+          <v-snackbar
       v-model="showUpdateSnackbar"
       v-if="mainLoaded"
       color="#EBF0BA"
+      app
     >
     <p style="color: #431008" class="text-center">Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
     <v-span>
@@ -251,8 +254,6 @@
         </v-btn>
       </template>
     </v-snackbar>
-    </v-lazy>
-    
   </v-app>
 </template>
 

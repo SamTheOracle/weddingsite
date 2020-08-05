@@ -231,7 +231,7 @@
         </v-row>
       </v-footer>
     </v-lazy>
-    <v-snackbar v-model="showUpdateSnackbar" v-if="mainLoaded" color="#EBF0BA" app>
+    <v-snackbar v-model="showUpdateSnackbar" v-if="mainLoaded" color="#EBF0BA" app :timeout="-1">
       <p
         style="color: #431008"
         class="text-center"

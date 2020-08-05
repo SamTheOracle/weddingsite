@@ -231,19 +231,10 @@
         </v-row>
       </v-footer>
     </v-lazy>
-    <v-snackbar v-model="showUpdateSnackbar" v-if="mainLoaded" color="#EBF0BA" app :timeout="-1">
-      <p
-        style="color: #431008"
-        class="text-center"
-      >Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
-      <v-span>
-        <v-btn text color="#431008" @click="refresh()">
-          <v-icon>mdi-refresh</v-icon>
-        </v-btn>
-      </v-span>
-
-      <template v-slot:action="{ attrs }">
-        <v-btn color="#431008" text v-bind="attrs" @click="showUpdateSnackbar = false">Close</v-btn>
+      <v-snackbar v-model="showUpdateSnackbar" color="#EBF0BA"  app :timeout="-1">
+      <p style="color:#431008">Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
+             <template v-slot:action="{ attrs }">
+        <v-btn color="#431008" text v-bind="attrs" @click="refresh()"><v-icon>mdi-refresh</v-icon></v-btn>
       </template>
     </v-snackbar>
   </v-app>
@@ -380,11 +371,9 @@ export default {
   methods: {
     showRefreshUI(e) {
       this.showUpdateSnackbar = true;
-      console.log(this.showUpdateSnackbar);
     },
     refresh() {
       this.showUpdateSnackbar = false;
-      console.log(this.showUpdateSnackbar);
 
       window.location.reload();
     },

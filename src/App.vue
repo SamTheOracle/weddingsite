@@ -366,7 +366,7 @@ export default {
     });
     document.addEventListener("swUpdated", this.showRefreshUI, { once: true });
     // show install prompt after a minute of usage
-    
+
     setTimeout(() => {
       this.showAlert = true;
     }, 60 * 1000);
@@ -386,9 +386,13 @@ export default {
   methods: {
     showRefreshUI(e) {
       this.showUpdateSnackbar = true;
+      console.log(this.showUpdateSnackbar)
+
     },
     refresh() {
       this.showUpdateSnackbar = false;
+      console.log(this.showUpdateSnackbar)
+
       window.location.reload();
     },
     doAction(action) {

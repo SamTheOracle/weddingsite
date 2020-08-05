@@ -34,9 +34,8 @@
         dismissible
         dense
         v-if="showAlert && !appInstalled && beforeInstallEvent"
-       
       >
-        <p v-if="!english">Ti piace il sito? puoi anche scaricare l'applicazione per  {{device}}</p>
+        <p v-if="!english">Ti piace il sito? puoi anche scaricare l'applicazione per {{device}}</p>
 
         <div class="text-left mt-2">
           <v-btn @click="onInstallClick()" :small="$vuetify.breakpoint.xsOnly">Scarica</v-btn>
@@ -232,8 +231,9 @@
         </v-row>
       </v-footer>
     </v-lazy>
-    <!-- <v-snackbar
+    <v-snackbar
       v-model="showUpdateSnackbar"
+      v-if="mainLoaded"
       color="#EBF0BA"
     >
     <p style="color: #431008" class="text-center">Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
@@ -251,7 +251,7 @@
           Close
         </v-btn>
       </template>
-    </v-snackbar> -->
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -268,7 +268,7 @@ export default {
     Us: () => import("./components/Us"),
     HelpUs: () => import("./components/HelpUs"),
     UsefulInformation: () => import("./components/UsefulInformation"),
-    Contacts: () => import("./components/Contacts")
+    Contacts: () => import("./components/Contacts"),
   },
 
   data: () => ({
@@ -286,73 +286,73 @@ export default {
       {
         text: "Verrai?",
         button: "Conferma",
-        image: "confirmationblack.svg"
+        image: "confirmationblack.svg",
       },
       {
         button: "Noi",
         text: "La nostra storia",
-        image: "couple.svg"
+        image: "couple.svg",
       },
       {
         text: "La nostra casa",
         button: "Aiutaci",
-        image: "house.svg"
+        image: "house.svg",
       },
       {
         button: "Commenti",
         text: "Un pensiero per gli sposi",
-        image: "comment.svg"
+        image: "comment.svg",
       },
       {
         button: "Informazioni",
         text: "Come raggiungere il luogo",
-        image: "information.svg"
+        image: "information.svg",
       },
       {
         button: "Contatti",
         text: "Contatta gli sposi",
-        image: "contacts.svg"
-      }
+        image: "contacts.svg",
+      },
     ],
     linksEnglish: [
       {
         text: "Are you coming?",
         button: "Confirm",
-        image: "confirmationblack.svg"
+        image: "confirmationblack.svg",
       },
       {
         button: "Us",
         text: "Our story",
-        image: "couple.svg"
+        image: "couple.svg",
       },
       {
         text: "for the house to be",
         button: "Help us",
-        image: "house.svg"
+        image: "house.svg",
       },
       {
         button: "Comments",
         text: "A thought for the spouses",
-        image: "comment.svg"
+        image: "comment.svg",
       },
       {
         button: "Information",
         text: "How to get around",
-        image: "information.svg"
+        image: "information.svg",
       },
       {
         button: "Contacts",
         text: "Contact the spouses",
-        image: "contacts.svg"
-      }
+        image: "contacts.svg",
+      },
     ],
-    beforeInstallEvent: undefined
+    beforeInstallEvent: undefined,
   }),
   mounted() {
     const isInstalled = !!localStorage.getItem("weddingsite_installed");
     this.appInstalled = isInstalled;
 
-    window.addEventListener("beforeinstallprompt", e => {
+    window.addEventListener("beforeinstallprompt", (e) => {
       if (e) {
         localStorage.removeItem("weddingsite_installed");
         e.preventDefault();
@@ -360,38 +360,35 @@ export default {
       }
     });
 
-    window.addEventListener("appinstalled", evt => {
+    window.addEventListener("appinstalled", (evt) => {
       localStorage.setItem("weddingsite_installed", true);
       this.appInstalled = true;
     });
-    document.addEventListener(
-    'swUpdated', this.showRefreshUI, { once: true });
+    document.addEventListener("swUpdated", this.showRefreshUI, { once: true });
     // show install prompt after a minute of usage
     setTimeout(() => {
       this.showAlert = true;
     }, 60 * 1000);
   },
-  computed:{
-    device:function(){
+  computed: {
+    device: function () {
       const width = window.innerWidth;
-      if(width>=960){
+      if (width >= 960) {
         return "il laptop";
-      }
-      else if(width<960 && width>600){
-        return "il tablet"
-      }
-      else {
+      } else if (width < 960 && width > 600) {
+        return "il tablet";
+      } else {
         return "lo smartphone";
       }
-    }
+    },
   },
   methods: {
-    showRefreshUI(e){
+    showRefreshUI(e) {
       this.showUpdateSnackbar = true;
     },
-    refresh(){
+    refresh() {
       this.showUpdateSnackbar = false;
-      window.location.reload()
+      window.location.reload();
     },
     doAction(action) {
       if (action === "Informazioni" || action === "Information") {
@@ -442,15 +439,15 @@ export default {
     },
     onInstallClick() {
       this.beforeInstallEvent.prompt();
-      this.beforeInstallEvent.userChoice.then(choiceResult => {
+      this.beforeInstallEvent.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === "accepted") {
           console.log("User accepted the install prompt");
         } else {
           console.log("User dismissed the install prompt");
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
@@ -560,7 +557,7 @@ export default {
   line-height: 1.2 !important;
   max-width: fit-content !important;
 }
-.usdescriptionmodified{
+.usdescriptionmodified {
   font-family: "Pompiere", cursive;
   font-weight: 500 !important;
   font-size: 26px !important;
@@ -587,7 +584,7 @@ export default {
   .usdescription {
     font-size: 20px !important;
   }
-   .usdescriptionmodified {
+  .usdescriptionmodified {
     font-size: 20px !important;
   }
 }

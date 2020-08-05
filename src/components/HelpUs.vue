@@ -28,8 +28,8 @@
         <v-btn class="mt-6" color="#EBF0BA" rounded @click="openList()">Wedding List</v-btn>
       </v-col>
     </v-row>
-    <p class="descr text-center mt-8" v-if="!swapLanguage">Grazie</p>
-    <p class="descr text-center mt-8" v-else>Thank You</p>
+    <!-- <p class="descr text-center mt-8" v-if="!swapLanguage">Grazie</p>
+    <p class="descr text-center mt-8" v-else>Thank You</p> -->
   </v-container>
 </template>
 

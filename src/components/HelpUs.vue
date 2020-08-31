@@ -10,7 +10,6 @@
       <v-col class="text-center">
         <p class="descr text-center">Tanti, piccoli sogni nel cassetto da realizzare</p>
         <p class="overline mt-8" style="font-size:15px!important">DE42100110012626903491</p>
-        <p class="text-caption">Giacomo Zanotti</p>
       </v-col>
       <v-col class="text-center">
         <p class="descr text-center">Per la nostra casa</p>

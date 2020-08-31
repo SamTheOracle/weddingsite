@@ -18,6 +18,8 @@
         <p class="descr text-center mt-8">Thank you</p>
       </v-col>
     </v-row>
+    <p class="descr text-center mt-8" v-if="!swapLanguage">Grazie. Il miglior investimento è l'investimento nell'amore.</p>
+    <p class="descr text-center mt-8" v-else>Thank You. The best investement is an investement in love.</p>
   </v-container>
 </template>
 
@@ -34,6 +36,11 @@ export default {
   watch: {
     language: function () {
       this.swapLanguage = !this.swapLanguage;
+    },
+  },
+  methods: {
+    openList() {
+      location.href = "https://www.amazon.it/wedding/share/giovannaegiacomo_listanozze"
     },
   },
 };

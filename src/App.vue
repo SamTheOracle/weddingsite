@@ -153,7 +153,7 @@
           <v-card-title class="headline" style="background-color:#EBF0BA">Informazioni</v-card-title>
 
           <p
-            class="descr text-center" style="margin:auto"
+            class="comment text-center" style="margin:auto"
           >La lista verrà pubblicata mercoledì 17 Settembre, stay tuned...</p>
           <v-divider></v-divider>
 

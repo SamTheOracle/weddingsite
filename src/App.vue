@@ -154,7 +154,7 @@
 
           <p
             class="descr text-center" style="margin:auto"
-          >È gradita la conferma entro il 10 Settembre</p>
+          >La lista verrà pubblicata mercoledì 17 Settembre, stay tuned...</p>
           <v-divider></v-divider>
 
           <v-card-actions>

@@ -130,7 +130,7 @@
 
       <Us id="us" :language="language" />
 
-      <HelpUs id="help" :language="language" />
+      <HelpUs id="help" :language="language" v-on:weddinglistsoon="dialogSoon = true" />
 
       <SliderComments id="comments" :language="language" />
 
@@ -147,6 +147,21 @@
         scrollable
       >
         <SaveTheDate v-on:close="dialog = false" />
+      </v-dialog>
+      <v-dialog v-model="dialogSoon" max-width="500">
+        <v-card>
+          <v-card-title class="headline" style="background-color:#EBF0BA">Informazioni</v-card-title>
+
+          <p
+            class="descr text-center" style="margin:auto"
+          >È gradita la conferma entro il 10 Settembre</p>
+          <v-divider></v-divider>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn light rounded text @click="dialogSoon = false">Ok</v-btn>
+          </v-card-actions>
+        </v-card>
       </v-dialog>
     </div>
     <v-divider />
@@ -231,10 +246,14 @@
         </v-row>
       </v-footer>
     </v-lazy>
-      <v-snackbar v-model="showUpdateSnackbar" color="#EBF0BA"  app :timeout="-1">
-      <p style="color:#431008">Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
-             <template v-slot:action="{ attrs }">
-        <v-btn color="#431008" text v-bind="attrs" @click="refresh()"><v-icon>mdi-refresh</v-icon></v-btn>
+    <v-snackbar v-model="showUpdateSnackbar" color="#EBF0BA" app :timeout="-1">
+      <p
+        style="color:#431008"
+      >Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
+      <template v-slot:action="{ attrs }">
+        <v-btn color="#431008" text v-bind="attrs" @click="refresh()">
+          <v-icon>mdi-refresh</v-icon>
+        </v-btn>
       </template>
     </v-snackbar>
   </v-app>
@@ -264,6 +283,7 @@ export default {
     drawer: false,
     overlay: false,
     dialog: false,
+    dialogSoon: false,
     mainLoaded: false,
     footerLazy: false,
     showUpdateSnackbar: false,

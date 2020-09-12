@@ -169,7 +169,7 @@ export default {
         },
         {
           lastName: 'Il Grigio',
-          firstName: 'Gandalf',
+          firstName: 'Gandalff',
           comment:
             "Uno stregone non è mai in ritardo, nè anticipo ma arriva precisamente quando intende farlo. Avrò comunque i miei fuochi d'artificio",
           date: '16 Agosto 2020'

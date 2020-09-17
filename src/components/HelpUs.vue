@@ -10,16 +10,14 @@
       <v-col class="text-center">
         <p class="descr text-center">Tanti, piccoli sogni nel cassetto da realizzare</p>
         <p class="overline mt-8" style="font-size:15px!important">DE42100110012626903491</p>
+        <p class="text-caption">Giacomo Zanotti</p>
       </v-col>
       <v-col class="text-center">
         <p class="descr text-center">Per la nostra casa</p>
         <v-btn class="ma-3" color="#EBF0BA" rounded @click="openList()">Lista Nozze Amazon</v-btn>
-        <v-btn
-          class="ma-3"
-          color="#EBF0BA"
-          rounded
-          @click="$emit('weddinglistsoon')"
-        >Lista Nozze Zanolli</v-btn>
+        <v-btn class="ma-3" color="#EBF0BA" rounded @click="openZanolli()">Lista Nozze Zanolli</v-btn>
+        <p class="text-caption">UserName: 0000720</p>
+        <p class="text-caption">Password: 5302412</p>
       </v-col>
     </v-row>
     <v-row align="center" justify="center" v-else>
@@ -30,13 +28,10 @@
       </v-col>
       <v-col class="text-center">
         <p class="descr text-center">For our home</p>
-        <v-btn class="mt-6" color="#EBF0BA" rounded @click="openList()">Wedding List</v-btn>
-          <v-btn
-          class="ma-3"
-          color="#EBF0BA"
-          rounded
-          @click="$emit('weddinglistsoon')"
-        >Lista Nozze Zanolli</v-btn>
+        <v-btn class="ma-3" color="#EBF0BA" rounded @click="openList()">Wedding list Amazon</v-btn>
+        <v-btn class="ma-3" color="#EBF0BA" rounded @click="openZanolli()">Wedding list Zanolli</v-btn>
+        <p class="text-caption">UserName: 0000720</p>
+        <p class="text-caption">Password: 5302412</p>
       </v-col>
     </v-row>
     <p
@@ -68,10 +63,13 @@ export default {
   },
   methods: {
     openList() {
-      location.href =
-        "https://www.amazon.it/wedding/share/giovannaegiacomo_listanozze";
+      window.open(
+        "https://www.amazon.it/wedding/share/giovannaegiacomo_listanozze"
+      );
     },
-    openDialog() {},
+    openZanolli() {
+      window.open("http://listanozze.zanolli.com/catalogo_rosa.php");
+    },
   },
 };
 </script>

@@ -269,7 +269,7 @@ export default {
         {
           type: "Pagamento",
           name: "Parcheggio Randaccio",
-          address: "Via Spalto S. Marco, 8, \n 25121  Brescia BS",
+          address: "Via Lupi Di Toscana, 4, \n 25121  Brescia BS",
           time: "4 minuti a piedi",
           coordinates: {
             lat: 45.544605,

@@ -249,7 +249,7 @@
     <v-snackbar v-model="showUpdateSnackbar" color="#EBF0BA" app :timeout="-1">
       <p
         style="color:#431008"
-      >Aggiornamento disponibile, ricarca il sito per vedere le ultime modifiche!</p>
+      >Aggiornamento disponibile, ricarica il sito per vedere le ultime modifiche!</p>
       <template v-slot:action="{ attrs }">
         <v-btn color="#431008" text v-bind="attrs" @click="refresh()">
           <v-icon>mdi-refresh</v-icon>

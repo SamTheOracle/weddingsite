@@ -11,7 +11,7 @@
         <p class="descr text-center">Tanti, piccoli sogni nel cassetto da realizzare</p>
         <p class="test-caption mt-8"></p>
         <p class="overline" style="font-size:15px!important">IBAN: DE42100110012626903491</p>
-        <p class="text-caption">Intestario: Giacomo Zanotti</p>
+        <p class="text-caption">Intestatario: Giacomo Zanotti</p>
       </v-col>
       <v-col class="text-center">
         <p class="descr text-center">Per la nostra casa</p>

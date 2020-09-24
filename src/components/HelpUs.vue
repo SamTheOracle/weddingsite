@@ -11,6 +11,7 @@
         <p class="descr text-center">Tanti, piccoli sogni nel cassetto da realizzare</p>
         <p class="test-caption mt-8"></p>
         <p class="overline" style="font-size:15px!important">IBAN: DE42100110012626903491</p>
+        <p class="text-caption" style="font-size:15px!important">BIC: NTSBDEB1XXX</p>
         <p class="text-caption">Intestatario: Giacomo Zanotti</p>
       </v-col>
       <v-col class="text-center">
@@ -24,7 +25,8 @@
     <v-row align="center" justify="center" v-else>
       <v-col class="text-center">
         <p class="descr text-center">Many, small dreams to be realized</p>
-      <p class="overline" style="font-size:15px!important">IBAN: DE42100110012626903491</p>
+        <p class="overline" style="font-size:15px!important">IBAN: DE42100110012626903491</p>
+        <p class="text-caption" style="font-size:15px!important">BIC: NTSBDEB1XXX</p>
         <p class="text-caption">Owner: Giacomo Zanotti</p>
       </v-col>
       <v-col class="text-center">

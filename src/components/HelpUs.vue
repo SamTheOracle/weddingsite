@@ -15,7 +15,7 @@
         <p class="overline" style="font-size: 15px !important">
           IBAN: IT59K0311111207000000000905
         </p>
-        <p class="text-caption">Owner: Giovanna Musicco</p>
+        <p class="text-caption">Intestatario: Giovanna Musicco</p>
       </v-col>
       <v-col class="text-center">
         <p class="descr text-center">Per la nostra casa</p>
